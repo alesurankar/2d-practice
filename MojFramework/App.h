@@ -14,13 +14,9 @@ public:
 private:
 	void ComposeFrame();
 	void UpdateModel();
-	/********************************/
-	/*  Moije Funkcije              */
-	/********************************/
 private:
 	MainWindow& wnd;
 	Graphics gfx;
-	/********************************/
-	/*  Moji Parametri              */
-	/********************************/
+	int x = 200;
+	int y = 200;
 };
