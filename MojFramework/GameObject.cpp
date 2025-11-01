@@ -19,20 +19,20 @@ void GameObject::Update(Keyboard& kbd)
 {
 	if (kbd.KeyIsPressed('W'))
 	{
-		y-=2;
+		y--;
 	}
 	if (kbd.KeyIsPressed('S'))
 	{
-		y+=2;
+		y++;
 	}
 
 	if (kbd.KeyIsPressed('A'))
 	{
-		x-=2;
+		x--;
 	}
 	if (kbd.KeyIsPressed('D'))
 	{
-		x+=2;
+		x++;
 	}
 }
 
@@ -69,4 +69,28 @@ void GameObject::CheckBorder()
 		y = 0;
 		vy = -vy;
 	}
+}
+
+bool GameObject::CheckCollision(const GameObject& other)
+{
+	const int left = x;
+	const int right = x + width;
+	const int top = y;
+	const int bottom = y + height;
+
+	const int other_left = other.x;
+	const int other_right = other.x + other.width;
+	const int other_top = other.y;
+	const int other_bottom = other.y + other.height;
+
+	return 
+		(left < other_right &&
+		 right > other_left &&
+		 top < other_bottom &&
+		 bottom > other_top);
+}
+
+void GameObject::ChangeColor(Color color_in)
+{
+	color = color_in;
 }

@@ -4,16 +4,13 @@
 
 class GameObject {
 public:
-	enum class TYPE
-	{
-		PLAYER,
-		BOT
-	};
 	GameObject(int x_in, int y_in, Color color_in);
 	void Update();
 	void Update(Keyboard& kbd);
 	void Draw(Graphics& gfx) const;
 	void CheckBorder();
+	bool CheckCollision(const GameObject& other);
+	void ChangeColor(Color color_in);
 private:
 	int x;
 	int y;

@@ -8,6 +8,9 @@ App::App(MainWindow& wnd)
 {
 	player = std::make_unique<Player>(100, 100);
 	enemy.emplace_back(10, 10);
+	enemy.emplace_back(100, 10);
+	enemy.emplace_back(50, 50);
+	enemy.emplace_back(10, 100);
 }
 
 void App::Go()
@@ -30,6 +33,14 @@ void App::UpdatePlayer()
 {
 	player->Update(wnd.kbd);
 	player->CheckBorder();
+	player->ChangeColor(Colors::Yellow);
+	for (Enemy& e : enemy)
+	{
+		if (player->CheckCollision(e))
+		{
+			player->ChangeColor(Colors::Blue);
+		}
+	}
 	objects.push_back(player.get());
 }
 
