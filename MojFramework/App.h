@@ -1,8 +1,11 @@
 #pragma once
-
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
+#include "Player.h"
+#include "Enemy.h"
+#include <memory>
+#include <vector>
 
 class App
 {
@@ -14,12 +17,12 @@ public:
 private:
 	void ComposeFrame();
 	void UpdateModel();
+	void UpdatePlayer();
+	void UpdateEnemy();
 private:
 	MainWindow& wnd;
 	Graphics gfx;
-	int x = 200;
-	int y = 200;
-	int width = 12;
-	int height = 12;
-	Color color;
+	std::vector<GameObject*> objects;
+	std::unique_ptr<Player> player;
+	std::vector<Enemy> enemy;
 };

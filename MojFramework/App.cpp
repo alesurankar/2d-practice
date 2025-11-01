@@ -6,6 +6,8 @@ App::App(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd)
 {
+	player = std::make_unique<Player>(100, 100);
+	enemy.emplace_back(10, 10);
 }
 
 void App::Go()
@@ -18,58 +20,33 @@ void App::Go()
 
 void App::UpdateModel()
 {
-	if (wnd.kbd.KeyIsPressed('W'))
-	{
-		y-=2;
-	}
-	if (wnd.kbd.KeyIsPressed('S'))
-	{
-		y+=2;
-	}
+	objects.clear();
+	objects.reserve(enemy.size() + 1);
+	UpdateEnemy();
+	UpdatePlayer();
+}
 
-	if (wnd.kbd.KeyIsPressed('A'))
-	{
-		x-=2;
-	}
-	if (wnd.kbd.KeyIsPressed('D'))
-	{
-		x+=2;
-	}
+void App::UpdatePlayer()
+{
+	player->Update(wnd.kbd);
+	player->CheckBorder();
+	objects.push_back(player.get());
+}
 
-	if (x > gfx.ScreenWidth - width)
+void App::UpdateEnemy()
+{
+	for (Enemy& e : enemy)
 	{
-		x = gfx.ScreenWidth - width;
-	}
-	if (x < 0)
-	{
-		x = 0;
-	}
-	if (y > gfx.ScreenHeight - height)
-	{
-		y = gfx.ScreenHeight - height;
-	}
-	if (y < 0)
-	{
-		y = 0;
-	}
-
-	if (wnd.kbd.KeyIsPressed(VK_SPACE))
-	{
-		color = Colors::Blue;
-	}
-	else
-	{
-		color = Colors::Green;
+		e.Update();
+		e.CheckBorder();
+		objects.push_back(&e);
 	}
 }
 
 void App::ComposeFrame()
 {
-	for (int i = x; i < x + width; i++)
+	for (GameObject* obj : objects)
 	{
-		for (int j = y; j < y + height; j++)
-		{
-			gfx.PutPixel(i, j, color);
-		}
+		obj->Draw(gfx);
 	}
 }
