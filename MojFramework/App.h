@@ -16,10 +16,12 @@ public:
 	App& operator=(const App&) = delete;
 	void Go();
 private:
-	void ComposeFrame();
 	void UpdateModel();
+	void ComposeFrame();
 	void UpdatePlayer();
 	void UpdateEnemy();
+	void UpdateObjects();
+	void EraseObjects();
 private:
 	MainWindow& wnd;
 	Graphics gfx;
@@ -32,4 +34,5 @@ private:
 	std::unique_ptr<Player> player;
 	std::vector<Enemy> enemy;
 	int enemyNum = 20;
+	int collision;
 };

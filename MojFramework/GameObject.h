@@ -16,7 +16,7 @@ private:
 	int y;
 	int vx;
 	int vy;
-	int width = 12;
-	int height = 12;
+	static constexpr int width = 12;
+	static constexpr int height = 12;
 	Color color;
 };

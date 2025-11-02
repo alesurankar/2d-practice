@@ -17,23 +17,19 @@ void GameObject::Update()
 
 void GameObject::Update(Keyboard& kbd)
 {
+	int speed;
+	if (kbd.KeyIsPressed(VK_SPACE))
+		speed = 3;
+	else 
+		speed = 1;
 	if (kbd.KeyIsPressed('W'))
-	{
-		y--;
-	}
+		y-= speed;
 	if (kbd.KeyIsPressed('S'))
-	{
-		y++;
-	}
-
+		y+= speed;
 	if (kbd.KeyIsPressed('A'))
-	{
-		x--;
-	}
+		x-= speed;
 	if (kbd.KeyIsPressed('D'))
-	{
-		x++;
-	}
+		x+= speed;
 }
 
 void GameObject::Draw(Graphics& gfx) const
