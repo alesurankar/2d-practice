@@ -6,7 +6,8 @@ GameObject::GameObject(int x_in, int y_in, Color color_in, int vx_in = 0, int vy
 	y(y_in),
 	vx(vx_in),
 	vy(vy_in),
-	color(color_in)
+	color(color_in),
+	dead(false)
 {}
 
 void GameObject::Update()
@@ -89,4 +90,14 @@ bool GameObject::CheckCollision(const GameObject& other)
 void GameObject::ChangeColor(Color color_in)
 {
 	color = color_in;
+}
+
+bool GameObject::DeadCheck()
+{
+	return dead;
+}
+
+void GameObject::SetDead()
+{
+	dead = true;
 }

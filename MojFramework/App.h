@@ -18,8 +18,6 @@ public:
 private:
 	void UpdateModel();
 	void ComposeFrame();
-	void UpdatePlayer();
-	void UpdateEnemy();
 	void UpdateObjects();
 	void EraseObjects();
 private:

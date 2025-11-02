@@ -29,10 +29,30 @@ void App::Go()
 ////////////////////////////////////////////////////////////
 void App::UpdateModel()
 {
-	objects.clear();
-	objects.reserve(enemy.size() + 1);
-	UpdateEnemy();
-	UpdatePlayer();
+	//Player
+	player->Update(wnd.kbd);
+	player->CheckBorder();
+
+	//Enemy
+	for (Enemy& e : enemy)
+	{
+		e.Update();
+		e.CheckBorder(); 
+		if (e.CheckCollision(*player))
+		{
+			e.SetDead();
+			collision = 0;
+		}
+	}
+	if (collision < 100)
+	{
+		player->ChangeColor(Colors::Blue);
+	}
+	else
+	{
+		player->ChangeColor(Colors::Yellow);
+	}
+	collision++;
 	UpdateObjects();
 }
 
@@ -45,38 +65,11 @@ void App::ComposeFrame()
 }
 /////////////////////////////////////////////////////////
 
-void App::UpdatePlayer()
-{
-	player->Update(wnd.kbd);
-	player->CheckBorder();
-	if (collision < 100)
-	{
-		player->ChangeColor(Colors::Blue);
-	}
-	else
-	{
-		player->ChangeColor(Colors::Yellow);
-	}
-	collision++;
-}
-
-void App::UpdateEnemy()
-{
-	for (Enemy& e : enemy)
-	{
-		e.Update();
-		e.CheckBorder();
-		if (e.CheckCollision(*player))
-		{
-			collision = 0;
-		}
-		objects.push_back(&e);
-	}
-}
-
 void App::UpdateObjects()
 {
 	EraseObjects();
+	objects.clear();
+	objects.reserve(enemy.size() + 1);
 	for (Enemy& e : enemy)
 	{
 		objects.push_back(&e);
@@ -90,11 +83,7 @@ void App::EraseObjects()
 		std::remove_if(enemy.begin(), enemy.end(),
 			[&](Enemy& e)
 			{
-				if (e.CheckCollision(*player))
-				{
-					return true;
-				}
-				return false;
+				return e.DeadCheck();
 			}),
 			enemy.end());
 }

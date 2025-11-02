@@ -11,11 +11,14 @@ public:
 	void CheckBorder();
 	bool CheckCollision(const GameObject& other);
 	void ChangeColor(Color color_in);
+	bool DeadCheck();
+	void SetDead();
 private:
 	int x;
 	int y;
 	int vx;
 	int vy;
+	bool dead;
 	static constexpr int width = 12;
 	static constexpr int height = 12;
 	Color color;
