@@ -6,6 +6,7 @@
 #include "Enemy.h"
 #include <memory>
 #include <vector>
+#include <random>
 
 class App
 {
@@ -22,7 +23,13 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
+	std::random_device rd;
+	std::mt19937 rng;
+	std::uniform_int_distribution<int> xRand;
+	std::uniform_int_distribution<int> yRand;
+	std::uniform_int_distribution<int> dir;
 	std::vector<GameObject*> objects;
 	std::unique_ptr<Player> player;
 	std::vector<Enemy> enemy;
+	int enemyNum = 20;
 };

@@ -4,13 +4,17 @@
 App::App(MainWindow& wnd)
 	:
 	wnd(wnd),
-	gfx(wnd)
+	gfx(wnd),
+	rng(rd()),
+	xRand(10, 680),
+	yRand(10, 580),
+	dir(-1, 1)
 {
-	player = std::make_unique<Player>(100, 100);
-	enemy.emplace_back(10, 10);
-	enemy.emplace_back(100, 10);
-	enemy.emplace_back(50, 50);
-	enemy.emplace_back(10, 100);
+	player = std::make_unique<Player>(xRand(rng), yRand(rng));
+	for (int n = 0; n < enemyNum; n++)
+	{
+		enemy.emplace_back(xRand(rng), yRand(rng), dir(rng), dir(rng));
+	}
 }
 
 void App::Go()

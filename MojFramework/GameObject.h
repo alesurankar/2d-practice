@@ -4,7 +4,7 @@
 
 class GameObject {
 public:
-	GameObject(int x_in, int y_in, Color color_in);
+	GameObject(int x_in, int y_in, Color color_in, int vx_in, int vy_in);
 	void Update();
 	void Update(Keyboard& kbd);
 	void Draw(Graphics& gfx) const;

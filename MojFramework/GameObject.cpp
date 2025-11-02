@@ -1,11 +1,11 @@
 #include "GameObject.h"
 
-GameObject::GameObject(int x_in, int y_in, Color color_in)
+GameObject::GameObject(int x_in, int y_in, Color color_in, int vx_in = 0, int vy_in = 0)
 	:
 	x(x_in),
 	y(y_in),
-	vx(1),
-	vy(1),
+	vx(vx_in),
+	vy(vy_in),
 	color(color_in)
 {}
 
@@ -84,10 +84,10 @@ bool GameObject::CheckCollision(const GameObject& other)
 	const int other_bottom = other.y + other.height;
 
 	return 
-		(left < other_right &&
-		 right > other_left &&
-		 top < other_bottom &&
-		 bottom > other_top);
+		(left <= other_right &&
+		 right >= other_left &&
+		 top <= other_bottom &&
+		 bottom >= other_top);
 }
 
 void GameObject::ChangeColor(Color color_in)
