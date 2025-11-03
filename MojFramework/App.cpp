@@ -10,10 +10,7 @@ App::App(MainWindow& wnd)
 	yRand(10, 580),
 	dir(-1, 1)
 {
-	for (int n = 0; n < enemyNum; n++)
-	{
-		enemy.emplace_back(xRand(rng), yRand(rng), dir(rng), dir(rng));
-	}
+	enemy.emplace_back(xRand(rng), yRand(rng), dir(rng), dir(rng));
 	player = std::make_unique<Player>(xRand(rng), yRand(rng));
 	collision = 100;
 }
@@ -34,6 +31,15 @@ void App::UpdateModel()
 	player->CheckBorder();
 
 	//Enemy
+	if (enemy.size() < enemyNum)
+	{
+		enemySpawnTimeLeft--;
+		if (enemySpawnTimeLeft <= 0)
+		{
+			enemy.emplace_back(xRand(rng), yRand(rng), dir(rng), dir(rng));
+			enemySpawnTimeLeft = enemySpawnTime;
+		}
+	}
 	for (Enemy& e : enemy)
 	{
 		e.Update();
@@ -41,6 +47,7 @@ void App::UpdateModel()
 		if (e.CheckCollision(*player))
 		{
 			e.SetDead();
+			score.emplace_back(xRand(rng), yRand(rng));
 			collision = 0;
 		}
 	}
@@ -56,20 +63,15 @@ void App::UpdateModel()
 	UpdateObjects();
 }
 
-void App::ComposeFrame()
-{
-	for (GameObject* obj : objects)
-	{
-		obj->Draw(gfx);
-	}
-}
-/////////////////////////////////////////////////////////
-
 void App::UpdateObjects()
 {
 	EraseObjects();
 	objects.clear();
-	objects.reserve(enemy.size() + 1);
+	objects.reserve(score.size() + enemy.size() + 1);
+	for (Score& s : score)
+	{
+		objects.push_back(&s);
+	}
 	for (Enemy& e : enemy)
 	{
 		objects.push_back(&e);
@@ -85,5 +87,14 @@ void App::EraseObjects()
 			{
 				return e.DeadCheck();
 			}),
-			enemy.end());
+		enemy.end());
+}
+
+/////////////////////////////////////////////////////////
+void App::ComposeFrame()
+{
+	for (GameObject* obj : objects)
+	{
+		obj->Draw(gfx);
+	}
 }

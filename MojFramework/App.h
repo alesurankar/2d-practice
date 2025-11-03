@@ -4,6 +4,7 @@
 #include "Graphics.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Score.h"
 #include <memory>
 #include <vector>
 #include <random>
@@ -31,6 +32,9 @@ private:
 	std::vector<GameObject*> objects;
 	std::unique_ptr<Player> player;
 	std::vector<Enemy> enemy;
-	int enemyNum = 20;
+	std::vector<Score> score;
+	int enemyNum = 30;
+	static constexpr int enemySpawnTime = 30;
+	int enemySpawnTimeLeft;
 	int collision;
 };

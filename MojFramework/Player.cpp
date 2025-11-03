@@ -2,5 +2,5 @@
 
 Player::Player(int x, int y)
 	:
-	GameObject(x, y, Colors::Yellow, 0, 0)
+	LivingEntity(x, y, Colors::Yellow, 0, 0, width, height)
 {}

@@ -1,37 +1,13 @@
 #include "GameObject.h"
 
-GameObject::GameObject(int x_in, int y_in, Color color_in, int vx_in = 0, int vy_in = 0)
+GameObject::GameObject(int x_in, int y_in, Color color_in, int width_in, int height_in)
 	:
 	x(x_in),
 	y(y_in),
-	vx(vx_in),
-	vy(vy_in),
 	color(color_in),
-	dead(false)
+	width(width_in),
+	height(height_in)
 {}
-
-void GameObject::Update()
-{
-	x += vx;
-	y += vy;
-}
-
-void GameObject::Update(Keyboard& kbd)
-{
-	int speed;
-	if (kbd.KeyIsPressed(VK_SPACE))
-		speed = 3;
-	else 
-		speed = 1;
-	if (kbd.KeyIsPressed('W'))
-		y-= speed;
-	if (kbd.KeyIsPressed('S'))
-		y+= speed;
-	if (kbd.KeyIsPressed('A'))
-		x-= speed;
-	if (kbd.KeyIsPressed('D'))
-		x+= speed;
-}
 
 void GameObject::Draw(Graphics& gfx) const
 {
@@ -41,30 +17,6 @@ void GameObject::Draw(Graphics& gfx) const
 		{
 			gfx.PutPixel(i, j, color);
 		}
-	}
-}
-
-void GameObject::CheckBorder()
-{
-	if (x > Graphics::ScreenWidth - width)
-	{
-		x = Graphics::ScreenWidth - width;
-		vx = -vx;
-	}
-	if (x < 0)
-	{
-		x = 0;
-		vx = -vx;
-	}
-	if (y > Graphics::ScreenHeight - height)
-	{
-		y = Graphics::ScreenHeight - height;
-		vy = -vy;
-	}
-	if (y < 0)
-	{
-		y = 0;
-		vy = -vy;
 	}
 }
 
@@ -92,12 +44,13 @@ void GameObject::ChangeColor(Color color_in)
 	color = color_in;
 }
 
-bool GameObject::DeadCheck()
+int GameObject::GetX()
 {
-	return dead;
+	return x;
 }
 
-void GameObject::SetDead()
+int GameObject::GetY()
 {
-	dead = true;
+	return y;
 }
+
