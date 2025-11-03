@@ -8,7 +8,8 @@ App::App(MainWindow& wnd)
 	rng(rd()),
 	xRand(10, 680),
 	yRand(10, 580),
-	dir(-1, 1)
+	dir(-1, 1),
+	wall(gfx)
 {
 	enemy.emplace_back(xRand(rng), yRand(rng), dir(rng), dir(rng));
 	player = std::make_unique<Player>(xRand(rng), yRand(rng));
@@ -47,7 +48,13 @@ void App::UpdateModel()
 		if (e.CheckCollision(*player))
 		{
 			e.SetDead();
-			score.emplace_back(xRand(rng), yRand(rng));
+			score.emplace_back(scoreX, scoreY);
+			scoreX += 20;
+			if (scoreX + 20 > Graphics::ScreenWidth)
+			{
+				scoreX = 0;
+				scoreY += 20;
+			}
 			collision = 0;
 		}
 	}
@@ -96,5 +103,13 @@ void App::ComposeFrame()
 	for (GameObject* obj : objects)
 	{
 		obj->Draw(gfx);
+	}
+	for (int y = 0; y < wall.GetGridHeight(); y++)
+	{
+		for (int x = 0; x < wall.GetGridWidth(); x++)
+		{
+			Location loc = { x, y };
+			wall.DrawBrick(loc, Colors::Gray);
+		}
 	}
 }

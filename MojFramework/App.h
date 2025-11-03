@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Score.h"
+#include "Wall.h"
 #include <memory>
 #include <vector>
 #include <random>
@@ -33,8 +34,11 @@ private:
 	std::unique_ptr<Player> player;
 	std::vector<Enemy> enemy;
 	std::vector<Score> score;
+	Wall wall;
 	int enemyNum = 30;
 	static constexpr int enemySpawnTime = 30;
 	int enemySpawnTimeLeft;
 	int collision;
+	int scoreX = 0;
+	int scoreY = 0;
 };

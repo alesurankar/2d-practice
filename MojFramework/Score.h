@@ -5,6 +5,6 @@ class Score : public NonLivingObject {
 public:
 	Score(int x, int y);
 private:
-	static constexpr int width = 14;
-	static constexpr int height = 14;
+	static constexpr int width = 20;
+	static constexpr int height = 20;
 };
