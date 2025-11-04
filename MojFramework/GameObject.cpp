@@ -1,19 +1,19 @@
 #include "GameObject.h"
+#include <utility>
 
-GameObject::GameObject(int x_in, int y_in, Color color_in, int width_in, int height_in)
+GameObject::GameObject(Location loc_in, Color color_in, int width_in, int height_in)
 	:
-	x(x_in),
-	y(y_in),
-	color(color_in),
+	loc(std::move(loc_in)),
+	color(std::move(color_in)),
 	width(width_in),
 	height(height_in)
 {}
 
 void GameObject::Draw(Graphics& gfx) const
 {
-	for (int i = x; i < x + width; i++)
+	for (int i = loc.x; i < loc.x + width; i++)
 	{
-		for (int j = y; j < y + height; j++)
+		for (int j = loc.y; j < loc.y + height; j++)
 		{
 			gfx.PutPixel(i, j, color);
 		}
@@ -22,15 +22,15 @@ void GameObject::Draw(Graphics& gfx) const
 
 bool GameObject::CheckCollision(const GameObject& other)
 {
-	const int left = x;
-	const int right = x + width;
-	const int top = y;
-	const int bottom = y + height;
+	const int left = loc.x;
+	const int right = loc.x + width;
+	const int top = loc.y;
+	const int bottom = loc.y + height;
 
-	const int other_left = other.x;
-	const int other_right = other.x + other.width;
-	const int other_top = other.y;
-	const int other_bottom = other.y + other.height;
+	const int other_left = other.loc.x;
+	const int other_right = other.loc.x + other.width;
+	const int other_top = other.loc.y;
+	const int other_bottom = other.loc.y + other.height;
 
 	return 
 		(left <= other_right &&
@@ -44,13 +44,17 @@ void GameObject::ChangeColor(Color color_in)
 	color = color_in;
 }
 
-int GameObject::GetX()
+Location GameObject::GetLocation() const
 {
-	return x;
+	return loc;
 }
 
-int GameObject::GetY()
+int GameObject::GetWidth() const
 {
-	return y;
+	return width;
 }
 
+int GameObject::GetHeight() const
+{
+	return height;
+}

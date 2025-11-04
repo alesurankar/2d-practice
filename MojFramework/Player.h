@@ -3,7 +3,7 @@
 
 class Player : public LivingEntity {
 public:
-	Player(int x, int y);
+	Player(Location loc);
 private:
 	static constexpr int width = 18;
 	static constexpr int height = 18;

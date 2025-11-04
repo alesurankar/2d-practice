@@ -1,6 +1,6 @@
 #include "Score.h"
 
-Score::Score(int x, int y)
+Score::Score(Location loc)
 	:
-	NonLivingObject(x, y, Colors::White, width, height)
+	NonLivingObject(std::move(loc), Colors::White, width, height)
 {}

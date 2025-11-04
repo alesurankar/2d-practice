@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(int x, int y)
+Player::Player(Location loc)
 	:
-	LivingEntity(x, y, Colors::Yellow, 0, 0, width, height)
+	LivingEntity(std::move(loc), Colors::Yellow, 0, 0, width, height)
 {}

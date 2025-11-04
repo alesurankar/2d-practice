@@ -5,13 +5,12 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Score.h"
-#include "Wall.h"
+#include "Brick.h"
 #include <memory>
 #include <vector>
 #include <random>
 
-class App
-{
+class App {
 public:
 	App(class MainWindow& wnd);
 	App(const App&) = delete;
@@ -34,7 +33,7 @@ private:
 	std::unique_ptr<Player> player;
 	std::vector<Enemy> enemy;
 	std::vector<Score> score;
-	Wall wall;
+	std::vector<Brick> brick;
 	int enemyNum = 30;
 	static constexpr int enemySpawnTime = 30;
 	int enemySpawnTimeLeft;

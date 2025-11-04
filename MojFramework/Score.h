@@ -3,7 +3,7 @@
 
 class Score : public NonLivingObject {
 public:
-	Score(int x, int y);
+	Score(Location loc);
 private:
 	static constexpr int width = 20;
 	static constexpr int height = 20;

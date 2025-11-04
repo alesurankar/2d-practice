@@ -8,11 +8,11 @@ App::App(MainWindow& wnd)
 	rng(rd()),
 	xRand(10, 680),
 	yRand(10, 580),
-	dir(-1, 1),
-	wall(gfx)
+	dir(-1, 1)
 {
-	enemy.emplace_back(xRand(rng), yRand(rng), dir(rng), dir(rng));
-	player = std::make_unique<Player>(xRand(rng), yRand(rng));
+	brick.emplace_back(Location{ xRand(rng), yRand(rng) });
+	enemy.emplace_back(Location{ xRand(rng), yRand(rng) }, dir(rng), dir(rng));
+	player = std::make_unique<Player>(Location{ xRand(rng), yRand(rng) });
 	collision = 100;
 }
 
@@ -30,14 +30,17 @@ void App::UpdateModel()
 	//Player
 	player->Update(wnd.kbd);
 	player->CheckBorder();
-
+	for (auto& b : brick)
+	{
+		player->HandleCollision(b);
+	}
 	//Enemy
 	if (enemy.size() < enemyNum)
 	{
 		enemySpawnTimeLeft--;
 		if (enemySpawnTimeLeft <= 0)
 		{
-			enemy.emplace_back(xRand(rng), yRand(rng), dir(rng), dir(rng));
+			enemy.emplace_back(Location{ xRand(rng), yRand(rng) }, dir(rng), dir(rng));
 			enemySpawnTimeLeft = enemySpawnTime;
 		}
 	}
@@ -45,10 +48,15 @@ void App::UpdateModel()
 	{
 		e.Update();
 		e.CheckBorder(); 
+		for (auto& b : brick)
+		{
+			e.HandleCollision(b);
+		}
 		if (e.CheckCollision(*player))
 		{
 			e.SetDead();
-			score.emplace_back(scoreX, scoreY);
+			score.emplace_back(Location{ scoreX, scoreY });
+			brick.emplace_back(Location{ xRand(rng), yRand(rng) });
 			scoreX += 20;
 			if (scoreX + 20 > Graphics::ScreenWidth)
 			{
@@ -74,7 +82,7 @@ void App::UpdateObjects()
 {
 	EraseObjects();
 	objects.clear();
-	objects.reserve(score.size() + enemy.size() + 1);
+	objects.reserve(score.size() + enemy.size() + 1 + brick.size());
 	for (Score& s : score)
 	{
 		objects.push_back(&s);
@@ -84,6 +92,10 @@ void App::UpdateObjects()
 		objects.push_back(&e);
 	}
 	objects.push_back(player.get());
+	for (Brick& b : brick)
+	{
+		objects.push_back(&b);
+	}
 }
 
 void App::EraseObjects()
@@ -103,13 +115,5 @@ void App::ComposeFrame()
 	for (GameObject* obj : objects)
 	{
 		obj->Draw(gfx);
-	}
-	for (int y = 0; y < wall.GetGridHeight(); y++)
-	{
-		for (int x = 0; x < wall.GetGridWidth(); x++)
-		{
-			Location loc = { x, y };
-			wall.DrawBrick(loc, Colors::Gray);
-		}
 	}
 }

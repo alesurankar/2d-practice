@@ -3,10 +3,11 @@
 
 class LivingEntity : public GameObject {
 public:
-	LivingEntity(int x, int y, Color color, int vx_in, int vy_in, int width, int height);
+	LivingEntity(Location loc, Color color, int vx_in, int vy_in, int width, int height);
 	void Update();
 	void Update(Keyboard& kbd);
 	void CheckBorder();
+	void HandleCollision(const GameObject& other);
 	bool DeadCheck();
 	void SetDead();
 private:
