@@ -26,6 +26,10 @@ public:
 		return right > other.left && left < other.right
 			&& bottom > other.top && top < other.bottom;
 	}
+	Vec2_<T> GetPos() const
+	{
+		return Vec2_<T>(left, top);
+	}
 	Vec2_<T> GetCenter() const
 	{
 		return Vec2_<T>((left + right) / (T)2, (top + bottom) / (T)2);

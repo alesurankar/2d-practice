@@ -3,11 +3,12 @@
 
 class LivingEntity : public GameObject {
 public:
-	LivingEntity(RectI rect, Color color);
+	LivingEntity(RectI rect, Color color, Vec2 vel_in);
 	void CheckBorder();
-	void HandleCollision(const GameObject& other);
+	//void HandleCollision(const GameObject& other);
 	bool DeadCheck();
 	void SetDead();
 private:
+	Vec2 vel;
 	bool dead;
 };

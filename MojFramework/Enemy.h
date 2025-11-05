@@ -8,9 +8,9 @@ public:
 private:
 	void MakeRect();
 private:
-	RectI rect;
 	Vec2 pos;
 	Vec2 vel;
+	RectI rect;
 	static constexpr int width = 16;
 	static constexpr int height = 16;
 };

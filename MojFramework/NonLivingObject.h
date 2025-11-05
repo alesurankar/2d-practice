@@ -7,8 +7,8 @@ public:
 private:
 	void MakeRect();
 private:
-	RectI rect;
 	Vec2 pos;
+	RectI rect;
 	static constexpr int width = 20;
 	static constexpr int height = 20;
 };

@@ -2,9 +2,9 @@
 
 Player::Player(Vec2 pos_in)
 	:
+	LivingEntity(RectI((Vei2)pos_in, width, height),Colors::Yellow,{ 0, 0 }),
 	pos(pos_in),
-	rect((Vei2)pos, width, height),
-	LivingEntity(rect, Colors::Yellow)
+	rect((Vei2)pos, width, height)
 {}
 
 void Player::Update(Keyboard& kbd, float dt)

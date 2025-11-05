@@ -27,14 +27,14 @@ void App::Go()
 void App::UpdateModel()
 {
 	const float dt = ft.Mark();
-
+	
 	//Player
 	player->Update(wnd.kbd, dt);
 	player->CheckBorder();
-	for (auto& b : brick)
+	/*for (auto& b : brick)
 	{
 		player->HandleCollision(b);
-	}
+	}*/
 	//Enemy
 	if (enemy.size() < enemyNum)
 	{
@@ -49,10 +49,10 @@ void App::UpdateModel()
 	{
 		e.Update(dt);
 		e.CheckBorder(); 
-		for (auto& b : brick)
+		/*for (auto& b : brick)
 		{
 			e.HandleCollision(b);
-		}
+		}*/
 		if (e.CheckCollision(*player))
 		{
 			e.SetDead();
