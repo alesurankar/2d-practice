@@ -3,7 +3,7 @@
 
 class Brick : public NonLivingObject {
 public:
-	Brick(Location loc);
+	Brick(Vec2 pos);
 private:
 	static constexpr int dimension = 10;
 };

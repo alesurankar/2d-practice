@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(Location loc)
+Player::Player(Vec2 pos)
 	:
-	LivingEntity(std::move(loc), Colors::Yellow, 0, 0, width, height)
+	LivingEntity(std::move(pos), Colors::Yellow, { 0, 0 }, width, height)
 {}

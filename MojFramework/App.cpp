@@ -10,8 +10,8 @@ App::App(MainWindow& wnd)
 	yRand(30.0f, 570.0f),
 	dir(-200.0f, 200.0f)
 {
-	enemy.emplace_back(Location{ xRand(rng), yRand(rng) }, dir(rng), dir(rng));
-	player = std::make_unique<Player>(Location{ xRand(rng), yRand(rng) });
+	enemy.emplace_back(Vec2{ xRand(rng), yRand(rng) }, Vec2{ dir(rng), dir(rng) });
+	player = std::make_unique<Player>(Vec2{ xRand(rng), yRand(rng) });
 	collision = 100;
 }
 
@@ -41,7 +41,7 @@ void App::UpdateModel()
 		enemySpawnTimeLeft--;
 		if (enemySpawnTimeLeft <= 0)
 		{
-			enemy.emplace_back(Location{ xRand(rng), yRand(rng) }, dir(rng), dir(rng));
+			enemy.emplace_back(Vec2{ xRand(rng), yRand(rng) }, Vec2{ dir(rng), dir(rng) });
 			enemySpawnTimeLeft = enemySpawnTime;
 		}
 	}
@@ -56,8 +56,8 @@ void App::UpdateModel()
 		if (e.CheckCollision(*player))
 		{
 			e.SetDead();
-			score.emplace_back(Location{ scoreX, scoreY });
-			//brick.emplace_back(Location{ xRand(rng), yRand(rng) });
+			score.emplace_back(Vec2{ scoreX, scoreY });
+			brick.emplace_back(Vec2{ xRand(rng), yRand(rng) });
 			scoreX += 20.0f;
 			if (scoreX + 20.0f > Graphics::ScreenWidth)
 			{

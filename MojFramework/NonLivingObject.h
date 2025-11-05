@@ -3,6 +3,6 @@
 
 class NonLivingObject : public GameObject {
 public:
-	NonLivingObject(Location loc, Color color, int width, int height);
+	NonLivingObject(Vec2 pos, Color color, int width, int height);
 private:
 };

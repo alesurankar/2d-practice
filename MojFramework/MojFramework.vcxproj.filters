@@ -137,9 +137,6 @@
     <ClInclude Include="LivingEntity.h">
       <Filter>Header Files\GamePlay</Filter>
     </ClInclude>
-    <ClInclude Include="Location.h">
-      <Filter>Header Files\GamePlay</Filter>
-    </ClInclude>
     <ClInclude Include="NonLivingObject.h">
       <Filter>Header Files\GamePlay</Filter>
     </ClInclude>

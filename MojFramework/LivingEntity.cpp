@@ -1,17 +1,15 @@
 #include "LivingEntity.h"
 
-LivingEntity::LivingEntity(Location loc, Color color, float vx_in, float vy_in, int width, int height)
+LivingEntity::LivingEntity(Vec2 pos, Color color, Vec2 vel_in, int width, int height)
 	:
-	GameObject(std::move(loc), std::move(color), width, height),
-	vx(vx_in),
-	vy(vy_in),
+	GameObject(std::move(pos), std::move(color), width, height),
+	vel(std::move(vel_in)),
 	dead(false)
 {}
 
 void LivingEntity::Update(float dt)
 {
-	loc.x += vx * dt;
-	loc.y += vy * dt;
+	pos += vel * dt;
 }
 
 void LivingEntity::Update(Keyboard& kbd, float dt)
@@ -22,36 +20,36 @@ void LivingEntity::Update(Keyboard& kbd, float dt)
 	else
 		speed = 160.0f * dt;
 	if (kbd.KeyIsPressed('W'))
-		loc.y -= speed;
+		pos.y -= speed;
 	if (kbd.KeyIsPressed('S'))
-		loc.y += speed;
+		pos.y += speed;
 	if (kbd.KeyIsPressed('A'))
-		loc.x -= speed;
+		pos.x -= speed;
 	if (kbd.KeyIsPressed('D'))
-		loc.x += speed;
+		pos.x += speed;
 }
 
 void LivingEntity::CheckBorder()
 {
-	if ((int)loc.x > Graphics::ScreenWidth - width)
+	if ((int)pos.x > Graphics::ScreenWidth - width)
 	{
-		loc.x = float(Graphics::ScreenWidth - width);
-		vx = -vx;
+		pos.x = float(Graphics::ScreenWidth - width);
+		vel.x = -vel.x;
 	}
-	if ((int)loc.x < 0)
+	if ((int)pos.x < 0)
 	{
-		loc.x = 0.0f;
-		vx = -vx;
+		pos.x = 0.0f;
+		vel.x = -vel.x;
 	}
-	if ((int)loc.y > Graphics::ScreenHeight - height)
+	if ((int)pos.y > Graphics::ScreenHeight - height)
 	{
-		loc.y = float(Graphics::ScreenHeight - height);
-		vy = -vy;
+		pos.y = float(Graphics::ScreenHeight - height);
+		vel.y = -vel.y;
 	}
-	if ((int)loc.y < 0)
+	if ((int)pos.y < 0)
 	{
-		loc.y = 0.0f;
-		vy = -vy;
+		pos.y = 0.0f;
+		vel.y = -vel.y;
 	}
 }
 
@@ -60,14 +58,14 @@ void LivingEntity::HandleCollision(const GameObject& other)
     if (!CheckCollision(other))
         return;
 
-    const int left = (int)loc.x;
-    const int right = (int)loc.x + width;
-    const int top = (int)loc.y;
-    const int bottom = (int)loc.y + height;
+    const int left = (int)pos.x;
+    const int right = (int)pos.x + width;
+    const int top = (int)pos.y;
+    const int bottom = (int)pos.y + height;
 
-    const int other_left = (int)other.GetLocation().x;
+    const int other_left = (int)other.GetPosition().x;
     const int other_right = (int)other_left + other.GetWidth();
-    const int other_top = (int)other.GetLocation().y;
+    const int other_top = (int)other.GetPosition().y;
     const int other_bottom = (int)other_top + other.GetHeight();
 
     int overlapLeft = right - other_left;
@@ -82,25 +80,25 @@ void LivingEntity::HandleCollision(const GameObject& other)
     {
         if (overlapLeft < overlapRight)
         {
-            loc.x -= overlapLeft;
+            pos.x -= overlapLeft;
         }
         else
         {
-            loc.x += overlapRight;
+			pos.x += overlapRight;
         }
-        vx = -vx;
+        vel.x = -vel.x;
     }
     else
     {
         if (overlapTop < overlapBottom)
         {
-            loc.y -= overlapTop;
+			pos.y -= overlapTop;
         }
         else
         {
-            loc.y += overlapBottom;
+			pos.y += overlapBottom;
         }
-        vy = --vy;
+        vel.y = --vel.y;
     }
 }
 

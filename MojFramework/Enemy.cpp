@@ -1,6 +1,6 @@
 #include "Enemy.h"
 
-Enemy::Enemy(Location loc, float vx, float vy)
+Enemy::Enemy(Vec2 pos, Vec2 vel)
 	:
-	LivingEntity(std::move(loc), Colors::Red, vx, vy, width, height)
+	LivingEntity(std::move(pos), Colors::Red, std::move(vel), width, height)
 {}

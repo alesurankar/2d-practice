@@ -1,6 +1,6 @@
 #include "Score.h"
 
-Score::Score(Location loc)
+Score::Score(Vec2 pos)
 	:
-	NonLivingObject(std::move(loc), Colors::White, width, height)
+	NonLivingObject(std::move(pos), Colors::White, width, height)
 {}
