@@ -6,11 +6,10 @@ App::App(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd),
 	rng(rd()),
-	xRand(10, 680),
-	yRand(10, 580),
-	dir(-1, 1)
+	xRand(30.0f, 670.0f),
+	yRand(30.0f, 570.0f),
+	dir(-2.0f, 2.0f)
 {
-	brick.emplace_back(Location{ xRand(rng), yRand(rng) });
 	enemy.emplace_back(Location{ xRand(rng), yRand(rng) }, dir(rng), dir(rng));
 	player = std::make_unique<Player>(Location{ xRand(rng), yRand(rng) });
 	collision = 100;
@@ -56,12 +55,12 @@ void App::UpdateModel()
 		{
 			e.SetDead();
 			score.emplace_back(Location{ scoreX, scoreY });
-			brick.emplace_back(Location{ xRand(rng), yRand(rng) });
-			scoreX += 20;
-			if (scoreX + 20 > Graphics::ScreenWidth)
+			//brick.emplace_back(Location{ xRand(rng), yRand(rng) });
+			scoreX += 20.0f;
+			if (scoreX + 20.0f > Graphics::ScreenWidth)
 			{
-				scoreX = 0;
-				scoreY += 20;
+				scoreX = 0.0f;
+				scoreY += 20.0f;
 			}
 			collision = 0;
 		}

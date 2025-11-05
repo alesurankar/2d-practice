@@ -11,9 +11,9 @@ GameObject::GameObject(Location loc_in, Color color_in, int width_in, int height
 
 void GameObject::Draw(Graphics& gfx) const
 {
-	for (int i = loc.x; i < loc.x + width; i++)
+	for (int i = (int)loc.x; i < (int)loc.x + width; i++)
 	{
-		for (int j = loc.y; j < loc.y + height; j++)
+		for (int j = (int)loc.y; j < (int)loc.y + height; j++)
 		{
 			gfx.PutPixel(i, j, color);
 		}
@@ -22,15 +22,15 @@ void GameObject::Draw(Graphics& gfx) const
 
 bool GameObject::CheckCollision(const GameObject& other)
 {
-	const int left = loc.x;
-	const int right = loc.x + width;
-	const int top = loc.y;
-	const int bottom = loc.y + height;
+	const int left = (int)loc.x;
+	const int right = (int)loc.x + width;
+	const int top = (int)loc.y;
+	const int bottom = (int)loc.y + height;
 
-	const int other_left = other.loc.x;
-	const int other_right = other.loc.x + other.width;
-	const int other_top = other.loc.y;
-	const int other_bottom = other.loc.y + other.height;
+	const int other_left = (int)other.loc.x;
+	const int other_right = (int)other.loc.x + other.width;
+	const int other_top = (int)other.loc.y;
+	const int other_bottom = (int)other.loc.y + other.height;
 
 	return 
 		(left <= other_right &&

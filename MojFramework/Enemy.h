@@ -3,7 +3,7 @@
 
 class Enemy : public LivingEntity {
 public:
-	Enemy(Location loc, int vx, int vy);
+	Enemy(Location loc, float vx, float vy);
 private:
 	static constexpr int width = 16;
 	static constexpr int height = 16;

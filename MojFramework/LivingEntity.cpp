@@ -1,6 +1,6 @@
 #include "LivingEntity.h"
 
-LivingEntity::LivingEntity(Location loc, Color color, int vx_in, int vy_in, int width, int height)
+LivingEntity::LivingEntity(Location loc, Color color, float vx_in, float vy_in, int width, int height)
 	:
 	GameObject(std::move(loc), std::move(color), width, height),
 	vx(vx_in),
@@ -16,11 +16,11 @@ void LivingEntity::Update()
 
 void LivingEntity::Update(Keyboard& kbd)
 {
-	int speed;
+	float speed;
 	if (kbd.KeyIsPressed(VK_SPACE))
-		speed = 3;
+		speed = 3.0f;
 	else
-		speed = 1;
+		speed = 1.0f;
 	if (kbd.KeyIsPressed('W'))
 		loc.y -= speed;
 	if (kbd.KeyIsPressed('S'))
@@ -33,24 +33,24 @@ void LivingEntity::Update(Keyboard& kbd)
 
 void LivingEntity::CheckBorder()
 {
-	if (loc.x > Graphics::ScreenWidth - width)
+	if ((int)loc.x > Graphics::ScreenWidth - width)
 	{
-		loc.x = Graphics::ScreenWidth - width;
+		loc.x = float(Graphics::ScreenWidth - width);
 		vx = -vx;
 	}
-	if (loc.x < 0)
+	if ((int)loc.x < 0)
 	{
-		loc.x = 0;
+		loc.x = 0.0f;
 		vx = -vx;
 	}
-	if (loc.y > Graphics::ScreenHeight - height)
+	if ((int)loc.y > Graphics::ScreenHeight - height)
 	{
-		loc.y = Graphics::ScreenHeight - height;
+		loc.y = float(Graphics::ScreenHeight - height);
 		vy = -vy;
 	}
-	if (loc.y < 0)
+	if ((int)loc.y < 0)
 	{
-		loc.y = 0;
+		loc.y = 0.0f;
 		vy = -vy;
 	}
 }
@@ -60,55 +60,47 @@ void LivingEntity::HandleCollision(const GameObject& other)
     if (!CheckCollision(other))
         return;
 
-    const int left = loc.x;
-    const int right = loc.x + width;
-    const int top = loc.y;
-    const int bottom = loc.y + height;
+    const int left = (int)loc.x;
+    const int right = (int)loc.x + width;
+    const int top = (int)loc.y;
+    const int bottom = (int)loc.y + height;
 
-    const int other_left = other.GetLocation().x;
-    const int other_right = other_left + other.GetWidth();
-    const int other_top = other.GetLocation().y;
-    const int other_bottom = other_top + other.GetHeight();
+    const int other_left = (int)other.GetLocation().x;
+    const int other_right = (int)other_left + other.GetWidth();
+    const int other_top = (int)other.GetLocation().y;
+    const int other_bottom = (int)other_top + other.GetHeight();
 
-    // Compute overlap distances
     int overlapLeft = right - other_left;
     int overlapRight = other_right - left;
     int overlapTop = bottom - other_top;
     int overlapBottom = other_bottom - top;
 
-    // Find the smallest overlap — that's the direction of correction
     int minOverlapX = std::min(overlapLeft, overlapRight);
     int minOverlapY = std::min(overlapTop, overlapBottom);
 
     if (minOverlapX < minOverlapY)
     {
-        // Horizontal collision
         if (overlapLeft < overlapRight)
         {
-            // collided from left
             loc.x -= overlapLeft;
         }
         else
         {
-            // collided from right
             loc.x += overlapRight;
         }
-        vx = -vx; // stop horizontal movement
+        vx = -vx;
     }
     else
     {
-        // Vertical collision
         if (overlapTop < overlapBottom)
         {
-            // collided from top
             loc.y -= overlapTop;
         }
         else
         {
-            // collided from bottom
             loc.y += overlapBottom;
         }
-        vy = --vy; // stop vertical movement
+        vy = --vy;
     }
 }
 

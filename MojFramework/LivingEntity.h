@@ -3,7 +3,7 @@
 
 class LivingEntity : public GameObject {
 public:
-	LivingEntity(Location loc, Color color, int vx_in, int vy_in, int width, int height);
+	LivingEntity(Location loc, Color color, float vx_in, float vy_in, int width, int height);
 	void Update();
 	void Update(Keyboard& kbd);
 	void CheckBorder();
@@ -11,7 +11,7 @@ public:
 	bool DeadCheck();
 	void SetDead();
 private:
-	int vx;
-	int vy;
+	float vx;
+	float vy;
 	bool dead;
 };
