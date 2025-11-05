@@ -36,7 +36,7 @@ private:
 	std::vector<Enemy> enemy;
 	std::vector<Score> score;
 	std::vector<Brick> brick;
-	int enemyNum = 30;
+	int enemyNum = 100;
 	static constexpr int enemySpawnTime = 30;
 	int enemySpawnTimeLeft;
 	int collision;
