@@ -6,7 +6,7 @@ App::App(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd),
 	rng(rd()),
-	xRand(30.0f, 670.0f),
+	xRand(30.0f, 770.0f),
 	yRand(30.0f, 570.0f),
 	dir(-200.0f, 200.0f)
 {
@@ -57,7 +57,7 @@ void App::UpdateModel()
 		{
 			e.SetDead();
 			score.emplace_back(Vec2{ scoreX, scoreY });
-			brick.emplace_back(Vec2{ xRand(rng), yRand(rng) });
+			brick.emplace_back(Vec2{ xRand(rng), yRand(rng) }, Colors::Gray);
 			scoreX += 20.0f;
 			if (scoreX + 20.0f > Graphics::ScreenWidth)
 			{

@@ -9,24 +9,24 @@ LivingEntity::LivingEntity(RectI rect, Color color, Vec2 vel_in)
 
 void LivingEntity::CheckBorder()
 {
-	if (rect.GetPos().x > Graphics::ScreenWidth - rect.GetWidth())
+	if (rect.right > Graphics::ScreenWidth - 1)
 	{
-		rect.right = Graphics::ScreenWidth;
+		rect.right = Graphics::ScreenWidth - 1;
 		vel.x = -vel.x;
 	}
-	if (rect.GetPos().x < 0)
+	if (rect.left < 1)
 	{
-		rect.left = 0;
+		rect.left = 1;
 		vel.x = -vel.x;
 	}
-	if (rect.GetPos().y > Graphics::ScreenHeight - rect.GetHeight())
+	if (rect.bottom > Graphics::ScreenHeight - 1)
 	{
-        rect.bottom = Graphics::ScreenHeight;
+        rect.bottom = Graphics::ScreenHeight - 1;
 		vel.y = -vel.y;
 	}
-	if (rect.GetPos().y < 0)
+	if (rect.top <= 1)
 	{
-		rect.top = 0;
+		rect.top = 1;
 		vel.y = -vel.y;
 	}
 }
@@ -88,4 +88,9 @@ bool LivingEntity::DeadCheck()
 void LivingEntity::SetDead()
 {
 	dead = true;
+}
+
+Vec2 LivingEntity::GetVel()
+{
+	return vel;
 }

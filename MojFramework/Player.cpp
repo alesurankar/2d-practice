@@ -2,9 +2,8 @@
 
 Player::Player(Vec2 pos_in)
 	:
-	LivingEntity(RectI((Vei2)pos_in, width, height),Colors::Yellow,{ 0, 0 }),
-	pos(pos_in),
-	rect((Vei2)pos, width, height)
+	LivingEntity(RectI((Vei2)pos_in, width, height), Colors::Yellow, { 0, 0 }),
+	pos(pos_in)
 {}
 
 void Player::Update(Keyboard& kbd, float dt)
@@ -22,6 +21,7 @@ void Player::Update(Keyboard& kbd, float dt)
 		pos.x -= speed;
 	if (kbd.KeyIsPressed('D'))
 		pos.x += speed;
+	MakeRect();
 }
 
 void Player::MakeRect()

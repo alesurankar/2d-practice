@@ -8,6 +8,7 @@ public:
 	//void HandleCollision(const GameObject& other);
 	bool DeadCheck();
 	void SetDead();
+	Vec2 GetVel();
 private:
 	Vec2 vel;
 	bool dead;

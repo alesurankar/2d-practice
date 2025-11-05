@@ -9,7 +9,6 @@ private:
 	void MakeRect();
 private:
 	Vec2 pos;
-	RectI rect;
 	static constexpr int width = 18;
 	static constexpr int height = 18;
 };

@@ -37,7 +37,7 @@ private:
 	std::vector<NonLivingObject> brick;
 	int enemyNum = 100;
 	static constexpr int enemySpawnTime = 30;
-	int enemySpawnTimeLeft;
+	int enemySpawnTimeLeft = enemySpawnTime;
 	int collision;
 	float scoreX = 0.0f;
 	float scoreY = 0.0f;
