@@ -1,33 +1,10 @@
 #include "LivingEntity.h"
 
-LivingEntity::LivingEntity(Vec2 pos, Color color, Vec2 vel_in, int width, int height)
+LivingEntity::LivingEntity(RectI rect, Color color)
 	:
-	GameObject(std::move(pos), std::move(color), width, height),
-	vel(std::move(vel_in)),
+	GameObject(std::move(rect), std::move(color)),
 	dead(false)
 {}
-
-void LivingEntity::Update(float dt)
-{
-	pos += vel * dt;
-}
-
-void LivingEntity::Update(Keyboard& kbd, float dt)
-{
-	float speed;
-	if (kbd.KeyIsPressed(VK_SPACE))
-		speed = 320.0f * dt;
-	else
-		speed = 160.0f * dt;
-	if (kbd.KeyIsPressed('W'))
-		pos.y -= speed;
-	if (kbd.KeyIsPressed('S'))
-		pos.y += speed;
-	if (kbd.KeyIsPressed('A'))
-		pos.x -= speed;
-	if (kbd.KeyIsPressed('D'))
-		pos.x += speed;
-}
 
 void LivingEntity::CheckBorder()
 {
@@ -101,7 +78,6 @@ void LivingEntity::HandleCollision(const GameObject& other)
         vel.y = --vel.y;
     }
 }
-
 
 bool LivingEntity::DeadCheck()
 {

@@ -4,8 +4,7 @@
 #include "Graphics.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "Score.h"
-#include "Brick.h"
+#include "NonLivingObject.h"
 #include "FrameTimer.h"
 #include <memory>
 #include <vector>
@@ -34,8 +33,8 @@ private:
 	std::vector<GameObject*> objects;
 	std::unique_ptr<Player> player;
 	std::vector<Enemy> enemy;
-	std::vector<Score> score;
-	std::vector<Brick> brick;
+	std::vector<NonLivingObject> score;
+	std::vector<NonLivingObject> brick;
 	int enemyNum = 100;
 	static constexpr int enemySpawnTime = 30;
 	int enemySpawnTimeLeft;

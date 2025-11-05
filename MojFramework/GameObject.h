@@ -2,20 +2,16 @@
 #include "Graphics.h"
 #include "Keyboard.h"
 #include "Vec2.h"
+#include "Rect.h"
 #include <utility>
 
 class GameObject {
 public:
-	GameObject(Vec2 pos_in, Color color_in, int width_in, int height_in);
+	GameObject(RectI rect_in, Color color_in);
 	void Draw(Graphics& gfx) const;
-	bool CheckCollision(const GameObject& other);
+	bool CheckCollision(const GameObject& other) const;
 	void ChangeColor(Color color_in);
-	Vec2 GetPosition() const;
-	int GetWidth() const;
-	int GetHeight() const;
 protected:
-	Vec2 pos;
+	RectI rect;
 	Color color;
-	int width;
-	int height;
 };

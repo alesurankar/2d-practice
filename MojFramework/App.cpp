@@ -45,7 +45,7 @@ void App::UpdateModel()
 			enemySpawnTimeLeft = enemySpawnTime;
 		}
 	}
-	for (Enemy& e : enemy)
+	for (auto& e : enemy)
 	{
 		e.Update(dt);
 		e.CheckBorder(); 
@@ -84,16 +84,16 @@ void App::UpdateObjects()
 	EraseObjects();
 	objects.clear();
 	objects.reserve(score.size() + enemy.size() + 1 + brick.size());
-	for (Score& s : score)
+	for (auto& s : score)
 	{
 		objects.push_back(&s);
 	}
-	for (Enemy& e : enemy)
+	for (auto& e : enemy)
 	{
 		objects.push_back(&e);
 	}
 	objects.push_back(player.get());
-	for (Brick& b : brick)
+	for (auto& b : brick)
 	{
 		objects.push_back(&b);
 	}
@@ -103,7 +103,7 @@ void App::EraseObjects()
 {
 	enemy.erase(
 		std::remove_if(enemy.begin(), enemy.end(),
-			[&](Enemy& e)
+			[&](auto& e)
 			{
 				return e.DeadCheck();
 			}),
@@ -113,7 +113,7 @@ void App::EraseObjects()
 /////////////////////////////////////////////////////////
 void App::ComposeFrame()
 {
-	for (GameObject* obj : objects)
+	for (auto* obj : objects)
 	{
 		obj->Draw(gfx);
 	}
