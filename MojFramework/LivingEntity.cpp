@@ -8,19 +8,19 @@ LivingEntity::LivingEntity(Location loc, Color color, float vx_in, float vy_in, 
 	dead(false)
 {}
 
-void LivingEntity::Update()
+void LivingEntity::Update(float dt)
 {
-	loc.x += vx;
-	loc.y += vy;
+	loc.x += vx * dt;
+	loc.y += vy * dt;
 }
 
-void LivingEntity::Update(Keyboard& kbd)
+void LivingEntity::Update(Keyboard& kbd, float dt)
 {
 	float speed;
 	if (kbd.KeyIsPressed(VK_SPACE))
-		speed = 3.0f;
+		speed = 320.0f * dt;
 	else
-		speed = 1.0f;
+		speed = 160.0f * dt;
 	if (kbd.KeyIsPressed('W'))
 		loc.y -= speed;
 	if (kbd.KeyIsPressed('S'))

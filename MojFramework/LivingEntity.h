@@ -4,8 +4,8 @@
 class LivingEntity : public GameObject {
 public:
 	LivingEntity(Location loc, Color color, float vx_in, float vy_in, int width, int height);
-	void Update();
-	void Update(Keyboard& kbd);
+	void Update(float dt);
+	void Update(Keyboard& kbd, float dt);
 	void CheckBorder();
 	void HandleCollision(const GameObject& other);
 	bool DeadCheck();

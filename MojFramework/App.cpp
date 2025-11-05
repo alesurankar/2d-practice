@@ -8,7 +8,7 @@ App::App(MainWindow& wnd)
 	rng(rd()),
 	xRand(30.0f, 670.0f),
 	yRand(30.0f, 570.0f),
-	dir(-2.0f, 2.0f)
+	dir(-200.0f, 200.0f)
 {
 	enemy.emplace_back(Location{ xRand(rng), yRand(rng) }, dir(rng), dir(rng));
 	player = std::make_unique<Player>(Location{ xRand(rng), yRand(rng) });
@@ -29,7 +29,7 @@ void App::UpdateModel()
 	const float dt = ft.Mark();
 
 	//Player
-	player->Update(wnd.kbd);
+	player->Update(wnd.kbd, dt);
 	player->CheckBorder();
 	for (auto& b : brick)
 	{
@@ -47,7 +47,7 @@ void App::UpdateModel()
 	}
 	for (Enemy& e : enemy)
 	{
-		e.Update();
+		e.Update(dt);
 		e.CheckBorder(); 
 		for (auto& b : brick)
 		{
