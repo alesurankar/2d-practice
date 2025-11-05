@@ -6,6 +6,7 @@
 #include "Enemy.h"
 #include "Score.h"
 #include "Brick.h"
+#include "FrameTimer.h"
 #include <memory>
 #include <vector>
 #include <random>
@@ -24,6 +25,7 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
+	FrameTimer ft;
 	std::random_device rd;
 	std::mt19937 rng;
 	std::uniform_real_distribution<float> xRand;

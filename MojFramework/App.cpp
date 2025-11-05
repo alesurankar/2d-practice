@@ -26,6 +26,8 @@ void App::Go()
 ////////////////////////////////////////////////////////////
 void App::UpdateModel()
 {
+	const float dt = ft.Mark();
+
 	//Player
 	player->Update(wnd.kbd);
 	player->CheckBorder();
