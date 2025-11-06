@@ -6,13 +6,15 @@ App::App(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd),
 	rng(rd()),
-	xRand(30.0f, 770.0f),
-	yRand(30.0f, 570.0f),
+	xRand(30, 770),
+	yRand(30, 570),
 	dir(-200.0f, 200.0f)
 {
-	enemy.emplace_back(Vec2{ xRand(rng), yRand(rng) }, Vec2{ dir(rng), dir(rng) });
-	player = std::make_unique<Player>(Vec2{ xRand(rng), yRand(rng) });
-	collision = 100;
+	enemy.emplace_back(Vei2{ xRand(rng), yRand(rng) }, Vec2{ dir(rng), dir(rng) });
+	player = std::make_unique<Player>(Vei2{ xRand(rng), yRand(rng) }); 
+	brick.emplace_back(Vei2{ xRand(rng), yRand(rng) }, Colors::Gray);
+	score.emplace_back(Vei2{ xRand(rng), yRand(rng) });
+	//collision = 100;
 }
 
 void App::Go()
@@ -27,21 +29,23 @@ void App::Go()
 void App::UpdateModel()
 {
 	const float dt = ft.Mark();
+
 	
+
 	//Player
 	player->Update(wnd.kbd, dt);
 	player->CheckBorder();
-	/*for (auto& b : brick)
+	for (auto& b : brick)
 	{
 		player->HandleCollision(b);
-	}*/
+	}
 	//Enemy
 	if (enemy.size() < enemyNum)
 	{
 		enemySpawnTimeLeft--;
 		if (enemySpawnTimeLeft <= 0)
 		{
-			enemy.emplace_back(Vec2{ xRand(rng), yRand(rng) }, Vec2{ dir(rng), dir(rng) });
+			enemy.emplace_back(Vei2{ xRand(rng), yRand(rng) }, Vec2{ dir(rng), dir(rng) });
 			enemySpawnTimeLeft = enemySpawnTime;
 		}
 	}
@@ -49,33 +53,33 @@ void App::UpdateModel()
 	{
 		e.Update(dt);
 		e.CheckBorder(); 
-		/*for (auto& b : brick)
-		{
-			e.HandleCollision(b);
-		}*/
-		if (e.CheckCollision(*player))
-		{
-			e.SetDead();
-			score.emplace_back(Vec2{ scoreX, scoreY });
-			brick.emplace_back(Vec2{ xRand(rng), yRand(rng) }, Colors::Gray);
-			scoreX += 20.0f;
-			if (scoreX + 20.0f > Graphics::ScreenWidth)
-			{
-				scoreX = 0.0f;
-				scoreY += 20.0f;
-			}
-			collision = 0;
-		}
+	//	/*for (auto& b : brick)
+	//	{
+	//		e.HandleCollision(b);
+	//	}*/
+	//	if (e.CheckCollision(*player))
+	//	{
+	//		e.SetDead();
+	//		score.emplace_back(Vec2{ scoreX, scoreY });
+	//		brick.emplace_back(Vec2{ xRand(rng), yRand(rng) }, Colors::Gray);
+	//		scoreX += 20.0f;
+	//		if (scoreX + 20.0f > Graphics::ScreenWidth)
+	//		{
+	//			scoreX = 0.0f;
+	//			scoreY += 20.0f;
+	//		}
+	//		collision = 0;
+	//	}
 	}
-	if (collision < 100)
-	{
-		player->ChangeColor(Colors::Blue);
-	}
-	else
-	{
-		player->ChangeColor(Colors::Yellow);
-	}
-	collision++;
+	//if (collision < 100)
+	//{
+	//	player->ChangeColor(Colors::Blue);
+	//}
+	//else
+	//{
+	//	player->ChangeColor(Colors::Yellow);
+	//}
+	//collision++;
 	UpdateObjects();
 }
 
@@ -101,13 +105,17 @@ void App::UpdateObjects()
 
 void App::EraseObjects()
 {
-	enemy.erase(
-		std::remove_if(enemy.begin(), enemy.end(),
-			[&](auto& e)
-			{
-				return e.DeadCheck();
-			}),
-		enemy.end());
+	auto erase_destroyed = [](auto& container)
+		{
+			container.erase(
+				std::remove_if(container.begin(), container.end(),
+					[](auto& obj) { return obj.DestroyedCheck(); }),
+				container.end());
+		};
+
+	erase_destroyed(score);
+	erase_destroyed(enemy);
+	erase_destroyed(brick);
 }
 
 /////////////////////////////////////////////////////////

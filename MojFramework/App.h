@@ -27,8 +27,8 @@ private:
 	FrameTimer ft;
 	std::random_device rd;
 	std::mt19937 rng;
-	std::uniform_real_distribution<float> xRand;
-	std::uniform_real_distribution<float> yRand;
+	std::uniform_int_distribution<int> xRand;
+	std::uniform_int_distribution<int> yRand;
 	std::uniform_real_distribution<float> dir;
 	std::vector<GameObject*> objects;
 	std::unique_ptr<Player> player;
@@ -38,7 +38,7 @@ private:
 	int enemyNum = 100;
 	static constexpr int enemySpawnTime = 30;
 	int enemySpawnTimeLeft = enemySpawnTime;
-	int collision;
-	float scoreX = 0.0f;
-	float scoreY = 0.0f;
+	//int collision;
+	//float scoreX = 0.0f;
+	//float scoreY = 0.0f;
 };

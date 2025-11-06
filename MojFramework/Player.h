@@ -3,12 +3,10 @@
 
 class Player : public LivingEntity {
 public:
-	Player(Vec2 pos_in);
+	Player(Vei2 pos);
 	void Update(Keyboard& kbd, float dt);
 private:
-	void MakeRect();
-private:
-	Vec2 pos;
+	RectF temp_rect;
 	static constexpr int width = 18;
 	static constexpr int height = 18;
 };

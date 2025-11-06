@@ -9,9 +9,13 @@ class GameObject {
 public:
 	GameObject(RectI rect_in, Color color_in);
 	void Draw(Graphics& gfx) const;
-	bool CheckCollision(const GameObject& other) const;
-	void ChangeColor(Color color_in);
+	//bool CheckCollision(const GameObject& other) const;
+	const RectI& GetRect() const;
+	bool DestroyedCheck();
+	void Destroy();
+	//void ChangeColor(Color color_in);
 protected:
 	RectI rect;
 	Color color;
+	bool destroyed;
 };
