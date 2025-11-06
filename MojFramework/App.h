@@ -31,4 +31,5 @@ private:
 	std::unique_ptr<Pad> pad;
 	std::unique_ptr<Ball> ball;
 	std::vector<Brick> brick;
+	std::unique_ptr<RectI> walls;
 };

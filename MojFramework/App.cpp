@@ -11,7 +11,8 @@ App::App(MainWindow& wnd)
 	dir(-200.0f, 200.0f)
 {
 	brick.emplace_back(RectI{ 20,20,400,400 }, Colors::Cyan);
-	ball = std::make_unique<Ball>(Vei2(xRand(rng), yRand(rng)), Vec2(dir(rng), dir(rng)), Colors::Green);
+	ball = std::make_unique<Ball>(Vei2(xRand(rng), yRand(rng)), Vec2( dir(rng), dir(rng)), Colors::Green);
+	walls = std::make_unique<RectI>(0, 0, gfx.ScreenWidth, gfx.ScreenHeight);
 }
 
 void App::Go()
@@ -26,6 +27,8 @@ void App::Go()
 void App::UpdateModel()
 {
 	const float dt = ft.Mark();
+	ball->Update(dt);
+	ball->DoWallCollision(*walls);
 }
 
 

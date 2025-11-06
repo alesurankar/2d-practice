@@ -18,6 +18,11 @@ public:
 		x((T)src.x),
 		y((T)src.y)
 	{}
+	template<typename T2>
+	operator Vec2_<T2>() const
+	{
+		return { (T2)x, (T2)y };
+	}
 	Vec2_ operator+(const Vec2_& rhs) const
 	{
 		return Vec2_(*this) += rhs;
