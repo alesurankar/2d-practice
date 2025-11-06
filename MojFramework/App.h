@@ -2,10 +2,10 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
-#include "Player.h"
-#include "Enemy.h"
-#include "NonLivingObject.h"
 #include "FrameTimer.h"
+#include "Pad.h"
+#include "Ball.h"
+#include "Brick.h"
 #include <memory>
 #include <vector>
 #include <random>
@@ -19,8 +19,6 @@ public:
 private:
 	void UpdateModel();
 	void ComposeFrame();
-	void UpdateObjects();
-	void EraseObjects();
 private:
 	MainWindow& wnd;
 	Graphics gfx;
@@ -30,15 +28,7 @@ private:
 	std::uniform_int_distribution<int> xRand;
 	std::uniform_int_distribution<int> yRand;
 	std::uniform_real_distribution<float> dir;
-	std::vector<GameObject*> objects;
-	std::unique_ptr<Player> player;
-	std::vector<Enemy> enemy;
-	std::vector<NonLivingObject> score;
-	std::vector<NonLivingObject> brick;
-	int enemyNum = 100;
-	static constexpr int enemySpawnTime = 30;
-	int enemySpawnTimeLeft = enemySpawnTime;
-	//int collision;
-	//float scoreX = 0.0f;
-	//float scoreY = 0.0f;
+	std::unique_ptr<Pad> pad;
+	std::unique_ptr<Ball> ball;
+	std::vector<Brick> brick;
 };

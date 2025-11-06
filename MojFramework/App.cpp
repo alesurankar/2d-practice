@@ -10,11 +10,8 @@ App::App(MainWindow& wnd)
 	yRand(30, 570),
 	dir(-200.0f, 200.0f)
 {
-	enemy.emplace_back(Vei2{ xRand(rng), yRand(rng) }, Vec2{ dir(rng), dir(rng) });
-	player = std::make_unique<Player>(Vei2{ xRand(rng), yRand(rng) }); 
-	brick.emplace_back(Vei2{ xRand(rng), yRand(rng) }, Colors::Gray);
-	score.emplace_back(Vei2{ xRand(rng), yRand(rng) });
-	//collision = 100;
+	brick.emplace_back(RectI{ 20,20,400,400 }, Colors::Cyan);
+	ball = std::make_unique<Ball>(Vei2(xRand(rng), yRand(rng)), Vec2(dir(rng), dir(rng)), Colors::Green);
 }
 
 void App::Go()
@@ -29,100 +26,15 @@ void App::Go()
 void App::UpdateModel()
 {
 	const float dt = ft.Mark();
-
-	
-
-	//Player
-	player->Update(wnd.kbd, dt);
-	player->CheckBorder();
-	for (auto& b : brick)
-	{
-		player->HandleCollision(b);
-	}
-	//Enemy
-	if (enemy.size() < enemyNum)
-	{
-		enemySpawnTimeLeft--;
-		if (enemySpawnTimeLeft <= 0)
-		{
-			enemy.emplace_back(Vei2{ xRand(rng), yRand(rng) }, Vec2{ dir(rng), dir(rng) });
-			enemySpawnTimeLeft = enemySpawnTime;
-		}
-	}
-	for (auto& e : enemy)
-	{
-		e.Update(dt);
-		e.CheckBorder(); 
-	//	/*for (auto& b : brick)
-	//	{
-	//		e.HandleCollision(b);
-	//	}*/
-	//	if (e.CheckCollision(*player))
-	//	{
-	//		e.SetDead();
-	//		score.emplace_back(Vec2{ scoreX, scoreY });
-	//		brick.emplace_back(Vec2{ xRand(rng), yRand(rng) }, Colors::Gray);
-	//		scoreX += 20.0f;
-	//		if (scoreX + 20.0f > Graphics::ScreenWidth)
-	//		{
-	//			scoreX = 0.0f;
-	//			scoreY += 20.0f;
-	//		}
-	//		collision = 0;
-	//	}
-	}
-	//if (collision < 100)
-	//{
-	//	player->ChangeColor(Colors::Blue);
-	//}
-	//else
-	//{
-	//	player->ChangeColor(Colors::Yellow);
-	//}
-	//collision++;
-	UpdateObjects();
 }
 
-void App::UpdateObjects()
-{
-	EraseObjects();
-	objects.clear();
-	objects.reserve(score.size() + enemy.size() + 1 + brick.size());
-	for (auto& s : score)
-	{
-		objects.push_back(&s);
-	}
-	for (auto& e : enemy)
-	{
-		objects.push_back(&e);
-	}
-	objects.push_back(player.get());
-	for (auto& b : brick)
-	{
-		objects.push_back(&b);
-	}
-}
-
-void App::EraseObjects()
-{
-	auto erase_destroyed = [](auto& container)
-		{
-			container.erase(
-				std::remove_if(container.begin(), container.end(),
-					[](auto& obj) { return obj.DestroyedCheck(); }),
-				container.end());
-		};
-
-	erase_destroyed(score);
-	erase_destroyed(enemy);
-	erase_destroyed(brick);
-}
 
 /////////////////////////////////////////////////////////
 void App::ComposeFrame()
 {
-	for (auto* obj : objects)
+	for (auto& b : brick)
 	{
-		obj->Draw(gfx);
+		b.Draw(gfx);
 	}
+	ball->Draw(gfx);
 }
