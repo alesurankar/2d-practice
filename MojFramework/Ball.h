@@ -10,7 +10,8 @@ public:
 	bool DoWallCollision(const RectI& walls);
 	void ReboundX();
 	void ReboundY();
-	RectI GetRect();
+	RectI GetRect() const;
+	Vec2 GetVelocity() const;
 private:
 	static constexpr int dim = 12;
 	Vei2 pos;

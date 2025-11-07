@@ -19,6 +19,7 @@ public:
 private:
 	void UpdateModel();
 	void ComposeFrame();
+	void EraseObjects();
 private:
 	MainWindow& wnd;
 	Graphics gfx;
@@ -28,8 +29,8 @@ private:
 	std::uniform_int_distribution<int> xRand;
 	std::uniform_int_distribution<int> yRand;
 	std::uniform_real_distribution<float> dir;
-	std::unique_ptr<Pad> pad;
 	std::unique_ptr<Ball> ball;
 	std::vector<Brick> brick;
 	std::unique_ptr<RectI> walls;
+	std::unique_ptr<Pad> pad;
 };

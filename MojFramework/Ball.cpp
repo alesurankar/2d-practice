@@ -31,7 +31,7 @@ bool Ball::DoWallCollision(const RectI& walls)
 	}
 	if (rect.right >= walls.right)
 	{
-		pos_temp.x = float(Graphics::ScreenWidth - 13);
+		pos_temp.x = float(Graphics::ScreenWidth - dim - 1);
 		ReboundX();
 		collided = true;
 	}
@@ -43,7 +43,7 @@ bool Ball::DoWallCollision(const RectI& walls)
 	}
 	if (rect.bottom >= walls.bottom) 
 	{
-		pos_temp.y = float(Graphics::ScreenHeight - 13);
+		pos_temp.y = float(Graphics::ScreenHeight - dim -1);
 		ReboundY();
 		collided = true;
 	}
@@ -61,7 +61,12 @@ void Ball::ReboundY()
 	vel.y = -vel.y;
 }
 
-RectI Ball::GetRect()
+RectI Ball::GetRect() const
 {
 	return RectI(pos, dim, dim);
+}
+
+Vec2 Ball::GetVelocity() const
+{
+	return vel;
 }
