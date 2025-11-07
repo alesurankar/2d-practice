@@ -28,9 +28,10 @@ private:
 	std::mt19937 rng;
 	std::uniform_int_distribution<int> xRand;
 	std::uniform_int_distribution<int> yRand;
-	std::uniform_real_distribution<float> dir;
 	std::unique_ptr<Ball> ball;
 	std::vector<Brick> brick;
 	std::unique_ptr<RectI> walls;
 	std::unique_ptr<Pad> pad;
+	int nBricksDown = 4;
+	int nBricksAcross = 8;
 };

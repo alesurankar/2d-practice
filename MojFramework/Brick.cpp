@@ -10,7 +10,9 @@ Brick::Brick(RectI rect_in, Color color_in)
 
 void Brick::Draw(Graphics& gfx) const
 {
-	gfx.DrawRect(rect, color);
+	RectI inner = RectI{ rect.left + 2, rect.top + 2, rect.right - 2, rect.bottom - 2 };
+	gfx.DrawRect(rect, Colors::DarkGray);
+	gfx.DrawRect(inner, color);
 }
 
 bool Brick::DoBallCollision(Ball& ball)
@@ -21,6 +23,7 @@ bool Brick::DoBallCollision(Ball& ball)
 		destroyed = true;
 		return true;
 	}
+	return false;
 }
 
 bool Brick::DestroyedCheck()

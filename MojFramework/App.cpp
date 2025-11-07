@@ -7,11 +7,23 @@ App::App(MainWindow& wnd)
 	gfx(wnd),
 	rng(rd()),
 	xRand(30, 770),
-	yRand(30, 570),
-	dir(-300.0f, 300.0f)
+	yRand(30, 570)
 {
-	ball = std::make_unique<Ball>(Vei2(xRand(rng), yRand(rng)), Vec2(dir(rng), dir(rng)), Colors::Green);
-	brick.emplace_back(RectI{ 20,20,160,80 }, Colors::Cyan);
+	const Color colors[4] = { Colors::Red, Colors::Green, Colors::Blue, Colors::Cyan };
+	Vei2 topLeft{ 0, 0 };
+	for (int y = 0; y < nBricksDown; y++)
+	{
+		const int width = 80;
+		const int height = 20;
+		const Color c = colors[y];
+		for (int x = 0; x < nBricksAcross; x++)
+		{
+			topLeft.x = width * x;
+			topLeft.y = height * y;
+			brick.emplace_back(RectI(topLeft, width, height), c);
+		}
+	}
+	ball = std::make_unique<Ball>(Vei2(xRand(rng), yRand(rng)), Vec2{300.0f, 300.0f}, Colors::Green);
 	walls = std::make_unique<RectI>(0, 0, gfx.ScreenWidth, gfx.ScreenHeight);
 	pad = std::make_unique<Pad>(Vei2{ 400, 540 });
 }
@@ -45,7 +57,7 @@ void App::UpdateModel()
 /////////////////////////////////////////////////////////
 void App::ComposeFrame()
 {
-	for (auto& br : brick)
+	for (const auto& br : brick)
 	{
 		br.Draw(gfx);
 	}
