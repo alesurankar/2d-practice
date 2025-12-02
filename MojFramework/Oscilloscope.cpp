@@ -6,10 +6,10 @@ Oscilloscope::Oscilloscope()
 	screen = std::make_unique<Screen>();
 }
 
-void Oscilloscope::Update(const Mouse& mouse, float dt)
+void Oscilloscope::Update(const Keyboard& kbd, const Mouse& mouse, float dt)
 {
-	menu->Update(mouse);
-	screen->Update(dt);
+	menu->Update(kbd, mouse, dt);
+	screen->Update(kbd, mouse, dt);
 }
 
 void Oscilloscope::Draw(Graphics& gfx) const

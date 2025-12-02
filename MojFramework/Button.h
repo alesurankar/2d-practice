@@ -22,6 +22,7 @@ public:
 	void Update(const Mouse& mouse);
 	bool GetEffect();
 	std::string GetButtonMessage();
+private:
 	void Pressed();
 	void Released();
 private:

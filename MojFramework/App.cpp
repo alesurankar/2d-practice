@@ -21,7 +21,7 @@ void App::Go()
 void App::UpdateModel()
 {
 	const float dt = ft.Mark();
-	osc->Update(wnd.mouse, dt);
+	osc->Update(wnd.kbd, wnd.mouse, dt);
 }
 
 

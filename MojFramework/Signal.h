@@ -10,17 +10,18 @@ public:
 		SIN,
 		COS
 	};
-	Signal(SignalType type, float waveLength, float amplitude);
+	Signal(SignalType type, float leftBorder, float rightBorder, float waveLength, float amplitude);
 	void Draw(Graphics& gfx);
 	void Update(float dt);
 	void UpdateSin();
 	void UpdateCos();
 private:
 	std::deque<Vec2> dots;
-	static constexpr float headX = float(Graphics::ScreenWidth - 1);
-	static constexpr float mid = float(Graphics::ScreenHeight / 2);
-	float x = headX;
-	float y = float(Graphics::ScreenHeight / 2);
+	float rightBorder = float(Graphics::ScreenWidth - 1);
+	float mid = float(Graphics::ScreenHeight / 2);
+	float leftBorder;
+	float x = rightBorder;
+	float y = mid;
 	float waveLength;
 	float amplitude; 
 	float phase = 0.0f;

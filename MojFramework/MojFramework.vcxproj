@@ -93,6 +93,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="COMInitializer.cpp" />
     <ClCompile Include="DXErr.cpp" />
+    <ClCompile Include="Field.cpp" />
     <ClCompile Include="Fonts.cpp" />
     <ClCompile Include="FrameTimer.cpp" />
     <ClCompile Include="Graphics.cpp" />
@@ -113,6 +114,7 @@
     <ClInclude Include="Colors.h" />
     <ClInclude Include="COMInitializer.h" />
     <ClInclude Include="DXErr.h" />
+    <ClInclude Include="Field.h" />
     <ClInclude Include="Fonts.h" />
     <ClInclude Include="FrameTimer.h" />
     <ClInclude Include="Graphics.h" />

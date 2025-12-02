@@ -1,8 +1,10 @@
 #include "Signal.h"
 
-Signal::Signal(SignalType type_in, float waveLength_in, float amplitude_in)
+Signal::Signal(SignalType type_in, float leftBorder_in, float rightBorder_in, float waveLength_in, float amplitude_in)
 	:
 	type(type_in),
+	leftBorder(leftBorder_in),
+	rightBorder(rightBorder_in),
 	waveLength(waveLength_in),
 	amplitude(amplitude_in)
 {
@@ -43,10 +45,10 @@ void Signal::Update(float dt)
 		dot.x -= waveLength * dt;
 	}
 	
-	dots.emplace_back(headX, y);
+	dots.emplace_back(rightBorder, y);
 
 	// remove off-screen dots
-	if (!dots.empty() && dots.front().x <= 10.0f) {
+	if (!dots.empty() && dots.front().x <= leftBorder) {
 		dots.pop_front();
 	}
 }
