@@ -1,0 +1,31 @@
+#pragma once
+#include "Graphics.h"
+#include "Surface.h"
+#include "Fonts.h"
+#include "Button.h"
+#include "Mouse.h"
+#include "Vec2.h"
+#include <vector>
+#include <string>
+
+class Menu
+{
+public:
+	enum class MenuType
+	{
+		MAIN,
+		IN_APP
+	};
+	Menu(MenuType type_in);
+	void Draw(Graphics& gfx) const;
+	void Update(const Mouse& mouse);
+	std::string GetMenuMessage();
+private:
+	void TakeEffect(const std::string& effect);
+private:
+	Vei2 pos;
+	std::string message;
+	MenuType type;
+	Surface logo;
+	std::vector<Button> buttons;
+};
