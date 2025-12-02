@@ -1,12 +1,25 @@
 #include "Button.h"
+#include <utility>
 
-Button::Button(int x_in, int y_in, int width_in, int height_in, const std::string& text_in)
+Button::Button(
+	int x_in, int y_in, 
+	int width_in, int height_in, 
+	std::string text_in, 
+	Color btn_color_in,
+	Color hover_color_in,
+	Color active_color_in,
+	Color text_color_in
+)
 	:
 	x(x_in),
 	y(y_in),
 	width(width_in),
 	height(height_in),
-	text(text_in),
+	text(std::move(text_in)),
+	btn_color(btn_color_in),
+	hover_color(hover_color_in),
+	active_color(active_color_in),
+	text_color(text_color_in),
 	outside(x - 1, y - 1, x + width + 1, y + height + 1),
 	inside(x, y, x + width, y + height),
 	len_x(8 * static_cast<int>(text.length())),
@@ -23,17 +36,17 @@ void Button::Draw(Graphics& gfx) const
 {
 	if (onTop)
 	{
-		gfx.DrawRect(outside, Colors::Yellow);
+		gfx.DrawRect(outside, hover_color);
 	}
 	if (pressed)
 	{
-		gfx.DrawRect(inside, Colors::DarkBlue);
+		gfx.DrawRect(inside, active_color);
 	}
 	else
 	{
-		gfx.DrawRect(inside, Colors::Blue);
+		gfx.DrawRect(inside, btn_color);
 	}
-	smallFont.DrawText(text, {middle_x, middle_y}, Colors::Yellow, gfx);
+	smallFont.DrawText(text, {middle_x, middle_y}, text_color, gfx);
 }
 
 void Button::Update(const Mouse& mouse)
@@ -89,14 +102,4 @@ void Button::Released()
 	}
 	pressed = false;
 	released = true;
-}
-
-int Button::GetWidth()
-{
-	return width;
-}
-
-int Button::GetHeight()
-{
-	return height;
 }

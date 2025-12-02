@@ -9,21 +9,31 @@
 class Button
 {
 public:
-	Button(int x_in, int y_in, int width_in, int height_in, const std::string& text_in);
+	Button(
+		int x_in, int y_in,
+		int width_in, int height_in,
+		std::string text_in,
+		Color btn_color = Colors::Blue,
+		Color hover_color = Colors::Yellow,
+		Color active_color = Colors::DarkBlue,
+		Color text_color = Colors::Yellow
+	);
 	void Draw(Graphics& gfx) const;
 	void Update(const Mouse& mouse);
 	bool GetEffect();
 	std::string GetButtonMessage();
 	void Pressed();
 	void Released();
-	int GetWidth();
-	int GetHeight();
 private:
 	int x;
 	int y;
+	int width;
+	int height;
 	std::string text;
-	int width = 140;
-	int height = 30;
+	Color btn_color;
+	Color hover_color;
+	Color active_color;
+	Color text_color;
 	bool effect;
 	bool onTop;
 	bool pressed;
@@ -34,6 +44,5 @@ private:
 	int middle_y;
 	RectI outside;
 	RectI inside;
-	Fonts bigFont = Fonts("Images\\Fonts16x28.bmp");
 	Fonts smallFont = Fonts("Images\\Fonts8x14.bmp");
 };

@@ -5,7 +5,8 @@ Menu::Menu(MenuType type_in)
 	:
 	type(type_in)
 {
-	buttons.emplace_back(10, 10, 60, 40, "TEST");
+	buttons.emplace_back(10, 10, 60, 40, "TEST", Colors::Red, Colors::Green, Colors::Gray, Colors::Black);
+	buttons.emplace_back(100, 100, 60, 40, "TEST");
 }
 
 void Menu::Draw(Graphics& gfx) const

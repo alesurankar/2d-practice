@@ -23,9 +23,7 @@ public:
 private:
 	void TakeEffect(const std::string& effect);
 private:
-	Vei2 pos;
 	std::string message;
 	MenuType type;
-	Surface logo;
 	std::vector<Button> buttons;
 };
