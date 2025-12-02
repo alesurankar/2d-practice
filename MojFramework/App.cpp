@@ -7,6 +7,7 @@ App::App(MainWindow& wnd)
 	gfx(wnd)
 {
 	menu = std::make_unique<Menu>(Menu::MenuType::IN_APP);
+	signal = std::make_unique<Signal>(Signal::SignalType::SQUERE, 1.0f, 50);
 }
 
 void App::Go()
@@ -20,64 +21,7 @@ void App::Go()
 ////////////////////////////////////////////////////////////
 void App::UpdateModel()
 {
-//	dots.emplace_back(headX, y);
-//
-//	//pos = dots.front();
-//	x++;
-//	if (rising && !falling) {
-//		y--;
-//	}
-//	if (!rising && falling) {
-//		y++;
-//	}
-//	if ((y > (Graphics::ScreenHeight / 2) + 20)) {
-//		rising = true;
-//		falling = false;
-//	}
-//	else if (y < (Graphics::ScreenHeight / 2) - 20) {
-//		rising = false;
-//		falling = true;
-//	}
-//	// remove off-screen dots
-//	if (!dots.empty() && dots.front().x < 0) {
-//		dots.erase(dots.begin());
-//	}
-//	for (auto& dot : dots)
-//	{
-//		dot.x--;
-//	}
-//	//dots.pop();
-
-	const int headX = Graphics::ScreenWidth - 1;    // newest dot is always on right
-	dots.emplace_back(headX, y);
-	
-	// vertical square wave
-	if (rising && !falling) {
-	    y--;
-	}
-	if (!rising && falling) {
-	    y++;
-	}
-	
-	const int mid = Graphics::ScreenHeight / 2;
-	if (y > mid + 20) {
-	    rising = true;
-	    falling = false;
-	}
-	else if (y < mid - 20) {
-	    rising = false;
-	    falling = true;
-	}
-	
-	// scroll left
-	for (auto& dot : dots) {
-	    dot.x -= 2;     // scroll speed
-	}
-	
-	// remove off-screen dots
-	if (!dots.empty() && dots.front().x < 0) {
-	    dots.erase(dots.begin());
-	}
+	signal->Update();
 	menu->Update(wnd.mouse);
 }
 
@@ -85,9 +29,6 @@ void App::UpdateModel()
 /////////////////////////////////////////////////////////
 void App::ComposeFrame()
 {
-	for (auto& dot : dots)
-	{
-		gfx.PutPixel(dot, Colors::White);
-	}
+	signal->Draw(gfx);
 	menu->Draw(gfx);
 }
