@@ -75,6 +75,9 @@
     <ClCompile Include="Signal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Oscilloscope.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Colors.h">
@@ -141,6 +144,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Signal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Oscilloscope.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

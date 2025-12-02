@@ -4,8 +4,7 @@
 #include "Graphics.h"
 #include "Fonts.h"
 #include "Vec2.h"
-#include "Menu.h"
-#include "Signal.h"
+#include "Oscilloscope.h"
 #include "FrameTimer.h"
 #include <memory>
 
@@ -22,6 +21,5 @@ private:
 	MainWindow& wnd;
 	Graphics gfx;
 	FrameTimer ft;
-	std::unique_ptr<Menu> menu;
-	std::unique_ptr<Signal> signal;
+	std::unique_ptr<Oscilloscope> osc;
 };

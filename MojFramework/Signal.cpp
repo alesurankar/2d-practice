@@ -5,7 +5,9 @@ Signal::Signal(SignalType type_in, float waveLength_in, float amplitude_in)
 	type(type_in),
 	waveLength(waveLength_in),
 	amplitude(amplitude_in)
-{}
+{
+	dots.clear();
+}
 
 void Signal::Draw(Graphics& gfx)
 {
@@ -40,12 +42,13 @@ void Signal::Update(float dt)
 	for (auto& dot : dots) {
 		dot.x -= waveLength * dt;
 	}
+	
+	dots.emplace_back(headX, y);
+
 	// remove off-screen dots
 	if (!dots.empty() && dots.front().x < 0) {
 		dots.pop_front();
 	}
-
-	dots.emplace_back(headX, y);
 }
 
 void Signal::UpdateSin()

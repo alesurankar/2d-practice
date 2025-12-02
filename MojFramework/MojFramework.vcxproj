@@ -101,6 +101,7 @@
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="Oscilloscope.cpp" />
     <ClCompile Include="Signal.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Surface.cpp" />
@@ -121,6 +122,7 @@
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="MyException.h" />
     <ClInclude Include="MyWin.h" />
+    <ClInclude Include="Oscilloscope.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Signal.h" />

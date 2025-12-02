@@ -16,7 +16,6 @@ public:
 	void Update(float dt);
 	void UpdateSin();
 	void UpdateCos();
-	void UpdateSquere();
 private:
 	std::deque<Vec2> dots;
 	static constexpr float headX = float(Graphics::ScreenWidth - 1);

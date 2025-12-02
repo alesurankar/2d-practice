@@ -6,8 +6,7 @@ App::App(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd)
 {
-	menu = std::make_unique<Menu>(Menu::MenuType::IN_APP);
-	signal = std::make_unique<Signal>(Signal::SignalType::SIN, 100.0f, 50.0f);
+	osc = std::make_unique<Oscilloscope>();
 }
 
 void App::Go()
@@ -22,14 +21,12 @@ void App::Go()
 void App::UpdateModel()
 {
 	const float dt = ft.Mark();
-	signal->Update(dt);
-	menu->Update(wnd.mouse);
+	osc->Update(wnd.mouse, dt);
 }
 
 
 /////////////////////////////////////////////////////////
 void App::ComposeFrame()
 {
-	signal->Draw(gfx);
-	menu->Draw(gfx);
+	osc->Draw(gfx);
 }
