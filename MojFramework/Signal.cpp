@@ -46,7 +46,7 @@ void Signal::Update(float dt)
 	dots.emplace_back(headX, y);
 
 	// remove off-screen dots
-	if (!dots.empty() && dots.front().x < 0) {
+	if (!dots.empty() && dots.front().x <= 10.0f) {
 		dots.pop_front();
 	}
 }

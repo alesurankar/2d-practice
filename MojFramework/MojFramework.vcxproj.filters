@@ -78,6 +78,9 @@
     <ClCompile Include="Oscilloscope.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Screen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Colors.h">
@@ -147,6 +150,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Oscilloscope.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,7 +2,7 @@
 #include "Graphics.h"
 #include "Mouse.h"
 #include "Menu.h"
-#include "Signal.h"
+#include "Screen.h"
 #include <memory>
 
 class Oscilloscope
@@ -10,8 +10,8 @@ class Oscilloscope
 public:
 	Oscilloscope();
 	void Update(const Mouse& mouse, float dt);
-	void Draw(Graphics& gfx);
+	void Draw(Graphics& gfx) const;
 private:
 	std::unique_ptr<Menu> menu;
-	std::unique_ptr<Signal> signal;
+	std::unique_ptr<Screen> screen;
 };

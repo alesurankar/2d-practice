@@ -3,17 +3,17 @@
 Oscilloscope::Oscilloscope()
 {
 	menu = std::make_unique<Menu>(Menu::MenuType::IN_APP);
-	signal = std::make_unique<Signal>(Signal::SignalType::SIN, 100.0f, 50.0f);
+	screen = std::make_unique<Screen>();
 }
 
 void Oscilloscope::Update(const Mouse& mouse, float dt)
 {
-	signal->Update(dt);
 	menu->Update(mouse);
+	screen->Update(dt);
 }
 
-void Oscilloscope::Draw(Graphics& gfx)
+void Oscilloscope::Draw(Graphics& gfx) const
 {
-	signal->Draw(gfx);
 	menu->Draw(gfx);
+	screen->Draw(gfx);
 }

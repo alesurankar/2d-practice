@@ -8,8 +8,7 @@ public:
 	enum class SignalType
 	{
 		SIN,
-		COS,
-		SQUERE
+		COS
 	};
 	Signal(SignalType type, float waveLength, float amplitude);
 	void Draw(Graphics& gfx);
