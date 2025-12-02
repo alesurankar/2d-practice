@@ -7,7 +7,7 @@ App::App(MainWindow& wnd)
 	gfx(wnd)
 {
 	menu = std::make_unique<Menu>(Menu::MenuType::IN_APP);
-	signal = std::make_unique<Signal>(Signal::SignalType::SQUERE, 1.0f, 50);
+	signal = std::make_unique<Signal>(Signal::SignalType::SIN, 100.0f, 50.0f);
 }
 
 void App::Go()
@@ -21,7 +21,8 @@ void App::Go()
 ////////////////////////////////////////////////////////////
 void App::UpdateModel()
 {
-	signal->Update();
+	const float dt = ft.Mark();
+	signal->Update(dt);
 	menu->Update(wnd.mouse);
 }
 

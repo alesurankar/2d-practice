@@ -11,9 +11,9 @@ public:
 		COS,
 		SQUERE
 	};
-	Signal(SignalType type = SignalType::SIN, float waveLength = 1.0f, int amplitude = 20);
+	Signal(SignalType type, float waveLength, float amplitude);
 	void Draw(Graphics& gfx);
-	void Update();
+	void Update(float dt);
 	void UpdateSin();
 	void UpdateCos();
 	void UpdateSquere();
@@ -22,9 +22,10 @@ private:
 	static constexpr float headX = float(Graphics::ScreenWidth - 1);
 	static constexpr float mid = float(Graphics::ScreenHeight / 2);
 	float x = headX;
-	float y = float (Graphics::ScreenHeight / 2);
-	float waveLength = 1.0f;
-	int amplitude; 
+	float y = float(Graphics::ScreenHeight / 2);
+	float waveLength;
+	float amplitude; 
+	float phase = 0.0f;
 	bool rising = true;
 	bool falling = false;
 	SignalType type;

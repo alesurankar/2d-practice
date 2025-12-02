@@ -1,6 +1,6 @@
 #include "Signal.h"
 
-Signal::Signal(SignalType type_in, float waveLength_in, int amplitude_in)
+Signal::Signal(SignalType type_in, float waveLength_in, float amplitude_in)
 	:
 	type(type_in),
 	waveLength(waveLength_in),
@@ -11,23 +11,20 @@ void Signal::Draw(Graphics& gfx)
 {
 	for (auto& dot : dots)
 	{
-		gfx.PutPixel(dot, Colors::White);
+		gfx.PutPixel(Vei2(dot), Colors::White);
 	}
 }
 
-void Signal::Update()
+void Signal::Update(float dt)
 {
-	dots.emplace_back(headX, y);
-
 	switch (type) {
 	case SignalType::SIN:
-		UpdateSin();
+		UpdateSin(); 
+		phase += dt;
 		break;
 	case SignalType::COS:
-		UpdateCos();
-		break;
-	case SignalType::SQUERE:
-		UpdateSquere();
+		UpdateCos(); 
+		phase += dt;
 		break;
 	}
 
@@ -41,28 +38,22 @@ void Signal::Update()
 	}
 	// scroll left
 	for (auto& dot : dots) {
-		dot.x -= waveLength;
+		dot.x -= waveLength * dt;
 	}
 	// remove off-screen dots
 	if (!dots.empty() && dots.front().x < 0) {
 		dots.pop_front();
 	}
+
+	dots.emplace_back(headX, y);
 }
 
 void Signal::UpdateSin()
 {
+	y = mid + std::sin(phase * 2.0f * 3.14159f) * amplitude;
 }
 
 void Signal::UpdateCos()
 {
-}
-
-void Signal::UpdateSquere()
-{
-	if (rising && !falling) {
-		y--;
-	}
-	if (!rising && falling) {
-		y++;
-	}
+	y = mid + std::sin(phase * 2.0f * 3.14159f) * amplitude;
 }

@@ -6,6 +6,7 @@
 #include "Vec2.h"
 #include "Menu.h"
 #include "Signal.h"
+#include "FrameTimer.h"
 #include <memory>
 
 class App {
@@ -20,6 +21,7 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
+	FrameTimer ft;
 	std::unique_ptr<Menu> menu;
 	std::unique_ptr<Signal> signal;
 };
