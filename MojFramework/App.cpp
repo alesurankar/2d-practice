@@ -19,13 +19,15 @@ void App::Go()
 ////////////////////////////////////////////////////////////
 void App::UpdateModel()
 {
-
+	dots.emplace_back(100, 20);
 }
 
 
 /////////////////////////////////////////////////////////
 void App::ComposeFrame()
 {
-	gfx.PutPixel(10, 10, Colors::White);
-	smallFont.DrawText("test",Vei2(20, 20), Colors::White, gfx);
+	for (auto& dot : dots)
+	{
+		gfx.PutPixel(dot, Colors::White);
+	}
 }

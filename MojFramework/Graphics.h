@@ -41,6 +41,10 @@ public:
 		PutPixel(x, y, { unsigned char(r),unsigned char(g),unsigned char(b) });
 	}
 	void PutPixel(int x, int y, Color c);
+	void PutPixel(const Vei2& pos, Color c)
+	{
+		PutPixel(int(pos.x), int(pos.y), c);
+	}
 	void DrawRect(RectI srcRect, Color c);
 	void DrawRect(RectI srcRect, const RectI& clip, Color c);
 	template<typename E>
