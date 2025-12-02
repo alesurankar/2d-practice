@@ -2,13 +2,8 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
-#include "FrameTimer.h"
-#include "Pad.h"
-#include "Ball.h"
-#include "Brick.h"
-#include <memory>
+#include "Fonts.h"
 #include <vector>
-#include <random>
 
 class App {
 public:
@@ -19,19 +14,8 @@ public:
 private:
 	void UpdateModel();
 	void ComposeFrame();
-	void EraseObjects();
 private:
 	MainWindow& wnd;
 	Graphics gfx;
-	FrameTimer ft;
-	std::random_device rd;
-	std::mt19937 rng;
-	std::uniform_int_distribution<int> xRand;
-	std::uniform_int_distribution<int> yRand;
-	std::unique_ptr<Ball> ball;
-	std::vector<Brick> brick;
-	std::unique_ptr<RectI> walls;
-	std::unique_ptr<Pad> pad;
-	int nBricksDown = 4;
-	int nBricksAcross = 8;
+	Fonts smallFont = Fonts("Images\\Fonts8x14.bmp");
 };

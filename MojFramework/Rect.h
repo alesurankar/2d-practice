@@ -1,6 +1,7 @@
 #pragma once
 #include "Vec2.h"
 #include <algorithm>
+#include "Surface.h"
 
 template<typename T>
 class Rect_

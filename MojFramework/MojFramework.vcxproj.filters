@@ -60,14 +60,11 @@
     <ClCompile Include="FrameTimer.cpp">
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Pad.cpp">
-      <Filter>Source Files\GamePlay</Filter>
+    <ClCompile Include="Surface.cpp">
+      <Filter>Source Files\Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Ball.cpp">
-      <Filter>Source Files\GamePlay</Filter>
-    </ClCompile>
-    <ClCompile Include="Brick.cpp">
-      <Filter>Source Files\GamePlay</Filter>
+    <ClCompile Include="Fonts.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -119,14 +116,14 @@
     <ClInclude Include="Rect.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Ball.h">
-      <Filter>Header Files\GamePlay</Filter>
+    <ClInclude Include="Surface.h">
+      <Filter>Header Files\Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Brick.h">
-      <Filter>Header Files\GamePlay</Filter>
+    <ClInclude Include="Fonts.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Pad.h">
-      <Filter>Header Files\GamePlay</Filter>
+    <ClInclude Include="ImageEffect.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

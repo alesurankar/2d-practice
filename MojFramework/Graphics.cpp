@@ -21,6 +21,8 @@ namespace FramebufferShaders
 using Microsoft::WRL::ComPtr;
 
 Graphics::Graphics(HWNDKey& key)
+	:
+	sysBuffer(ScreenWidth, ScreenHeight)
 {
 	assert(key.hWnd != nullptr);
 
@@ -214,25 +216,20 @@ Graphics::Graphics(HWNDKey& key)
 	{
 		throw My_GFX_EXCEPTION(hr, L"Creating sampler state");
 	}
-
-	// allocate memory for sysbuffer (16-byte aligned for faster access)
-	pSysBuffer = reinterpret_cast<Color*>(
-		_aligned_malloc(sizeof(Color) * Graphics::ScreenWidth * Graphics::ScreenHeight, 16u));
 }
 
 Graphics::~Graphics()
 {
-	// free sysbuffer memory (aligned free)
-	if (pSysBuffer)
-	{
-		_aligned_free(pSysBuffer);
-		pSysBuffer = nullptr;
-	}
 	// clear the state of the device context before destruction
 	if (pImmediateContext) pImmediateContext->ClearState();
 }
 
-void Graphics::EndFrame()
+RectI Graphics::GetScreenRect()
+{
+	return { 0,0,ScreenWidth, ScreenHeight };
+}
+
+void Graphics::EndFrame(int delay)
 {
 	HRESULT hr;
 
@@ -250,7 +247,7 @@ void Graphics::EndFrame()
 	// perform the copy line-by-line
 	for (size_t y = 0u; y < Graphics::ScreenHeight; y++)
 	{
-		memcpy(&pDst[y * dstPitch], &pSysBuffer[y * srcPitch], rowBytes);
+		memcpy(&pDst[y * dstPitch], &sysBuffer.Data()[y * srcPitch], rowBytes);
 	}
 	// release the adapter memory
 	pImmediateContext->Unmap(pSysBufferTexture.Get(), 0u);
@@ -268,7 +265,7 @@ void Graphics::EndFrame()
 	pImmediateContext->Draw(6u, 0u);
 
 	// flip back/front buffers
-	if (FAILED(hr = pSwapChain->Present(1u, 0u)))
+	if (FAILED(hr = pSwapChain->Present(delay, 0u)))
 	{
 		if (hr == DXGI_ERROR_DEVICE_REMOVED)
 		{
@@ -281,10 +278,19 @@ void Graphics::EndFrame()
 	}
 }
 
-void Graphics::BeginFrame()
+void Graphics::BeginFrame(Color bg)
 {
 	// clear the sysbuffer
-	memset(pSysBuffer, 0u, sizeof(Color) * Graphics::ScreenHeight * Graphics::ScreenWidth);
+	sysBuffer.Fill(bg);
+}
+
+Color Graphics::GetPixel(int x, int y) const
+{
+	assert(x >= 0);
+	assert(x < int(Graphics::ScreenWidth));
+	assert(y >= 0);
+	assert(y < int(Graphics::ScreenHeight));
+	return sysBuffer.GetPixel(x, y);
 }
 
 void Graphics::PutPixel(int x, int y, Color c)
@@ -293,16 +299,37 @@ void Graphics::PutPixel(int x, int y, Color c)
 	assert(x < int(Graphics::ScreenWidth));
 	assert(y >= 0);
 	assert(y < int(Graphics::ScreenHeight));
-	pSysBuffer[Graphics::ScreenWidth * y + x] = c;
+	sysBuffer.PutPixel(x, y, c);
 }
 
-void Graphics::DrawRect(int x0, int y0, int x1, int y1, Color c)
+void Graphics::DrawRect(RectI srcRect, Color c)
 {
-	for (int i = x0; i <= x1; i++)
+	DrawRect(srcRect, GetScreenRect(), c);
+}
+
+void Graphics::DrawRect(RectI srcRect, const RectI& clip, Color c)
+{
+	if (srcRect.left < clip.left)
 	{
-		for (int j = y0; j <= y1; j++)
+		srcRect.left = clip.left;
+	}
+	if (srcRect.top < clip.top)
+	{
+		srcRect.top = clip.top;
+	}
+	if (srcRect.right > clip.right)
+	{
+		srcRect.right = clip.right;
+	}
+	if (srcRect.bottom > clip.bottom)
+	{
+		srcRect.bottom = clip.bottom;
+	}
+	for (int sx = srcRect.left; sx < srcRect.right; sx++)
+	{
+		for (int sy = srcRect.top; sy < srcRect.bottom; sy++)
 		{
-			PutPixel(i, j, c);
+			PutPixel(sx, sy, c);
 		}
 	}
 }
@@ -314,7 +341,8 @@ Graphics::Exception::Exception(HRESULT hr, const std::wstring& note, const wchar
 	:
 	MyException(file, line, note),
 	hr(hr)
-{}
+{
+}
 
 std::wstring Graphics::Exception::GetFullMessage() const
 {
