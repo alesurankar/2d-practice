@@ -1,36 +1,19 @@
 #pragma once
-#include "Graphics.h"
-#include "Mouse.h"
-#include "Fonts.h"
-#include "Rect.h"
-#include "Vec2.h"
-#include <string>
+#include "Field.h"
 
-class Button
+class Button : public Field
 {
 public:
 	Button(
-		int x_in, int y_in,
-		int width_in, int height_in,
-		std::string text_in,
-		Color btn_color = Colors::Blue,
-		Color hover_color = Colors::Yellow,
-		Color active_color = Colors::DarkBlue,
-		Color text_color = Colors::Yellow
-	);
-	void Draw(Graphics& gfx) const;
-	void Update(const Mouse& mouse);
+		Vei2 pos, int width, int height, Field::THEME theme, std::string text);
+	void Update(const Mouse& mouse, float dt) override;
+	void Draw(Graphics& gfx) const override;
 	bool GetEffect();
-	std::string GetButtonMessage();
+	//std::string GetButtonMessage();
 private:
 	void Pressed();
 	void Released();
 private:
-	int x;
-	int y;
-	int width;
-	int height;
-	std::string text;
 	Color btn_color;
 	Color hover_color;
 	Color active_color;
@@ -43,7 +26,5 @@ private:
 	int len_y;
 	int middle_x;
 	int middle_y;
-	RectI outside;
-	RectI inside;
 	Fonts smallFont = Fonts("Images\\Fonts8x14.bmp");
 };

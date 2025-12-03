@@ -28,7 +28,7 @@ void App::Go()
 bool App::UpdateModel(float dt)
 {
     {
-        osc->Update(wnd.kbd, wnd.mouse, dt);
+        osc->Update(wnd.mouse, dt);
     }
 
     //////////////////////////////
