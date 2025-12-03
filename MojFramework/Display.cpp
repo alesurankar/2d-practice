@@ -1,9 +1,10 @@
 #include "Display.h"
 
-Display::Display(Vei2 pos, int width, int height, Field::THEME theme, TYPE type_in)
+Display::Display(Vei2 pos, int width, int height, Field::THEME theme, TYPE type_in, bool grid_in)
 	:
 	Field(pos, width, height, theme, ""),
-	type(type_in)
+	type(type_in),
+	grid(grid_in)
 {
 }
 
@@ -22,8 +23,12 @@ void Display::Draw(Graphics& gfx) const
 
 void Display::DrawGrid(Graphics& gfx) const
 {
-	gfx.DrawLine(Vec2(float(GetPos().x), float(mid_y)), Vec2(float(GetPos().x + GetWidth()), (float)mid_y), content_color);
-	gfx.DrawLine(Vec2(float(mid_x), (float)GetPos().y), Vec2((float)mid_x, float(GetPos().y + GetHeight())), content_color);
+	for (int i = GetPos().x; i < GetPos().x + GetWidth(); i+=8) {
+		gfx.PutPixel(i, mid_y, grid_color);
+	}
+	for (int i = GetPos().y; i < GetPos().y + GetHeight(); i+=8) {
+		gfx.PutPixel(mid_x, i, grid_color);
+	}
 }
 
 void Display::SetGrid(bool effect)

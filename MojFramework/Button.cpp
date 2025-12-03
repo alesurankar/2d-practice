@@ -8,7 +8,7 @@ Button::Button(Vei2 pos, int width, int height, Field::THEME theme, std::string 
 	pressed(false),
 	released(false),
 	effect(false),
-	toggle(false)
+	toggle(true)
 {}
 
 void Button::Update(const Mouse& mouse, float dt)

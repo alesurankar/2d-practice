@@ -1,11 +1,11 @@
 #pragma once
 #include "Field.h"
+#include "OscilloscopeMode.h"
 
 class Button : public Field
 {
 public:
-	Button(
-		Vei2 pos, int width, int height, Field::THEME theme, std::string text);
+	Button(Vei2 pos, int width, int height, Field::THEME theme, std::string text);
 	void Update(const Mouse& mouse, float dt) override;
 	void Draw(Graphics& gfx) const override;
 	bool GetEffect();

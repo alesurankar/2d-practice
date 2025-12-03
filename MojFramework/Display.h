@@ -10,7 +10,7 @@ public:
 		VALUE,
 		TEXT,
 	};
-	Display(Vei2 pos, int width, int height, Field::THEME theme, TYPE type);
+	Display(Vei2 pos, int width, int height, Field::THEME theme, TYPE type, bool grid = false);
 	void Update(const Mouse& mouse, float dt) override;
 	void Draw(Graphics& gfx) const override;
 	void DrawGrid(Graphics& gfx) const;
