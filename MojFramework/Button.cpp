@@ -4,14 +4,11 @@
 Button::Button(Vei2 pos, int width, int height, Field::THEME theme, std::string text)
 	:
 	Field(pos, width, height, theme, std::move(text)),
-	len_x(8 * static_cast<int>(text.length())),
-	len_y(14),
-	middle_x(GetPos().x + (width/2) - (len_x/2)),
-	middle_y(GetPos().y + (height/2) - (len_y/2)),
 	onTop(false),
 	pressed(false),
 	released(false),
-	effect(false)
+	effect(false),
+	toggle(false)
 {}
 
 void Button::Update(const Mouse& mouse, float dt)
@@ -54,14 +51,17 @@ void Button::Draw(Graphics& gfx) const
 	{
 		gfx.DrawRect(inside, body_color);
 	}
-	smallFont.DrawText(text, {middle_x, middle_y}, content_color, gfx);
+	smallFont.DrawText(GetText(), { mid_x, mid_y }, content_color, gfx);
 }
-
-
 
 bool Button::GetEffect()
 {
 	return effect;
+}
+
+bool Button::GetToggle()
+{
+	return toggle;
 }
 
 //std::string Button::GetButtonMessage()
@@ -83,6 +83,7 @@ void Button::Released()
 	if (pressed)
 	{
 		effect = true;
+		toggle = !toggle;
 	}
 	pressed = false;
 	released = true;

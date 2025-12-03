@@ -4,6 +4,7 @@
 #include "Button.h"
 #include "Display.h"
 #include <vector>
+#include <memory>
 
 class Oscilloscope
 {
@@ -13,5 +14,6 @@ public:
 	void Draw(Graphics& gfx) const;
 private:
 	std::vector<Button> button;
-	std::vector<Display> display;
+	std::unique_ptr<Button> grid_btn;
+	std::unique_ptr<Display> screen_disp;
 };

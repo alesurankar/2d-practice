@@ -9,22 +9,16 @@ public:
 	void Update(const Mouse& mouse, float dt) override;
 	void Draw(Graphics& gfx) const override;
 	bool GetEffect();
+	bool GetToggle();
 	//std::string GetButtonMessage();
 private:
 	void Pressed();
 	void Released();
 private:
-	Color btn_color;
-	Color hover_color;
-	Color active_color;
-	Color text_color;
 	bool effect;
 	bool onTop;
 	bool pressed;
+	bool toggle;
 	bool released;
-	int len_x;
-	int len_y;
-	int middle_x;
-	int middle_y;
 	Fonts smallFont = Fonts("Images\\Fonts8x14.bmp");
 };

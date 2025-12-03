@@ -36,6 +36,11 @@ public:
 	void EndFrame(int delay);
 	void BeginFrame(Color bg);
 	Color GetPixel(int x, int y) const;
+	void DrawLine(const Vec2& p1, const Vec2& p2, Color c)
+	{
+		DrawLine(p1.x, p1.y, p2.x, p2.y, c);
+	}
+	void DrawLine(float x1, float y1, float x2, float y2, Color c);
 	void PutPixel(int x, int y, int r, int g, int b)
 	{
 		PutPixel(x, y, { unsigned char(r),unsigned char(g),unsigned char(b) });

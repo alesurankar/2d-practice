@@ -19,14 +19,14 @@
     <Filter Include="Source Files\Framework">
       <UniqueIdentifier>{5c2c195d-25d0-48f3-a470-6246350a0813}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GamePlay">
-      <UniqueIdentifier>{30ef0e23-166d-44ce-a81a-1622295c9fd8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\GamePlay">
-      <UniqueIdentifier>{1d5ec09e-e006-48f3-af2e-ba07ec6e2ce4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Framework">
       <UniqueIdentifier>{08611eaa-737b-4ad2-a352-e72a8f828763}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\App">
+      <UniqueIdentifier>{1d5ec09e-e006-48f3-af2e-ba07ec6e2ce4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App">
+      <UniqueIdentifier>{30ef0e23-166d-44ce-a81a-1622295c9fd8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -37,7 +37,7 @@
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
     <ClCompile Include="App.cpp">
-      <Filter>Source Files\GamePlay</Filter>
+      <Filter>Source Files\App</Filter>
     </ClCompile>
     <ClCompile Include="Graphics.cpp">
       <Filter>Source Files\Framework</Filter>
@@ -63,26 +63,26 @@
     <ClCompile Include="Surface.cpp">
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Fonts.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Button.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Menu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Signal.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Oscilloscope.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Display.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\App</Filter>
     </ClCompile>
     <ClCompile Include="Field.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\App</Filter>
+    </ClCompile>
+    <ClCompile Include="Fonts.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Oscilloscope.cpp">
+      <Filter>Source Files\App</Filter>
+    </ClCompile>
+    <ClCompile Include="Display.cpp">
+      <Filter>Source Files\App</Filter>
+    </ClCompile>
+    <ClCompile Include="Signal.cpp">
+      <Filter>Source Files\App</Filter>
+    </ClCompile>
+    <ClCompile Include="OscilloscopeMode.cpp">
+      <Filter>Source Files\App</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -90,7 +90,7 @@
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
     <ClInclude Include="App.h">
-      <Filter>Header Files\GamePlay</Filter>
+      <Filter>Header Files\App</Filter>
     </ClInclude>
     <ClInclude Include="COMInitializer.h">
       <Filter>Header Files\Framework</Filter>
@@ -138,28 +138,28 @@
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
     <ClInclude Include="Fonts.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Framework</Filter>
     </ClInclude>
     <ClInclude Include="ImageEffect.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Framework</Filter>
     </ClInclude>
     <ClInclude Include="Button.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Menu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Signal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Oscilloscope.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Display.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\App</Filter>
     </ClInclude>
     <ClInclude Include="Field.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\App</Filter>
+    </ClInclude>
+    <ClInclude Include="Oscilloscope.h">
+      <Filter>Header Files\App</Filter>
+    </ClInclude>
+    <ClInclude Include="Display.h">
+      <Filter>Header Files\App</Filter>
+    </ClInclude>
+    <ClInclude Include="Signal.h">
+      <Filter>Header Files\App</Filter>
+    </ClInclude>
+    <ClInclude Include="OscilloscopeMode.h">
+      <Filter>Header Files\App</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

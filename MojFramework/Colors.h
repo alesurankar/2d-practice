@@ -104,7 +104,10 @@ namespace Colors
 	static constexpr Color Blue = MakeRGB(0u, 0u, 255u);
 	static constexpr Color DarkBlue = MakeRGB(0u, 0u, 127u);
 	static constexpr Color Yellow = MakeRGB(255u, 255u, 0u);
+	static constexpr Color Yellow2 = MakeRGB(255u, 255u, 0xD3u);
 	static constexpr Color Cyan = MakeRGB(0u, 255u, 255u);
+	static constexpr Color Cyan2 = MakeRGB(0xD3u, 255u, 255u);
 	static constexpr Color Magenta = MakeRGB(255u, 0u, 255u);
+	static constexpr Color Magenta2 = MakeRGB(255u, 0xD3u, 255u);
 	static constexpr Color Pink = MakeRGB(255u, 150u, 255u);
 }

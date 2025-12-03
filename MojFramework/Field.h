@@ -19,29 +19,34 @@ public:
 	};
 	Field(
 		Vei2 pos, int width, int height, THEME theme, std::string text);
+	virtual ~Field() = default;
 	virtual void Update(const Mouse& mouse, float dt) = 0;
 	virtual void Draw(Graphics& gfx) const = 0;
 	void SetTheme(THEME theme);
-	const Vei2& GetPos();
-	const int& GetWidth();
-	const int& GetHeight();
+	Vei2 GetPos() const;
+	int GetWidth() const;
+	int GetHeight() const;
+	std::string GetText() const;
+	void TakeEffect(const std::string& effect);
 private:
 	Vei2 pos;
 	int width = 0;
 	int height = 0;
-protected:
 	std::string text;
+protected:
 	Color body_color;
 	Color border_color;
 	Color content_color;
+	Color grid_color;
 	Color action_color;
 	RectI outside;
 	RectI inside;
+	Fonts smallFont = Fonts("Images\\Fonts8x14.bmp");
 private:
 	int len_x;
 	int len_y;
-	int middle_x;
-	int middle_y;
-	Fonts smallFont = Fonts("Images\\Fonts8x14.bmp");
+protected:
+	int mid_x;
+	int mid_y;
 };
 

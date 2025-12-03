@@ -1,26 +1,32 @@
 #include "Display.h"
 
-Display::Display(Vei2 pos, int width, int height, Field::THEME theme)
+Display::Display(Vei2 pos, int width, int height, Field::THEME theme, TYPE type_in)
 	:
-	Field(pos, width, height, theme, "")
-	
-	
+	Field(pos, width, height, theme, ""),
+	type(type_in)
 {
-	//display = std::make_unique<Field>(100, 250, 200, 200);
-	//signal = std::make_unique<Signal>(Signal::SignalType::SIN, 100.0f, 300.0f, 100.0f, 50.0f);
 }
 
 void Display::Update(const Mouse& mouse, float dt)
 {
-	//display->Update(mouse, dt);
-	//signal->Update(dt);
 }
 
 void Display::Draw(Graphics& gfx) const
 {
-	gfx.DrawRect(outside, border_color);
-	gfx.DrawRect(inside, body_color);
+    gfx.DrawRect(outside, border_color);
+    gfx.DrawRect(inside, body_color);
+	if (grid) {
+		DrawGrid(gfx);
+	}
+}
 
-	//display->Draw(gfx);
-	//signal->Draw(gfx);
+void Display::DrawGrid(Graphics& gfx) const
+{
+	gfx.DrawLine(Vec2(float(GetPos().x), float(mid_y)), Vec2(float(GetPos().x + GetWidth()), (float)mid_y), content_color);
+	gfx.DrawLine(Vec2(float(mid_x), (float)GetPos().y), Vec2((float)mid_x, float(GetPos().y + GetHeight())), content_color);
+}
+
+void Display::SetGrid(bool effect)
+{
+	grid = effect;
 }

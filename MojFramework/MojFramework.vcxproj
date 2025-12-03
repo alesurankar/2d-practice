@@ -100,10 +100,10 @@
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
-    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Oscilloscope.cpp" />
     <ClCompile Include="Display.cpp" />
+    <ClCompile Include="OscilloscopeMode.cpp" />
     <ClCompile Include="Signal.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Surface.cpp" />
@@ -121,11 +121,11 @@
     <ClInclude Include="ImageEffect.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="MainWindow.h" />
-    <ClInclude Include="Menu.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="MyException.h" />
     <ClInclude Include="MyWin.h" />
     <ClInclude Include="Oscilloscope.h" />
+    <ClInclude Include="OscilloscopeMode.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Display.h" />
