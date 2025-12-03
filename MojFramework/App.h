@@ -15,11 +15,12 @@ public:
 	App& operator=(const App&) = delete;
 	void Go();
 private:
-	void UpdateModel();
+	bool UpdateModel(float dt);
 	void ComposeFrame();
 private:
 	MainWindow& wnd;
 	Graphics gfx;
-	FrameTimer ft;
+	FrameTimer ft; 
+	float time = 0.0f;
 	std::unique_ptr<Oscilloscope> osc;
 };
