@@ -11,6 +11,11 @@ Button::Button(Vei2 pos, int width, int height, Field::THEME theme, std::string 
 	toggle(true)
 {}
 
+Button::Button(RectI rect, Field::THEME theme, std::string text)
+	:
+	Button(pos, width, height, theme, text)
+{}
+
 void Button::Update(const Mouse& mouse, float dt)
 {
 	Vei2 mousePos = mouse.GetPos();

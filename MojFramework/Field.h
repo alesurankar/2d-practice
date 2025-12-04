@@ -17,8 +17,7 @@ public:
 		GREEN,
 		BLUE
 	};
-	Field(
-		Vei2 pos, int width, int height, THEME theme, std::string text);
+	Field(Vei2 pos, int width, int height, THEME theme, std::string text);
 	virtual ~Field() = default;
 	virtual void Update(const Mouse& mouse, float dt) = 0;
 	virtual void Draw(Graphics& gfx) const = 0;
@@ -28,7 +27,7 @@ public:
 	int GetHeight() const;
 	std::string GetText() const;
 	void TakeEffect(const std::string& effect);
-private:
+protected:
 	Vei2 pos;
 	int width = 0;
 	int height = 0;

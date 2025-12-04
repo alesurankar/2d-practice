@@ -6,6 +6,7 @@ class Button : public Field
 {
 public:
 	Button(Vei2 pos, int width, int height, Field::THEME theme, std::string text);
+	Button(RectI rect, Field::THEME theme, std::string text);
 	void Update(const Mouse& mouse, float dt) override;
 	void Draw(Graphics& gfx) const override;
 	bool GetEffect();
