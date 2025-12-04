@@ -19,8 +19,6 @@ private:
 	int pinPairs;
 	std::string text;
 	RectI mcu;
-	RectI pinUp;
-	RectI pinDwn;
 	std::vector<Button> pinsUp;
 	std::vector<Button> pinsDwn;
 	Fonts smallFont = Fonts("Images\\Fonts8x14.bmp");

@@ -27,12 +27,14 @@ public:
 	int GetHeight() const;
 	std::string GetText() const;
 	void TakeEffect(const std::string& effect);
+	void ChangeTheme(THEME theme);
 protected:
 	Vei2 pos;
 	int width = 0;
 	int height = 0;
-	std::string text;
+	THEME theme;
 protected:
+	std::string text;
 	Color body_color;
 	Color border_color;
 	Color content_color;

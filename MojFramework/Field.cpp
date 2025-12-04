@@ -2,11 +2,12 @@
 #include <utility>
 
 Field::Field(
-	Vei2 pos_in, int width_in, int height_in, THEME theme, std::string text_in)
+	Vei2 pos_in, int width_in, int height_in, THEME theme_in, std::string text_in)
 	:
 	pos(pos_in),
 	width(width_in),
 	height(height_in),
+	theme(std::move(theme_in)),
 	text(std::move(text_in)),
 	outside(pos.x - 2, pos.y - 1, pos.x + width + 1, pos.y + height + 1),
 	inside(pos.x, pos.y, pos.x + width, pos.y + height),
