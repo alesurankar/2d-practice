@@ -31,6 +31,13 @@ bool App::UpdateModel(float dt)
     {
         //osc->Update(wnd.mouse, dt);
         mcuSim->Update(wnd.mouse, dt);
+
+        if (wnd.mouse.LeftIsPressed() && wnd.kbd.KeyIsPressed(VK_CONTROL)) {
+            pixel.emplace_back(wnd.mouse.GetPos(), Colors::Black);
+            pixel.emplace_back(Vei2(wnd.mouse.GetPosX() + 1, wnd.mouse.GetPosY()), Colors::Black);
+            pixel.emplace_back(Vei2(wnd.mouse.GetPosX(), wnd.mouse.GetPosY() + 1), Colors::Black);
+            pixel.emplace_back(Vei2(wnd.mouse.GetPosX() + 1, wnd.mouse.GetPosY() + 1), Colors::Black);
+        }
     }
 
     //////////////////////////////
@@ -50,5 +57,9 @@ bool App::UpdateModel(float dt)
 void App::ComposeFrame()
 {
 	//osc->Draw(gfx);
-    mcuSim->Draw(gfx);
+    mcuSim->Draw(gfx); 
+    
+    for (auto& p : pixel) {
+        p.Draw(gfx);
+    }
 }
