@@ -6,7 +6,8 @@ App::App(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd)
 {
-	osc = std::make_unique<Oscilloscope>();
+	//osc = std::make_unique<Oscilloscope>();
+    mcuSim = std::make_unique<MCUSimulator>(Vei2(100,100), 30, "Atmega 168");
 }
 
 void App::Go()
@@ -14,7 +15,7 @@ void App::Go()
     float dt = ft.Mark();
     if (UpdateModel(dt))
     {
-        gfx.BeginFrame(Colors::DarkGray);
+        gfx.BeginFrame(Colors::LightGray);
         ComposeFrame();
         gfx.EndFrame(1);
     }
@@ -28,7 +29,7 @@ void App::Go()
 bool App::UpdateModel(float dt)
 {
     {
-        osc->Update(wnd.mouse, dt);
+        //osc->Update(wnd.mouse, dt);
     }
 
     //////////////////////////////
@@ -47,5 +48,6 @@ bool App::UpdateModel(float dt)
 /////////////////////////////////////////////////////////
 void App::ComposeFrame()
 {
-	osc->Draw(gfx);
+	//osc->Draw(gfx);
+    mcuSim->Draw(gfx);
 }

@@ -47,6 +47,8 @@ public:
 	}
 	void DrawRect(RectI srcRect, Color c);
 	void DrawRect(RectI srcRect, const RectI& clip, Color c);
+	void DrawCircle(int x, int y, int rad, Color c);
+	void DrawCircle(const Vec2& center, float rad, Color c);
 	template<typename E>
 	void DrawImage(int x, int y, const Surface& s, E effect, bool reversed = false)
 	{

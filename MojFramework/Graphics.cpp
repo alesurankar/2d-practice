@@ -334,6 +334,27 @@ void Graphics::DrawRect(RectI srcRect, const RectI& clip, Color c)
 	}
 }
 
+void Graphics::DrawCircle(int x, int y, int rad, Color c)
+{
+	const int rad_sq = rad * rad;
+	for (int i = x - rad; i < x + rad; i++)
+	{
+		for (int j = y - rad; j < y + rad; j++)
+		{
+			const int x_dif = x - i;
+			const int y_dif = y - j;
+			if (x_dif * x_dif + y_dif * y_dif <= rad_sq)
+			{
+				PutPixel(i, j, c);
+			}
+		}
+	}
+}
+
+void Graphics::DrawCircle(const Vec2& center, float rad, Color c)
+{
+	DrawCircle(int(center.x), int(center.y), int(rad), c);
+}
 
 //////////////////////////////////////////////////
 //           Graphics Exception

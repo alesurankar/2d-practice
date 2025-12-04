@@ -4,7 +4,8 @@
 #include "Graphics.h"
 #include "Fonts.h"
 #include "Vec2.h"
-#include "Oscilloscope.h"
+//#include "Oscilloscope.h"
+#include "MCUSimulator.h"
 #include "FrameTimer.h"
 #include <memory>
 
@@ -22,5 +23,6 @@ private:
 	Graphics gfx;
 	FrameTimer ft; 
 	float time = 0.0f;
-	std::unique_ptr<Oscilloscope> osc;
+	//std::unique_ptr<Oscilloscope> osc;
+	std::unique_ptr<MCUSimulator> mcuSim;
 };

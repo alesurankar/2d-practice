@@ -84,6 +84,9 @@
     <ClCompile Include="OscilloscopeMode.cpp">
       <Filter>Source Files\App</Filter>
     </ClCompile>
+    <ClCompile Include="MCUSimulator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Colors.h">
@@ -160,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="OscilloscopeMode.h">
       <Filter>Header Files\App</Filter>
+    </ClInclude>
+    <ClInclude Include="MCUSimulator.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
