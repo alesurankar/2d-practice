@@ -91,19 +91,24 @@
   <ItemGroup>
     <ClCompile Include="App.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Calculator.cpp" />
+    <ClCompile Include="Case.cpp" />
     <ClCompile Include="COMInitializer.cpp" />
     <ClCompile Include="DXErr.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="Fonts.cpp" />
     <ClCompile Include="FrameTimer.cpp" />
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="Obj.cpp" />
     <ClCompile Include="Oscilloscope.cpp" />
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="OscilloscopeMode.cpp" />
+    <ClCompile Include="Outpur.cpp" />
     <ClCompile Include="Signal.cpp" />
     <ClCompile Include="MCUSimulator.cpp" />
     <ClCompile Include="Sound.cpp" />
@@ -112,6 +117,8 @@
   <ItemGroup>
     <ClInclude Include="App.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Calculator.h" />
+    <ClInclude Include="Case.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="COMInitializer.h" />
     <ClInclude Include="DXErr.h" />
@@ -120,13 +127,16 @@
     <ClInclude Include="FrameTimer.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="ImageEffect.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="MyException.h" />
     <ClInclude Include="MyWin.h" />
+    <ClInclude Include="Obj.h" />
     <ClInclude Include="Oscilloscope.h" />
     <ClInclude Include="OscilloscopeMode.h" />
+    <ClInclude Include="Outpur.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Display.h" />

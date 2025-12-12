@@ -33,6 +33,10 @@ public:
 		return right > other.left && left < other.right
 			&& bottom > other.top && top < other.bottom;
 	}
+	Rect_<T> GetShrinkedBy(T value)
+	{
+		return Rect_<T>(left + (T)value, top + (T)value, right - (T)value, bottom - (T)value);
+	}
 	Vec2_<T> GetCenter() const
 	{
 		return Vec2_<T>((left + right) / (T)2, (top + bottom) / (T)2);

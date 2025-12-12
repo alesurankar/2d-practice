@@ -6,8 +6,11 @@ App::App(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd)
 {
+    calc = std::make_unique<Calculator>(Vei2{ 100, 20 });
+    //calc2 = std::make_unique<Calculator>(Vei2{ 330, 100 });
 	//osc = std::make_unique<Oscilloscope>();
-    mcuSim = std::make_unique<MCUSimulator>(Vei2(300,300), 14, "Atmega 168");
+    //mcuSim = std::make_unique<MCUSimulator>(Vei2(300,300), 14, "Atmega 168");
+    //oldMousePos = wnd.mouse.GetPos();
 }
 
 void App::Go()
@@ -29,20 +32,25 @@ void App::Go()
 bool App::UpdateModel(float dt)
 {
     {
+        calc->Update(wnd.mouse, dt);
         //osc->Update(wnd.mouse, dt);
-        mcuSim->Update(wnd.mouse, dt);
-
-        if (wnd.mouse.LeftIsPressed() && wnd.kbd.KeyIsPressed(VK_CONTROL)) {
-            pixel.emplace_back(wnd.mouse.GetPos(), Colors::Black);
-            pixel.emplace_back(Vei2(wnd.mouse.GetPosX() + 1, wnd.mouse.GetPosY()), Colors::Black);
-            pixel.emplace_back(Vei2(wnd.mouse.GetPosX(), wnd.mouse.GetPosY() + 1), Colors::Black);
-            pixel.emplace_back(Vei2(wnd.mouse.GetPosX() + 1, wnd.mouse.GetPosY() + 1), Colors::Black);
-        }
+        //mcuSim->Update(wnd.mouse, dt);
+        //if (wnd.mouse.LeftIsPressed() && wnd.kbd.KeyIsPressed(VK_CONTROL)) {
+        //    int dx = std::abs(wnd.mouse.GetPosX() - oldMousePos.x);
+        //    int dy = std::abs(wnd.mouse.GetPosY() - oldMousePos.y);
+        //
+        //    pixel.emplace_back(wnd.mouse.GetPos(), Colors::Black);
+        //    pixel.emplace_back(Vei2(wnd.mouse.GetPosX() + 1, wnd.mouse.GetPosY()), Colors::Black);
+        //    pixel.emplace_back(Vei2(wnd.mouse.GetPosX() - 1, wnd.mouse.GetPosY()), Colors::Black);
+        //    pixel.emplace_back(Vei2(wnd.mouse.GetPosX(), wnd.mouse.GetPosY()), Colors::Black);
+        //    pixel.emplace_back(Vei2(wnd.mouse.GetPosX(), wnd.mouse.GetPosY() + 1), Colors::Black);
+        //    pixel.emplace_back(Vei2(wnd.mouse.GetPosX(), wnd.mouse.GetPosY() - 1), Colors::Black);
+        //}
     }
 
     //////////////////////////////
              time += dt;        //
-             if(time >= 0.0f) { //
+             if(time >= 0.1f) { //
                  time = 0.0f;   //
                  return true;   //
              }                  //
@@ -56,10 +64,12 @@ bool App::UpdateModel(float dt)
 /////////////////////////////////////////////////////////
 void App::ComposeFrame()
 {
+    calc->Draw(gfx);
+    //calc2->Draw(gfx);
 	//osc->Draw(gfx);
-    mcuSim->Draw(gfx); 
-    
-    for (auto& p : pixel) {
-        p.Draw(gfx);
-    }
+    //mcuSim->Draw(gfx); 
+    //
+    //for (auto& p : pixel) {
+    //    p.Draw(gfx);
+    //}
 }

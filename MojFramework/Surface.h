@@ -14,7 +14,7 @@ public:
 	Color GetPixel(int x, int y) const;
 	int GetWidth() const;
 	int GetHeight() const;
-	RectI GetRect() const;
+	//RectI GetRect() const;
 	void Fill(Color c);
 	const Color* Data() const;
 private:

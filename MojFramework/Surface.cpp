@@ -73,10 +73,10 @@ int Surface::GetHeight() const
 	return height;
 }
 
-RectI Surface::GetRect() const
-{
-	return { 0,0,width,height };
-}
+//RectI Surface::GetRect() const
+//{
+//	return { 0,0,width,height };
+//}
 
 void Surface::Fill(Color c)
 {

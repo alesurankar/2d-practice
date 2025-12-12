@@ -2,10 +2,10 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
-#include "Fonts.h"
 #include "Vec2.h"
 //#include "Oscilloscope.h"
-#include "MCUSimulator.h"
+//#include "MCUSimulator.h"
+#include "Calculator.h"
 #include "FrameTimer.h"
 #include <memory>
 
@@ -39,8 +39,11 @@ private:
 	Graphics gfx;
 	FrameTimer ft; 
 	float time = 0.0f;
+	std::unique_ptr<Calculator> calc;
+	//std::unique_ptr<Calculator> calc2;
 	//std::unique_ptr<Oscilloscope> osc;
-	std::unique_ptr<MCUSimulator> mcuSim;
-	std::vector<Pixel> pixel;
+	//std::unique_ptr<MCUSimulator> mcuSim;
+	//std::vector<Pixel> pixel;
+	//Vei2 oldMousePos;
 };
 

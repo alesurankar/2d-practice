@@ -1,8 +1,7 @@
 #include "Field.h"
 #include <utility>
 
-Field::Field(
-	Vei2 pos_in, int width_in, int height_in, THEME theme_in, std::string text_in)
+Field::Field(Vei2 pos_in, int width_in, int height_in, THEME theme_in, std::string text_in)
 	:
 	pos(pos_in),
 	width(width_in),

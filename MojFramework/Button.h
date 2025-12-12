@@ -1,6 +1,5 @@
 #pragma once
 #include "Field.h"
-#include "OscilloscopeMode.h"
 
 class Button : public Field
 {

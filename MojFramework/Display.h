@@ -1,6 +1,5 @@
 #pragma once
 #include "Field.h"
-#include "OscilloscopeMode.h"
 
 class Display : public Field
 {
@@ -15,6 +14,7 @@ public:
 	void Draw(Graphics& gfx) const override;
 	void DrawGrid(Graphics& gfx) const;
 	void SetGrid(bool effect);
+	void TakeParameters();
 private:
 	TYPE type;
 	bool grid = true;
