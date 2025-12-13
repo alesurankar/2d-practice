@@ -15,12 +15,11 @@ public:
 		GREEN,
 		BLUE
 	};
-	Obj(const RectI& rect, THEME theme, std::string text = "");
+	Obj(const RectI& rect, THEME theme);
 	virtual void Draw(Graphics& gfx) const = 0;
 	RectI GetOutsideRect() const;
 	RectI GetInsideRect() const;
 	void SetTheme(THEME theme);
-	std::string GetText() const;
 protected:
 	Color body_color;
 	Color content_color;
@@ -30,12 +29,6 @@ protected:
 	Fonts bigFont = Fonts("Images\\Fonts16x28.bmp");
 private:
 	RectI outside;
-	THEME theme;
-	std::string text;
-	int len_x;
-	int len_y;
 	RectI inside;
-protected:
-	int mid_x;
-	int mid_y;
+	THEME theme;
 };

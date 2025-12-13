@@ -93,13 +93,16 @@
     <ClCompile Include="Case.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Outpur.cpp">
+    <ClCompile Include="Output.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Obj.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Values.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -191,7 +194,7 @@
     <ClInclude Include="Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Outpur.h">
+    <ClInclude Include="Output.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Obj.h">

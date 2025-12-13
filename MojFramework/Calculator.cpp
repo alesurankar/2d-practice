@@ -12,9 +12,16 @@ Calculator::Calculator(const Vei2& pos)
 
 void Calculator::Update(const Mouse& mouse, float dt)
 {
-	btn1->Update(mouse, dt);
-	btn2->Update(mouse, dt);
-	btn3->Update(mouse, dt);
+	if (auto v = btn1->Update(mouse, dt)) {
+		val.TakeValue(v.value());
+	}
+	if (auto v = btn2->Update(mouse, dt)) {
+		val.TakeValue(v.value());
+	}
+	if (auto v = btn3->Update(mouse, dt)) {
+		val.TakeValue(v.value());
+	}
+	disp->Update(val.GetValue());
 }
 
 void Calculator::Draw(Graphics & gfx) const

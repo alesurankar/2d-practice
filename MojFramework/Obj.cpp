@@ -1,17 +1,12 @@
 #include "Obj.h"
 #include <utility>
 
-Obj::Obj(const RectI& rect_in, THEME theme_in, std::string text_in)
+Obj::Obj(const RectI& rect_in, THEME theme_in)
 	:
 	outside(rect_in),
-	theme(theme_in),
-	text(std::move(text_in)),
-	len_x(8 * int(text.length())),
-	len_y(14)
+	inside(outside.left + 1, outside.top + 1, outside.right - 1, outside.bottom - 1),
+	theme(theme_in)
 {
-	inside = outside.GetShrinkedBy(1);
-	mid_x = (inside.left + (inside.GetWidth() / 2) - (len_x / 2));
-	mid_y = (inside.top + (inside.GetHeight() / 2) - (len_y / 2));
 	SetTheme(theme);
 }
 
@@ -65,9 +60,4 @@ void Obj::SetTheme(THEME theme)
 		action_color = Colors::DarkBlue;
 		break;
 	}
-}
-
-std::string Obj::GetText() const
-{
-	return text;
 }

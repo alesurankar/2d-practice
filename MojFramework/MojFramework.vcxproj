@@ -108,11 +108,12 @@
     <ClCompile Include="Oscilloscope.cpp" />
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="OscilloscopeMode.cpp" />
-    <ClCompile Include="Outpur.cpp" />
+    <ClCompile Include="Output.cpp" />
     <ClCompile Include="Signal.cpp" />
     <ClCompile Include="MCUSimulator.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Surface.cpp" />
+    <ClCompile Include="Values.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
@@ -136,7 +137,7 @@
     <ClInclude Include="Obj.h" />
     <ClInclude Include="Oscilloscope.h" />
     <ClInclude Include="OscilloscopeMode.h" />
-    <ClInclude Include="Outpur.h" />
+    <ClInclude Include="Output.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Display.h" />
