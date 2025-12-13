@@ -197,6 +197,9 @@
     <ClInclude Include="Obj.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Values.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MojFramework.rc">

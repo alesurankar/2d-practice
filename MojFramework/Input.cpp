@@ -1,8 +1,9 @@
 #include "Input.h"
+#include <utility>
 
-Input::Input(const Vei2& pos_in, int width, int height)
+Input::Input(const Vei2& pos_in, int width, int height, std::string text)
 	:
-	Obj(RectI(pos_in, width, height), THEME::DARK),
+	Obj(RectI(pos_in, width, height), THEME::BLUE, std::move(text)),
 	onTop(true),
 	pressed(false),
 	released(false),
@@ -50,7 +51,7 @@ void Input::Draw(Graphics & gfx) const
 	{
 		gfx.DrawRect(GetInsideRect(), body_color);
 	}
-	//smallFont.DrawText(GetText(), { mid_x, mid_y }, content_color, gfx);
+	smallFont.DrawText(GetText(), { mid_x, mid_y }, content_color, gfx);
 }
 
 void Input::Pressed()

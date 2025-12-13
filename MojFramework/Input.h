@@ -6,7 +6,7 @@
 class Input : public Obj
 {
 public:
-	Input(const Vei2& pos, int width, int height);
+	Input(const Vei2& pos, int width, int height, std::string text);
 	void Update(const Mouse& mouse, float dt);
 	void Draw(Graphics& gfx) const override;
 private:

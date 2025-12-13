@@ -14,6 +14,8 @@ public:
 	void Draw(Graphics& gfx) const;
 private:
 	std::unique_ptr<Case> cse;
-	std::unique_ptr<Input> btn;
+	std::unique_ptr<Input> btn1;
+	std::unique_ptr<Input> btn2;
+	std::unique_ptr<Input> btn3;
 	std::unique_ptr<Output> disp;
 };
