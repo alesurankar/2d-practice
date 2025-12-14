@@ -6,7 +6,8 @@ App::App(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd)
 {
-    calc = std::make_unique<Calculator>(Vei2{ 100, 20 });
+    scene = std::make_unique<Scene>();
+    //calc = std::make_unique<Calculator>(Vei2{ 100, 20 });
     //calc2 = std::make_unique<Calculator>(Vei2{ 330, 100 });
 	//osc = std::make_unique<Oscilloscope>();
     //mcuSim = std::make_unique<MCUSimulator>(Vei2(300,300), 14, "Atmega 168");
@@ -32,7 +33,8 @@ void App::Go()
 bool App::UpdateModel(float dt)
 {
     {
-        calc->Update(wnd.mouse, dt);
+        scene->Update(wnd.kbd, wnd.mouse, dt);
+        //calc->Update(wnd.mouse, dt);
         //osc->Update(wnd.mouse, dt);
         //mcuSim->Update(wnd.mouse, dt);
         //if (wnd.mouse.LeftIsPressed() && wnd.kbd.KeyIsPressed(VK_CONTROL)) {
@@ -64,7 +66,8 @@ bool App::UpdateModel(float dt)
 /////////////////////////////////////////////////////////
 void App::ComposeFrame()
 {
-    calc->Draw(gfx);
+    scene->Draw(gfx);
+    //calc->Draw(gfx);
     //calc2->Draw(gfx);
 	//osc->Draw(gfx);
     //mcuSim->Draw(gfx); 
@@ -72,4 +75,5 @@ void App::ComposeFrame()
     //for (auto& p : pixel) {
     //    p.Draw(gfx);
     //}
+    //gfx.DrawLine(Vec2(20.0f, 20.0f), Vec2(100.0f, 100.0f), Colors::Black);
 }
