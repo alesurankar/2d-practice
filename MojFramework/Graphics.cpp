@@ -451,3 +451,18 @@ void Graphics::DrawLine(float x1, float y1, float x2, float y2, Color c)
 		}
 	}
 }
+
+void Graphics::DrawTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Color c)
+{
+
+}
+
+void DrawFlatTopTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Color c)
+{
+
+}
+
+void DrawFlatBottomTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Color c)
+{
+
+}

@@ -32,6 +32,7 @@ public:
 		if (kbd.KeyIsPressed('D')) {
 			obj1->Move(speed, 0.0f, 0.0f);
 		}
+		
 		while (!mouse.IsEmpty())
 		{
 			Mouse::Event e = mouse.Read();
@@ -46,6 +47,12 @@ public:
 				obj1->Move(0.0f, 0.0f, -speed);
 				break;
 			}
+		}
+		if (kbd.KeyIsPressed('Q')) {
+			obj1->Rotate(0.0f, 0.0f, speed);
+		}
+		if (kbd.KeyIsPressed('E')) {
+			obj1->Rotate(0.0f, 0.0f, -speed);
 		}
 		obj1->Update();
 		obj2->Update();

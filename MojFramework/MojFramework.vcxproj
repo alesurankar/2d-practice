@@ -134,6 +134,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="MainWindow.h" />
+    <ClInclude Include="Mat.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="MyException.h" />
     <ClInclude Include="MyMath.h" />
@@ -155,6 +156,7 @@
     <ClInclude Include="Values.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="Vec3.h" />
+    <ClInclude Include="Vec4.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MojFramework.rc" />

@@ -133,8 +133,12 @@ public:
 		DrawImage(int(pos.x), int(pos.y), srcRect, clip, s, effect, reversed);
 	}
 
-
 	~Graphics();
+public:
+	void DrawTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Color c);
+private:
+	void DrawFlatTopTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Color c);
+	void DrawFlatBottomTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Color c);
 private:
 	Microsoft::WRL::ComPtr<IDXGISwapChain>				pSwapChain;
 	Microsoft::WRL::ComPtr<ID3D11Device>				pDevice;

@@ -3,6 +3,7 @@
 #include "CubeScreenTransformer.h"
 #include "Graphics.h"
 #include "Vec2.h"
+#include "Mat.h"
 #include <memory>
 
 class TestObject
@@ -12,7 +13,9 @@ public:
 		:
 		pos(pos_in)
 	{
-		rct = std::make_unique<Drawable>(0.4f);
+		rct = std::make_unique<Drawable>(0.4f); 
+
+		Update();
 	}
 	void Move(float x, float y, float z)
 	{
@@ -20,11 +23,23 @@ public:
 		pos.y += y;
 		pos.z += z;
 	}
+	void Rotate(float x, float y, float z)
+	{
+		ornt.x = wrap_angle(ornt.x + x);
+		ornt.y = wrap_angle(ornt.y + y);
+		ornt.z = wrap_angle(ornt.z + z);
+	}
 	void Update()
 	{
+		rot =
+			Mat3::RotationX(ornt.x) *
+			Mat3::RotationY(ornt.y) *
+			Mat3::RotationZ(ornt.z);
+
 		lines = rct->GetLines();
 		for (auto& v : lines.vert)
 		{
+			v *= rot;
 			v.x += pos.x;
 			v.y += pos.y;
 			v.z += pos.z;
@@ -43,6 +58,9 @@ public:
 private:
 	Vec3 pos;
 	CubeScreenTransformer cst;
-	IndexedLineList lines;
+	IndexedLineList lines; 
+	Mat3 rot;
 	std::unique_ptr<Drawable> rct;
+	static constexpr float dTheta = PI;
+	Vec3 ornt;
 };
