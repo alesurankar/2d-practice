@@ -1,10 +1,10 @@
 #pragma once
 #include <vector>
-#include "Vec2.h"
+#include "Vec3.h"
 
 
 struct IndexedLineList
 {
-	std::vector<Vec2> vert;
+	std::vector<Vec3> vert;
 	std::vector<size_t> ind;
 };

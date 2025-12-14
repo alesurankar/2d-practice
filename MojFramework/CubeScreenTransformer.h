@@ -1,5 +1,5 @@
 #pragma once
-#include "Vec2.h"
+#include "Vec3.h"
 #include "Graphics.h"
 
 class CubeScreenTransformer
@@ -12,10 +12,11 @@ public:
 	{
 	}
 
-	Vec2& Transform(Vec2& v) const
+	Vec3& Transform(Vec3& v) const
 	{
-		v.x = (v.x + 1.0f) * xFactor;
-		v.y = (-v.y + 1.0f) * yFactor;
+		const float zInv = 1.0f / v.z;
+		v.x = (v.x * zInv + 1.0f) * xFactor;
+		v.y = (-v.y * zInv + 1.0f) * yFactor;
 		return v;
 	}
 private:

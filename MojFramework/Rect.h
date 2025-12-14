@@ -15,13 +15,13 @@ public:
 		right(right_in), 
 		bottom(bottom_in) 
 	{}
-	Rect_(const Vec2_<T>& topLeft, const Vec2_<T>& bottomRight)
+	Rect_(const _Vec2<T>& topLeft, const _Vec2<T>& bottomRight)
 		: 
 		Rect_(topLeft.x, topLeft.y, bottomRight.x, bottomRight.y) 
 	{}
-	Rect_(const Vec2_<T>& topLeft, T width, T height)
+	Rect_(const _Vec2<T>& topLeft, T width, T height)
 		: 
-		Rect_(topLeft, topLeft + Vec2_<T>(width, height))
+		Rect_(topLeft, topLeft + _Vec2<T>(width, height))
 	{}
 	template<typename T2>
 	operator Rect_<T2>() const
@@ -37,13 +37,13 @@ public:
 	{
 		return Rect_<T>(left + (T)value, top + (T)value, right - (T)value, bottom - (T)value);
 	}
-	Vec2_<T> GetCenter() const
+	_Vec2<T> GetCenter() const
 	{
-		return Vec2_<T>((left + right) / (T)2, (top + bottom) / (T)2);
+		return _Vec2<T>((left + right) / (T)2, (top + bottom) / (T)2);
 	}
-	Vec2_<T> GetLeftTop() const
+	_Vec2<T> GetLeftTop() const
 	{
-		return Vec2_<T>(left, top);
+		return _Vec2<T>(left, top);
 	}
 	T GetWidth() const
 	{

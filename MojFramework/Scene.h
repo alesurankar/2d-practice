@@ -11,8 +11,8 @@ class Scene
 public:
 	Scene()
 	{
-		obj1 = std::make_unique<TestObject>(Vec2(0.1f,0.1f));
-		obj2 = std::make_unique<TestObject>(Vec2(0.1f,0.1f));
+		obj1 = std::make_unique<TestObject>(Vec3(0.1f,0.1f, 2.0f));
+		obj2 = std::make_unique<TestObject>(Vec3(0.1f,0.1f, 2.0f));
 	}
 	void Update(const Keyboard& kbd, const Mouse& mouse, float dt)
 	{
@@ -21,16 +21,16 @@ public:
 			speed = dt;
 		}
 		if (kbd.KeyIsPressed('W')) {
-			obj1->Move(0.0f, speed);
+			obj1->Move(0.0f, speed, 0.0f);
 		}
 		if (kbd.KeyIsPressed('S')) {
-			obj1->Move(0.0f, -speed);
+			obj1->Move(0.0f, -speed, 0.0f);
 		}
 		if (kbd.KeyIsPressed('A')) {
-			obj1->Move(-speed, 0.0f);
+			obj1->Move(-speed, 0.0f, 0.0f);
 		}
 		if (kbd.KeyIsPressed('D')) {
-			obj1->Move(speed, 0.0f);
+			obj1->Move(speed, 0.0f, 0.0f);
 		}
 		obj1->Update();
 		obj2->Update();

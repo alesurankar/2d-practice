@@ -8,23 +8,26 @@
 class TestObject
 {
 public:
-	TestObject(const Vec2& pos_in)
+	TestObject(const Vec3& pos_in)
 		:
 		pos(pos_in)
 	{
 		rct = std::make_unique<Drawable>(0.4f);
 	}
-	void Move(float x, float y)
+	void Move(float x, float y, float z)
 	{
 		pos.x += x;
 		pos.y += y;
+		pos.z += z;
 	}
 	void Update()
 	{
 		lines = rct->GetLines();
 		for (auto& v : lines.vert)
 		{
-			v += {pos.x, pos.y};
+			v.x += pos.x;
+			v.y += pos.y;
+			v.z += pos.z;
 			cst.Transform(v);
 		}
 	}
@@ -38,7 +41,7 @@ public:
 		}
 	}
 private:
-	Vec2 pos;
+	Vec3 pos;
 	CubeScreenTransformer cst;
 	IndexedLineList lines;
 	std::unique_ptr<Drawable> rct;
