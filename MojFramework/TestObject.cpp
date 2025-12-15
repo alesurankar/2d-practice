@@ -39,6 +39,7 @@ void TestObject::Update()
 		TransformVertices(lines.vert, rot);
 		break;
 	case TYPE::FILLED:
+	case TYPE::COLORED:
 		triangles = rct->GetTriangles();
 		TransformVertices(triangles.vert, rot);
 		break;
@@ -63,6 +64,9 @@ void TestObject::Draw(Graphics& gfx)
 	case TYPE::FILLED:
 		DrawWithTriangles(gfx);
 		break;
+	case TYPE::COLORED:
+		DrawWithColoredTriangles(gfx);
+		break;
 	}
 }
 
@@ -83,5 +87,16 @@ void TestObject::DrawWithTriangles(Graphics& gfx)
 		i != end; std::advance(i, 3))
 	{
 		gfx.DrawTriangle(triangles.vert[*i], triangles.vert[*std::next(i)], triangles.vert[*std::next(i, 2)], Colors::White);
+	}
+}
+
+void TestObject::DrawWithColoredTriangles(Graphics& gfx)
+{
+	for (auto i = triangles.ind.cbegin(),
+		end = triangles.ind.cend();
+		i != end; std::advance(i, 3))
+	{
+		gfx.DrawTriangle(triangles.vert[*i], triangles.vert[*std::next(i)], triangles.vert[*std::next(i, 2)],
+			colors[std::distance(triangles.ind.cbegin(), i) / 3]);
 	}
 }

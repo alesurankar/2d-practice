@@ -11,8 +11,9 @@ class Scene
 public:
 	Scene()
 	{
-		obj1 = std::make_unique<TestObject>(Vec3(0.1f,0.1f, 1.0f), TestObject::TYPE::FILLED);
+		obj1 = std::make_unique<TestObject>(Vec3(0.1f,0.1f, 1.0f), TestObject::TYPE::COLORED);
 		obj2 = std::make_unique<TestObject>(Vec3(0.1f,0.1f, 1.0f), TestObject::TYPE::SKELETON);
+		obj3 = std::make_unique<TestObject>(Vec3(-0.2f,-0.3f, 1.2f), TestObject::TYPE::FILLED);
 	}
 	void Update(const Keyboard& kbd, Mouse& mouse, float dt)
 	{
@@ -56,13 +57,16 @@ public:
 		}
 		obj1->Update();
 		obj2->Update();
+		obj3->Update();
 	}
 	void Draw(Graphics& gfx) const
 	{
 		obj1->Draw(gfx);
 		obj2->Draw(gfx);
+		obj3->Draw(gfx);
 	}
 private:
 	std::unique_ptr<TestObject> obj1;
 	std::unique_ptr<TestObject> obj2;
+	std::unique_ptr<TestObject> obj3;
 };
