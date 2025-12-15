@@ -113,6 +113,7 @@
     <ClCompile Include="MCUSimulator.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Surface.cpp" />
+    <ClCompile Include="TestObject.cpp" />
     <ClCompile Include="Values.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -130,7 +131,7 @@
     <ClInclude Include="FrameTimer.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="ImageEffect.h" />
-    <ClInclude Include="IndexedLineList.h" />
+    <ClInclude Include="IndexedList.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="MainWindow.h" />

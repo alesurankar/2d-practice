@@ -105,6 +105,9 @@
     <ClCompile Include="Values.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TestObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Colors.h">
@@ -203,7 +206,7 @@
     <ClInclude Include="Values.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IndexedLineList.h">
+    <ClInclude Include="IndexedList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Drawable.h">

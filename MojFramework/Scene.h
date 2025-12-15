@@ -11,8 +11,8 @@ class Scene
 public:
 	Scene()
 	{
-		obj1 = std::make_unique<TestObject>(Vec3(0.1f,0.1f, 1.0f));
-		obj2 = std::make_unique<TestObject>(Vec3(0.1f,0.1f, 1.0f));
+		obj1 = std::make_unique<TestObject>(Vec3(0.1f,0.1f, 1.0f), TestObject::TYPE::FILLED);
+		obj2 = std::make_unique<TestObject>(Vec3(0.1f,0.1f, 1.0f), TestObject::TYPE::SKELETON);
 	}
 	void Update(const Keyboard& kbd, Mouse& mouse, float dt)
 	{

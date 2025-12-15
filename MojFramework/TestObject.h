@@ -9,58 +9,26 @@
 class TestObject
 {
 public:
-	TestObject(const Vec3& pos_in)
-		:
-		pos(pos_in)
-	{
-		rct = std::make_unique<Drawable>(0.4f); 
-
-		Update();
-	}
-	void Move(float x, float y, float z)
-	{
-		pos.x += x;
-		pos.y += y;
-		pos.z += z;
-	}
-	void Rotate(float x, float y, float z)
-	{
-		ornt.x = wrap_angle(ornt.x + x);
-		ornt.y = wrap_angle(ornt.y + y);
-		ornt.z = wrap_angle(ornt.z + z);
-	}
-	void Update()
-	{
-		rot =
-			Mat3::RotationX(ornt.x) *
-			Mat3::RotationY(ornt.y) *
-			Mat3::RotationZ(ornt.z);
-
-		lines = rct->GetLines();
-		for (auto& v : lines.vert)
-		{
-			v *= rot;
-			v.x += pos.x;
-			v.y += pos.y;
-			v.z += pos.z;
-			cst.Transform(v);
-		}
-	}
-	void Draw(Graphics& gfx)
-	{
-		for (auto i = lines.ind.cbegin(),
-			end = lines.ind.cend();
-			i != end; std::advance(i, 2))
-		{
-			gfx.DrawLine(lines.vert[*i], lines.vert[*std::next(i)], Colors::White);
-		}
-	}
+	enum class TYPE {
+		SKELETON,
+		FILLED
+	};
+	TestObject(const Vec3& pos_in, TYPE type_in, const Vec3 ornt_in = { 0.0f,0.0f,0.0f });
+	void Move(float x, float y, float z);
+	void Rotate(float x, float y, float z);
+	void Update();
+	void Draw(Graphics& gfx);
+private:
+	void TransformVertices(std::vector<Vec3>& verts, const Mat3& rot);
+	void DrawWithLines(Graphics& gfx);
+	void DrawWithTriangles(Graphics& gfx);
 private:
 	Vec3 pos;
+	TYPE type;
+	Vec3 ornt;
 	CubeScreenTransformer cst;
 	IndexedLineList lines; 
+	IndexedTriangleList triangles;
 	Mat3 rot;
 	std::unique_ptr<Drawable> rct;
-	static constexpr float dTheta = PI;
-	Vec3 ornt;
 };

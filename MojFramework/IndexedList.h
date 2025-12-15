@@ -8,3 +8,9 @@ struct IndexedLineList
 	std::vector<Vec3> vert;
 	std::vector<size_t> ind;
 };
+
+struct IndexedTriangleList
+{
+	std::vector<Vec3> vert;
+	std::vector<size_t> ind;
+};
