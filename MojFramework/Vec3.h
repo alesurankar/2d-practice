@@ -66,7 +66,7 @@ public:
         this->z -= rhs.z;
         return *this;
     }
-    T operator*(const _Vec3& rhs) const
+    T operator*(const _Vec3& rhs) const // dot product
     {
         return this->x * rhs.x + this->y * rhs.y + this->z * rhs.z;
     }
@@ -85,7 +85,7 @@ public:
         this->z *= rhs;
         return *this;
     }
-    _Vec3 operator*(const T& rhs) const // dot product
+    _Vec3 operator*(const T& rhs) const
     {
         return _Vec3(*this) *= rhs;
     }

@@ -14,13 +14,15 @@ public:
 		FILLED,
 		COLORED
 	};
-	TestObject(const Vec3& pos_in, TYPE type_in, const Vec3 ornt_in = { 0.0f,0.0f,0.0f });
+	TestObject(const Vec3& pos_in, TYPE type_in, const Vec3& ornt_in = { 0.0f,0.0f,0.0f });
 	void Move(float x, float y, float z);
 	void Rotate(float x, float y, float z);
 	void Update();
 	void Draw(Graphics& gfx);
 private:
-	void TransformVertices(std::vector<Vec3>& verts, const Mat3& rot);
+	void TransformToWorldSpace(std::vector<Vec3>& verts, const Mat3& rot);
+	void TransformToScreenSpace(std::vector<Vec3>& verts);
+	void BackfaceCulling();
 	void DrawWithLines(Graphics& gfx);
 	void DrawWithTriangles(Graphics& gfx);
 	void DrawWithColoredTriangles(Graphics& gfx);
@@ -42,9 +44,11 @@ private:
 	Vec3 pos;
 	TYPE type;
 	Vec3 ornt;
-	CubeScreenTransformer cst;
-	IndexedLineList lines; 
-	IndexedTriangleList triangles;
-	Mat3 rot;
 	std::unique_ptr<Drawable> rct;
+	IndexedLineList modelLines;
+	IndexedLineList lines;
+	IndexedTriangleList modelTriangles;
+	IndexedTriangleList triangles;
+	CubeScreenTransformer cst;
+	Mat3 rot;
 };

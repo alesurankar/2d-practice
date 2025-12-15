@@ -1,14 +1,17 @@
 #include "TestObject.h"
 
 
-TestObject::TestObject(const Vec3& pos_in, TYPE type_in, const Vec3 ornt_in)
+TestObject::TestObject(const Vec3& pos_in, TYPE type_in, const Vec3& ornt_in)
 	:
 	pos(pos_in),
 	type(type_in),
-	ornt(ornt_in)
+	ornt(ornt_in),
+	rct(std::make_unique<Drawable>(0.4f)),
+	modelLines(rct->GetLines()),
+	lines(modelLines),
+	modelTriangles(rct->GetTriangles()),
+	triangles(modelTriangles)
 {
-	rct = std::make_unique<Drawable>(0.4f);
-
 	Update();
 }
 
@@ -35,23 +38,53 @@ void TestObject::Update()
 
 	switch (type) {
 	case TYPE::SKELETON:
-		lines = rct->GetLines();
-		TransformVertices(lines.vert, rot);
+		lines = modelLines;
+		TransformToWorldSpace(lines.vert, rot);
+		TransformToScreenSpace(lines.vert);
 		break;
 	case TYPE::FILLED:
+		triangles = modelTriangles;
+		TransformToWorldSpace(triangles.vert, rot);
+		TransformToScreenSpace(triangles.vert);
+		break;
 	case TYPE::COLORED:
-		triangles = rct->GetTriangles();
-		TransformVertices(triangles.vert, rot);
+		triangles = modelTriangles;
+		TransformToWorldSpace(triangles.vert, rot);
+		BackfaceCulling();
+		TransformToScreenSpace(triangles.vert);
 		break;
 	}
 }
-void TestObject::TransformVertices(std::vector<Vec3>& verts, const Mat3& rot)
+void TestObject::TransformToWorldSpace(std::vector<Vec3>& verts, const Mat3& rot)
 {
 	for (auto& v : verts)
 	{
 		v *= rot;
 		v += pos;
+	}
+}
+
+void TestObject::TransformToScreenSpace(std::vector<Vec3>& verts)
+{
+	for (auto& v : verts)
+	{
 		cst.Transform(v);
+	}
+}
+
+void TestObject::BackfaceCulling()
+{
+	for (size_t i = 0,
+		end = triangles.ind.size() / 3;
+		i < end; i++)
+	{
+		const Vec3& v0 = triangles.vert[triangles.ind[i * 3]];
+		const Vec3& v1 = triangles.vert[triangles.ind[i * 3 + 1]];
+		const Vec3& v2 = triangles.vert[triangles.ind[i * 3 + 2]];
+		Vec3 normal = (v1 - v0) % (v2 - v0); 
+		Vec3 camera_pos = { 0.0f, 0.0f, 0.0f };
+		Vec3 view = camera_pos -v0; // direction from v0 to camera
+		triangles.cullFlags[i] = normal * view <= 0; // facing camera
 	}
 }
 
@@ -92,11 +125,15 @@ void TestObject::DrawWithTriangles(Graphics& gfx)
 
 void TestObject::DrawWithColoredTriangles(Graphics& gfx)
 {
-	for (auto i = triangles.ind.cbegin(),
-		end = triangles.ind.cend();
-		i != end; std::advance(i, 3))
+	for (size_t i = 0,end = triangles.ind.size() / 3;i < end; i++)
 	{
-		gfx.DrawTriangle(triangles.vert[*i], triangles.vert[*std::next(i)], triangles.vert[*std::next(i, 2)],
-			colors[std::distance(triangles.ind.cbegin(), i) / 3]);
+		if (!triangles.cullFlags[i])
+		{
+			gfx.DrawTriangle(
+				triangles.vert[triangles.ind[i * 3]],
+				triangles.vert[triangles.ind[i * 3 + 1]],
+				triangles.vert[triangles.ind[i * 3 + 2]],
+				colors[i]);
+		}
 	}
 }
