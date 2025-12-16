@@ -227,9 +227,6 @@
     <ClInclude Include="Mat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TexVertex.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Vec3.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>

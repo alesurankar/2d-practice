@@ -23,7 +23,7 @@ public:
 		obj5->SetVelocity(Vec3(0.01f, -0.01f, -0.003f));
 		obj6 = std::make_unique<TestObject>(gfx, Vec3(-0.1f, 0.2f, 2.2f), "Images\\office_skin.bmp");
 		obj6->SetVelocity(Vec3(-0.01f, 0.01f, -0.003f));
-		obj7 = std::make_unique<TestObject>(gfx, Vec3(-0.3f, -0.2f, 3.0f), "Images\\office_skin_lores.bmp");
+		obj7 = std::make_unique<TestObject>(gfx, Vec3(-0.3f, 0.2f, 3.0f), "Images\\office_skin_lores.bmp");
 		obj7->SetVelocity(Vec3(0.01f, 0.01f, -0.003f));
 	}
 	void Update(const Keyboard& kbd, Mouse& mouse, float dt)
@@ -48,13 +48,13 @@ public:
 		while (!mouse.IsEmpty())
 		{
 			Mouse::Event e = mouse.Read();
-
+		
 			switch (e.GetType())
 			{
 			case Mouse::Event::Type::WheelUp:
 				obj1->Move(0.0f, 0.0f, speed);
 				break;
-
+		
 			case Mouse::Event::Type::WheelDown:
 				obj1->Move(0.0f, 0.0f, -speed);
 				break;

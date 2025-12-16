@@ -10,6 +10,7 @@
 class TestObject
 {
 public:
+	typedef Pipeline::Vertex Vertex;
 	TestObject(Graphics& gfx, const Vec3& pos_in, const std::string& filename ,const Vec3& ornt_in = { 0.0f,0.0f,0.0f });
 	void Move(float x, float y, float z);
 	void Move();
@@ -21,16 +22,15 @@ private:
 	void Update();
 	void CheckBorder();
 	void TransformToWorldSpace(std::vector<Vec3>& verts, const Mat3& rot);
-	void TransformToWorldSpace(std::vector<TexVertex>& verts, const Mat3& rot);
+	void TransformToWorldSpace(std::vector<Vertex>& verts, const Mat3& rot);
 	void TransformToScreenSpace(std::vector<Vec3>& verts);
-	void TransformToScreenSpace(std::vector<TexVertex>& verts);
+	void TransformToScreenSpace(std::vector<Vertex>& verts);
 	void BackfaceCulling();
 private:
 	Vec3 pos;
 	Vec3 ornt;
-	Vec3 vel; 
-	std::unique_ptr<Drawable> rct;
-	IndexedTriangleList<TexVertex> modelTriangles;
-	IndexedTriangleList<TexVertex> triangles;
+	Vec3 vel;
+	IndexedTriangleList<Vertex> itlist;
+	IndexedTriangleList<Vertex> triangles;
 	Pipeline pipeline;
 };
