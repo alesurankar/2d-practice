@@ -224,14 +224,17 @@
     <ClInclude Include="MyMath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Vec3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Mat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Vec4.h">
+    <ClInclude Include="TexVertex.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec3.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec4.h">
+      <Filter>Header Files\Framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

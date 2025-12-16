@@ -154,6 +154,7 @@
     <ClInclude Include="SoundEffect.h" />
     <ClInclude Include="Surface.h" />
     <ClInclude Include="TestObject.h" />
+    <ClInclude Include="TexVertex.h" />
     <ClInclude Include="Values.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="Vec3.h" />

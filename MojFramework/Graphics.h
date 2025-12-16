@@ -7,6 +7,7 @@
 #include "Vec2.h"
 #include "Surface.h"
 #include "Rect.h"
+#include "TexVertex.h"
 
 class Graphics
 {
@@ -136,9 +137,12 @@ public:
 	~Graphics();
 public:
 	void DrawTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Color c);
+	void DrawTriangleTex(const TexVertex& v0, const TexVertex& v1, const TexVertex& v2, const Surface& tex);
 private:
 	void DrawFlatTopTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Color c);
 	void DrawFlatBottomTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Color c);
+	void DrawFlatTopTriangleTex(const TexVertex& v0, const TexVertex& v1, const TexVertex& v2, const Surface& tex);
+	void DrawFlatBottomTriangleTex(const TexVertex& v0, const TexVertex& v1, const TexVertex& v2, const Surface& tex);
 private:
 	Microsoft::WRL::ComPtr<IDXGISwapChain>				pSwapChain;
 	Microsoft::WRL::ComPtr<ID3D11Device>				pDevice;

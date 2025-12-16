@@ -17,6 +17,8 @@ public:
 		obj2->SetVelocity(Vec3(0.01f, -0.01f, 0.004f));
 		obj3 = std::make_unique<TestObject>(Vec3(-0.2f,-0.3f, 3.2f), TestObject::TYPE::FILLED);
 		obj3->SetVelocity(Vec3(-0.01f, 0.01f, -0.004f));
+		obj4 = std::make_unique<TestObject>(Vec3(-0.1f, 0.2f, 3.2f), TestObject::TYPE::TEXTURED);
+		obj4->SetVelocity(Vec3(0.01f, 0.01f, -0.003f));
 	}
 	void Update(const Keyboard& kbd, Mouse& mouse, float dt)
 	{
@@ -60,15 +62,18 @@ public:
 		}
 		obj2->Move();
 		obj3->Move();
+		obj4->Move();
 	}
 	void Draw(Graphics& gfx) const
 	{
 		obj1->Draw(gfx);
 		obj2->Draw(gfx);
 		obj3->Draw(gfx);
+		obj4->Draw(gfx);
 	}
 private:
 	std::unique_ptr<TestObject> obj1;
 	std::unique_ptr<TestObject> obj2;
 	std::unique_ptr<TestObject> obj3;
+	std::unique_ptr<TestObject> obj4;
 };

@@ -10,7 +10,9 @@ TestObject::TestObject(const Vec3& pos_in, TYPE type_in, const Vec3& ornt_in)
 	modelLines(rct->GetLines()),
 	lines(modelLines),
 	modelTriangles(rct->GetTriangles()),
-	triangles(modelTriangles)
+	triangles(modelTriangles),
+	modelTrianglesTex(rct->GetTrianglesTex()),
+	trianglesTex(modelTrianglesTex)
 {
 	Update();
 }
@@ -99,6 +101,12 @@ void TestObject::Update()
 		BackfaceCulling();
 		TransformToScreenSpace(triangles.vert);
 		break;
+	case TYPE::TEXTURED:
+		trianglesTex = modelTrianglesTex;
+		TransformToWorldSpace(trianglesTex.vert, rot);
+		BackfaceCullingTex();
+		TransformToScreenSpace(trianglesTex.vert);
+		break;
 	}
 
 	CheckBorder();
@@ -109,6 +117,14 @@ void TestObject::TransformToWorldSpace(std::vector<Vec3>& verts, const Mat3& rot
 	{
 		v *= rot;
 		v += pos;
+	}
+}
+void TestObject::TransformToWorldSpace(std::vector<TexVertex>& verts, const Mat3& rot)
+{
+	for (auto& v : verts)
+	{
+		v.pos *= rot;   // rotate position
+		v.pos += pos;   // translate position
 	}
 }
 
@@ -127,12 +143,34 @@ void TestObject::BackfaceCulling()
 		triangles.cullFlags[i] = normal * view <= 0; // facing camera
 	}
 }
+void TestObject::BackfaceCullingTex()
+{
+	for (size_t i = 0,
+		end = trianglesTex.ind.size() / 3;
+		i < end; i++)
+	{
+		const Vec3& v0 = trianglesTex.vert[trianglesTex.ind[i * 3]].pos;
+		const Vec3& v1 = trianglesTex.vert[trianglesTex.ind[i * 3 + 1]].pos;
+		const Vec3& v2 = trianglesTex.vert[trianglesTex.ind[i * 3 + 2]].pos;
+		Vec3 normal = (v1 - v0) % (v2 - v0);
+		Vec3 camera_pos = { 0.0f, 0.0f, 0.0f };
+		Vec3 view = camera_pos -v0; // direction from v0 to camera
+		trianglesTex.cullFlags[i] = normal * view <= 0; // facing camera
+	}
+}
 
 void TestObject::TransformToScreenSpace(std::vector<Vec3>& verts)
 {
 	for (auto& v : verts)
 	{
 		cst.Transform(v);
+	}
+}
+void TestObject::TransformToScreenSpace(std::vector<TexVertex>& verts)
+{
+	for (auto& v : verts)
+	{
+		cst.Transform(v.pos);
 	}
 }
 
@@ -147,6 +185,9 @@ void TestObject::Draw(Graphics& gfx)
 		break;
 	case TYPE::COLORED:
 		DrawColoredTriangles(gfx);
+		break;
+	case TYPE::TEXTURED:
+		DrawTexturedTriangles(gfx);
 		break;
 	}
 }
@@ -186,6 +227,20 @@ void TestObject::DrawColoredTriangles(Graphics& gfx)
 	}
 }
 
+void TestObject::DrawTexturedTriangles(Graphics& gfx)
+{
+	for (size_t i = 0, end = trianglesTex.ind.size() / 3; i < end; i++)
+	{
+		if (!trianglesTex.cullFlags[i])
+		{
+			gfx.DrawTriangleTex(
+				trianglesTex.vert[trianglesTex.ind[i * 3]],
+				trianglesTex.vert[trianglesTex.ind[i * 3 + 1]],
+				trianglesTex.vert[trianglesTex.ind[i * 3 + 2]],
+				tex);
+		}
+	}
+}
 
 Vec3 TestObject::GetPos() const
 {
