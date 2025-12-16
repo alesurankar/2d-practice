@@ -237,7 +237,7 @@ void TestObject::DrawTexturedTriangles(Graphics& gfx)
 				trianglesTex.vert[trianglesTex.ind[i * 3]],
 				trianglesTex.vert[trianglesTex.ind[i * 3 + 1]],
 				trianglesTex.vert[trianglesTex.ind[i * 3 + 2]],
-				tex);
+				tex4);
 		}
 	}
 }

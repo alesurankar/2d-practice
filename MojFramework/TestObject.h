@@ -54,7 +54,13 @@ private:
 	TYPE type;
 	Vec3 ornt;
 	Vec3 vel; 
-	Surface tex = Surface("Images\\stonewall.bmp");
+	Surface tex1 = Surface("Images\\stonewall.bmp");
+	Surface tex2 = Surface("Images\\floor.bmp");
+	Surface tex3 = Surface("Images\\ceiling.bmp");
+	Surface tex4 = Surface("Images\\wood.bmp");
+	Surface tex5 = Surface("Images\\wall.bmp");
+	Surface tex6 = Surface("Images\\office_skin.bmp");
+	Surface tex7 = Surface("Images\\office_skin_lores.bmp");
 	std::unique_ptr<Drawable> rct;
 	IndexedLineList modelLines;
 	IndexedLineList lines;
