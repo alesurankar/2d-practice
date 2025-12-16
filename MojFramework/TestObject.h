@@ -21,11 +21,6 @@ public:
 private:
 	void Update();
 	void CheckBorder();
-	void TransformToWorldSpace(std::vector<Vec3>& verts, const Mat3& rot);
-	void TransformToWorldSpace(std::vector<Vertex>& verts, const Mat3& rot);
-	void TransformToScreenSpace(std::vector<Vec3>& verts);
-	void TransformToScreenSpace(std::vector<Vertex>& verts);
-	void BackfaceCulling();
 private:
 	Vec3 pos;
 	Vec3 ornt;
