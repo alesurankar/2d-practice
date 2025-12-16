@@ -6,7 +6,7 @@ App::App(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd)
 {
-    scene = std::make_unique<Scene>();
+    scene = std::make_unique<Scene>(gfx);
     //calc = std::make_unique<Calculator>(Vei2{ 100, 20 });
     //calc2 = std::make_unique<Calculator>(Vei2{ 330, 100 });
 	//osc = std::make_unique<Oscilloscope>();
@@ -66,7 +66,7 @@ bool App::UpdateModel(float dt)
 /////////////////////////////////////////////////////////
 void App::ComposeFrame()
 {
-    scene->Draw(gfx);
+    scene->Draw();
     //calc->Draw(gfx);
     //calc2->Draw(gfx);
 	//osc->Draw(gfx);

@@ -131,7 +131,7 @@
     <ClInclude Include="FrameTimer.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="ImageEffect.h" />
-    <ClInclude Include="IndexedList.h" />
+    <ClInclude Include="IndexedTriangleList.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="MainWindow.h" />
@@ -144,6 +144,7 @@
     <ClInclude Include="Oscilloscope.h" />
     <ClInclude Include="OscilloscopeMode.h" />
     <ClInclude Include="Output.h" />
+    <ClInclude Include="Pipeline.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Display.h" />
@@ -155,6 +156,7 @@
     <ClInclude Include="Surface.h" />
     <ClInclude Include="TestObject.h" />
     <ClInclude Include="TexVertex.h" />
+    <ClInclude Include="Triangle.h" />
     <ClInclude Include="Values.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="Vec3.h" />

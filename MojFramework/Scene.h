@@ -9,16 +9,22 @@
 class Scene
 {
 public:
-	Scene()
+	Scene(Graphics& gfx)
 	{
-		obj1 = std::make_unique<TestObject>(Vec3(0.1f,0.1f, 3.2f), TestObject::TYPE::COLORED);
+		obj1 = std::make_unique<TestObject>(gfx, Vec3(0.1f,0.1f, 3.2f), "Images\\stonewall.bmp");
 		obj1->SetVelocity(Vec3(0.0f, 0.0f, 0.0f));
-		obj2 = std::make_unique<TestObject>(Vec3(0.1f,0.1f, 3.2f), TestObject::TYPE::SKELETON);
+		obj2 = std::make_unique<TestObject>(gfx, Vec3(0.1f,0.1f, 3.2f), "Images\\floor.bmp");
 		obj2->SetVelocity(Vec3(0.01f, -0.01f, 0.004f));
-		obj3 = std::make_unique<TestObject>(Vec3(-0.2f,-0.3f, 3.2f), TestObject::TYPE::FILLED);
+		obj3 = std::make_unique<TestObject>(gfx, Vec3(-0.2f,-0.3f, 3.2f), "Images\\ceiling.bmp");
 		obj3->SetVelocity(Vec3(-0.01f, 0.01f, -0.004f));
-		obj4 = std::make_unique<TestObject>(Vec3(-0.1f, 0.2f, 3.2f), TestObject::TYPE::TEXTURED);
+		obj4 = std::make_unique<TestObject>(gfx, Vec3(-0.1f, 0.2f, 3.2f), "Images\\wood.bmp");
 		obj4->SetVelocity(Vec3(0.01f, 0.01f, -0.003f));
+		obj5 = std::make_unique<TestObject>(gfx, Vec3(-0.2f, 0.2f, 3.2f), "Images\\wall.bmp");
+		obj5->SetVelocity(Vec3(0.01f, -0.01f, -0.003f));
+		obj6 = std::make_unique<TestObject>(gfx, Vec3(-0.1f, 0.2f, 2.2f), "Images\\office_skin.bmp");
+		obj6->SetVelocity(Vec3(-0.01f, 0.01f, -0.003f));
+		obj7 = std::make_unique<TestObject>(gfx, Vec3(-0.3f, -0.2f, 3.0f), "Images\\office_skin_lores.bmp");
+		obj7->SetVelocity(Vec3(0.01f, 0.01f, -0.003f));
 	}
 	void Update(const Keyboard& kbd, Mouse& mouse, float dt)
 	{
@@ -63,17 +69,26 @@ public:
 		obj2->Move();
 		obj3->Move();
 		obj4->Move();
+		obj5->Move();
+		obj6->Move();
+		obj7->Move();
 	}
-	void Draw(Graphics& gfx) const
+	void Draw() const
 	{
-		obj1->Draw(gfx);
-		obj2->Draw(gfx);
-		obj3->Draw(gfx);
-		obj4->Draw(gfx);
+		obj1->Draw();
+		obj2->Draw();
+		obj3->Draw();
+		obj4->Draw();
+		obj5->Draw();
+		obj6->Draw();
+		obj7->Draw();
 	}
 private:
 	std::unique_ptr<TestObject> obj1;
 	std::unique_ptr<TestObject> obj2;
 	std::unique_ptr<TestObject> obj3;
 	std::unique_ptr<TestObject> obj4;
+	std::unique_ptr<TestObject> obj5;
+	std::unique_ptr<TestObject> obj6;
+	std::unique_ptr<TestObject> obj7;
 };
