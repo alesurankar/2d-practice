@@ -11,9 +11,12 @@ class Scene
 public:
 	Scene()
 	{
-		obj1 = std::make_unique<TestObject>(Vec3(0.1f,0.1f, 1.0f), TestObject::TYPE::COLORED);
-		obj2 = std::make_unique<TestObject>(Vec3(0.1f,0.1f, 1.0f), TestObject::TYPE::SKELETON);
-		obj3 = std::make_unique<TestObject>(Vec3(-0.2f,-0.3f, 1.2f), TestObject::TYPE::FILLED);
+		obj1 = std::make_unique<TestObject>(Vec3(0.1f,0.1f, 3.2f), TestObject::TYPE::COLORED);
+		obj1->SetVelocity(Vec3(0.0f, 0.0f, 0.0f));
+		obj2 = std::make_unique<TestObject>(Vec3(0.1f,0.1f, 3.2f), TestObject::TYPE::SKELETON);
+		obj2->SetVelocity(Vec3(0.01f, -0.01f, 0.004f));
+		obj3 = std::make_unique<TestObject>(Vec3(-0.2f,-0.3f, 3.2f), TestObject::TYPE::FILLED);
+		obj3->SetVelocity(Vec3(-0.01f, 0.01f, -0.004f));
 	}
 	void Update(const Keyboard& kbd, Mouse& mouse, float dt)
 	{
@@ -55,9 +58,8 @@ public:
 		if (kbd.KeyIsPressed('E')) {
 			obj1->Rotate(0.0f, 0.0f, -speed);
 		}
-		obj1->Update();
-		obj2->Update();
-		obj3->Update();
+		obj2->Move();
+		obj3->Move();
 	}
 	void Draw(Graphics& gfx) const
 	{

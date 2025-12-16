@@ -16,16 +16,20 @@ public:
 	};
 	TestObject(const Vec3& pos_in, TYPE type_in, const Vec3& ornt_in = { 0.0f,0.0f,0.0f });
 	void Move(float x, float y, float z);
+	void Move();
 	void Rotate(float x, float y, float z);
-	void Update();
 	void Draw(Graphics& gfx);
+	Vec3 GetPos() const;
+	void SetVelocity(const Vec3& vel);
 private:
+	void Update();
+	void CheckBorder();
 	void TransformToWorldSpace(std::vector<Vec3>& verts, const Mat3& rot);
 	void TransformToScreenSpace(std::vector<Vec3>& verts);
 	void BackfaceCulling();
-	void DrawWithLines(Graphics& gfx);
-	void DrawWithTriangles(Graphics& gfx);
-	void DrawWithColoredTriangles(Graphics& gfx);
+	void DrawLines(Graphics& gfx);
+	void DrawTriangles(Graphics& gfx);
+	void DrawColoredTriangles(Graphics& gfx);
 private:
 	Color colors[12] = {
 		Colors::White,
@@ -44,6 +48,7 @@ private:
 	Vec3 pos;
 	TYPE type;
 	Vec3 ornt;
+	Vec3 vel;
 	std::unique_ptr<Drawable> rct;
 	IndexedLineList modelLines;
 	IndexedLineList lines;
