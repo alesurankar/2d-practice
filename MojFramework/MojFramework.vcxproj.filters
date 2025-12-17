@@ -28,6 +28,15 @@
     <Filter Include="Source Files\App">
       <UniqueIdentifier>{30ef0e23-166d-44ce-a81a-1622295c9fd8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Effects">
+      <UniqueIdentifier>{93d79f5b-9b6b-4146-b76a-5d318dcd3fb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3D">
+      <UniqueIdentifier>{5885868e-d073-4218-a462-599b8993f4e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3D">
+      <UniqueIdentifier>{180dcd07-ddfd-4cf6-a2ad-de6faabe30f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="COMInitializer.cpp">
@@ -84,29 +93,29 @@
     <ClCompile Include="OscilloscopeMode.cpp">
       <Filter>Source Files\App</Filter>
     </ClCompile>
-    <ClCompile Include="MCUSimulator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Calculator.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\App</Filter>
     </ClCompile>
     <ClCompile Include="Case.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Output.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Obj.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\App</Filter>
     </ClCompile>
     <ClCompile Include="Input.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\App</Filter>
+    </ClCompile>
+    <ClCompile Include="MCUSimulator.cpp">
+      <Filter>Source Files\App</Filter>
+    </ClCompile>
+    <ClCompile Include="Obj.cpp">
+      <Filter>Source Files\App</Filter>
+    </ClCompile>
+    <ClCompile Include="Output.cpp">
+      <Filter>Source Files\App</Filter>
     </ClCompile>
     <ClCompile Include="Values.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\App</Filter>
     </ClCompile>
     <ClCompile Include="TestObject.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\3D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -185,68 +194,68 @@
     <ClInclude Include="OscilloscopeMode.h">
       <Filter>Header Files\App</Filter>
     </ClInclude>
-    <ClInclude Include="MCUSimulator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Calculator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Case.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Output.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Obj.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Values.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IndexedTriangleList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Drawable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CubeScreenTransformer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyMath.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Vec3.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
     <ClInclude Include="Vec4.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Pipeline.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Triangle.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="VertexColorEffect.h">
+      <Filter>Header Files\Effects</Filter>
     </ClInclude>
     <ClInclude Include="TextureEffect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexColorEffect.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Effects</Filter>
     </ClInclude>
     <ClInclude Include="SolidEffect.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle.h">
+      <Filter>Header Files\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="TestObject.h">
+      <Filter>Header Files\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Pipeline.h">
+      <Filter>Header Files\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Mat.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexedTriangleList.h">
+      <Filter>Header Files\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawable.h">
+      <Filter>Header Files\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeScreenTransformer.h">
+      <Filter>Header Files\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="MyMath.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Calculator.h">
+      <Filter>Header Files\App</Filter>
+    </ClInclude>
+    <ClInclude Include="Case.h">
+      <Filter>Header Files\App</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Header Files\App</Filter>
+    </ClInclude>
+    <ClInclude Include="MCUSimulator.h">
+      <Filter>Header Files\App</Filter>
+    </ClInclude>
+    <ClInclude Include="Obj.h">
+      <Filter>Header Files\App</Filter>
+    </ClInclude>
+    <ClInclude Include="Output.h">
+      <Filter>Header Files\App</Filter>
+    </ClInclude>
+    <ClInclude Include="Values.h">
+      <Filter>Header Files\App</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

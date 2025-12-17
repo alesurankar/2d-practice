@@ -41,6 +41,13 @@ public:
 	{
 		return{ float(GetR()),float(GetG()), float(GetB()) };
 	}
+	Color operator*(const Vec3& v) const
+	{
+		unsigned char r = std::min(255, int(GetR() * v.x));
+		unsigned char g = std::min(255, int(GetG() * v.y));
+		unsigned char b = std::min(255, int(GetB() * v.z));
+		return Color(r, g, b);
+	}
 	Color& operator =(Color color)
 	{
 		dword = color.dword;

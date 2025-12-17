@@ -82,10 +82,12 @@ public:
 		template<class Input>
 		Color operator()(const Input& in) const
 		{
-			return pTex->GetPixel(
+			Color texColor = pTex->GetPixel(
 				(unsigned int)std::min(in.t.x * tex_width + 0.5f, tex_xclamp),
 				(unsigned int)std::min(in.t.y * tex_height + 0.5f, tex_yclamp)
 			);
+			Vec3 tint = { 1.0f, 0.9f, 0.5f };
+			return texColor * tint;
 		}
 		void BindTexture(const std::string& filename)
 		{
