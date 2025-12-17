@@ -25,7 +25,7 @@ public:
 		zb(gfx.ScreenWidth, gfx.ScreenHeight)
 	{
 	}
-	void Draw(IndexedTriangleList<Vertex>& triList)
+	void Draw(const IndexedTriangleList<Vertex>& triList)
 	{
 		ProcessVertices(triList.vert, triList.ind);
 	}

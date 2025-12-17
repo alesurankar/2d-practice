@@ -4,28 +4,32 @@
 #include "Graphics.h"
 #include "TestObject.h"
 #include "Vec2.h"
+#include "Pipeline.h"
 #include <memory>
 
 class Scene
 {
 public:
 	Scene(Graphics& gfx)
+		:
+		pipeline(gfx)
 	{
-		obj1 = std::make_unique<TestObject>(gfx, Vec3(0.1f,0.1f, 3.2f), "Images\\stonewall.bmp");
+		obj1 = std::make_unique<TestObject>(gfx, Vec3(0.1f, 0.1f, 3.2f));// , "Images\\stonewall.bmp");
 		obj1->SetVelocity(Vec3(0.0f, 0.0f, 0.0f));
-		obj2 = std::make_unique<TestObject>(gfx, Vec3(0.1f,0.1f, 3.2f), "Images\\floor.bmp");
-		obj2->SetVelocity(Vec3(0.01f, -0.01f, 0.004f));
-		obj3 = std::make_unique<TestObject>(gfx, Vec3(-0.2f,-0.3f, 3.2f), "Images\\ceiling.bmp");
+		obj2 = std::make_unique<TestObject>(gfx, Vec3(0.1f,0.1f, 3.2f));//, "Images\\floor.bmp");
+		obj2->SetVelocity(Vec3(0.01f, -0.01f, 0.005f));
+		obj3 = std::make_unique<TestObject>(gfx, Vec3(-0.2f,-0.3f, 3.2f));//, "Images\\ceiling.bmp");
 		obj3->SetVelocity(Vec3(-0.01f, 0.01f, -0.004f));
-		obj4 = std::make_unique<TestObject>(gfx, Vec3(-0.1f, 0.2f, 3.2f), "Images\\wood.bmp");
-		obj4->SetVelocity(Vec3(0.01f, 0.01f, -0.003f));
-		obj5 = std::make_unique<TestObject>(gfx, Vec3(-0.2f, 0.2f, 3.2f), "Images\\wall.bmp");
-		obj5->SetVelocity(Vec3(0.01f, -0.01f, -0.003f));
-		obj6 = std::make_unique<TestObject>(gfx, Vec3(-0.1f, 0.2f, 2.2f), "Images\\office_skin.bmp");
-		obj6->SetVelocity(Vec3(-0.01f, 0.01f, -0.003f));
-		obj7 = std::make_unique<TestObject>(gfx, Vec3(-0.3f, 0.2f, 3.0f), "Images\\office_skin_lores.bmp");
+		obj4 = std::make_unique<TestObject>(gfx, Vec3(-0.1f, 0.2f, 3.2f));//, "Images\\wood.bmp");
+		obj4->SetVelocity(Vec3(0.001f, 0.02f, -0.006f));
+		obj5 = std::make_unique<TestObject>(gfx, Vec3(-0.2f, 0.2f, 3.2f));//, "Images\\wall.bmp");
+		obj5->SetVelocity(Vec3(0.02f, -0.001f, -0.003f));
+		obj6 = std::make_unique<TestObject>(gfx, Vec3(-0.1f, 0.2f, 2.2f));//, "Images\\office_skin.bmp");
+		obj6->SetVelocity(Vec3(-0.015f, 0.005f, -0.002f));
+		obj7 = std::make_unique<TestObject>(gfx, Vec3(-0.3f, 0.2f, 3.0f));//, "Images\\office_skin_lores.bmp");
 		obj7->SetVelocity(Vec3(0.01f, 0.01f, -0.003f));
 	}
+	
 	void Update(const Keyboard& kbd, Mouse& mouse, float dt)
 	{
 		float speed = dt/2;
@@ -73,25 +77,36 @@ public:
 		obj6->Move();
 		obj7->Move();
 	}
-	void Draw() const
-	{
-		obj1->Draw();
-		obj2->Draw();
-		obj3->Draw();
-		obj4->Draw();
-		obj5->Draw();
-		obj6->Draw();
-		obj7->Draw();
 
-		obj1->pipeline.BeginFrame();
-		obj2->pipeline.BeginFrame();
-		obj3->pipeline.BeginFrame();
-		obj4->pipeline.BeginFrame();
-		obj5->pipeline.BeginFrame();
-		obj6->pipeline.BeginFrame();
-		obj7->pipeline.BeginFrame();
+	void Draw()
+	{
+		pipeline.BeginFrame();
+		BindAndDraw(*obj1);
+		BindAndDraw(*obj2);
+		BindAndDraw(*obj3);
+		BindAndDraw(*obj4);
+		BindAndDraw(*obj5);
+		BindAndDraw(*obj6);
+		BindAndDraw(*obj7);
+	}
+
+private:
+	void BindAndDraw(const TestObject& obj)
+	{
+		const Mat3 rot =
+			Mat3::RotationX(obj.GetOrnt().x) *
+			Mat3::RotationY(obj.GetOrnt().y) *
+			Mat3::RotationZ(obj.GetOrnt().z);
+
+		const Vec3 trans = { obj.GetPos().x,obj.GetPos().y,obj.GetPos().z };
+
+		pipeline.BindRotation(rot);
+		pipeline.BindTranslation(trans);
+
+		pipeline.Draw(obj.GetTriangle());
 	}
 private:
+	Pipeline<SolidEffect> pipeline;
 	std::unique_ptr<TestObject> obj1;
 	std::unique_ptr<TestObject> obj2;
 	std::unique_ptr<TestObject> obj3;

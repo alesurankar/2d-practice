@@ -2,24 +2,24 @@
 #include "App.h"
 
 
-TestObject::TestObject(Graphics& gfx, const Vec3& pos_in, const std::string& filename, const Vec3& ornt_in)
+//TestObject::TestObject(Graphics& gfx, const Vec3& pos_in, const std::string& filename, const Vec3& ornt_in)
+TestObject::TestObject(Graphics& gfx, const Vec3& pos_in, const Vec3& ornt_in)
 	:
 	pos(pos_in),
 	ornt(ornt_in),
-	//itlist(Drawable::GetPlainIndependentFaces<Vertex>()),
+	itlist(Drawable::GetPlainIndependentFaces<Vertex>()),
 	//itlist(Drawable::GetPlain<Vertex>()),
-	itlist(Drawable::GetSkinned<Vertex>()),
-	triangles(itlist),
-	pipeline(gfx)
+	//itlist(Drawable::GetSkinned<Vertex>()),
+	triangles(itlist)
 {
-	//const Color colors[] = {
-	//		Colors::Red,Colors::Green,Colors::Blue,Colors::Magenta,Colors::Yellow,Colors::Cyan
-	//};
-	//
-	//for (int i = 0; i < itlist.vert.size(); i++)
-	//{
-	//	itlist.vert[i].color = colors[i / 4];
-	//}
+	const Color colors[] = {
+			Colors::Red,Colors::Green,Colors::Blue,Colors::Magenta,Colors::Yellow,Colors::Cyan
+	};
+	
+	for (int i = 0; i < itlist.vert.size(); i++)
+	{
+		itlist.vert[i].color = colors[i / 4];
+	}
 	//itlist.vert[0].color = Vec3(Colors::Red);
 	//itlist.vert[1].color = Vec3(Colors::Green);
 	//itlist.vert[2].color = Vec3(Colors::Blue);
@@ -28,8 +28,7 @@ TestObject::TestObject(Graphics& gfx, const Vec3& pos_in, const std::string& fil
 	//itlist.vert[5].color = Vec3(Colors::Magenta);
 	//itlist.vert[6].color = Vec3(Colors::White);
 	//itlist.vert[7].color = Vec3(Colors::Black);
-	pipeline.effect.ps.BindTexture(filename);
-	Update();
+	//pipeline.effect.ps.BindTexture(filename);
 }
 
 void TestObject::Move(float x, float y, float z)
@@ -38,7 +37,7 @@ void TestObject::Move(float x, float y, float z)
 	pos.y += y;
 	pos.z += z;
 
-	Update();
+	CheckBorder();
 }
 
 void TestObject::Move()
@@ -47,7 +46,7 @@ void TestObject::Move()
 	pos.y += vel.y;
 	pos.z += vel.z;
 
-	Update();
+	CheckBorder();
 }
 
 void TestObject::Rotate(float x, float y, float z)
@@ -56,35 +55,36 @@ void TestObject::Rotate(float x, float y, float z)
 	ornt.y = wrap_angle(ornt.y + y);
 	ornt.z = wrap_angle(ornt.z + z);
 
-	Update();
+	CheckBorder();
 }
 
 void TestObject::CheckBorder()
 {
-	if (pos.x < -2.1f) {
-		pos.x = -2.1f;
+	if (pos.x < -2.0f) {
+		pos.x = -2.0f;
 		vel.x = -vel.x;
 	}
-	if (pos.y < -2.1f) {
-		pos.y = -2.1f;
+	if (pos.y < -2.0f) {
+		pos.y = -2.0f;
 		vel.y = -vel.y;
 	}
-	if (pos.z < 3.2f) {
-		pos.z = 3.2f;
+	if (pos.z < 3.4f) {
+		pos.z = 3.4f;
 		vel.z = -vel.z;
 	}
-	if (pos.x > 2.1f) {
-		pos.x = 2.1f;
+	if (pos.x > 2.0f) {
+		pos.x = 2.0f;
 		vel.x = -vel.x;
 	}
-	if (pos.y > 2.1f) {
-		pos.y = 2.1f;
+	if (pos.y > 2.0f) {
+		pos.y = 2.0f;
 		vel.y = -vel.y;
 	}
 	if (pos.z > 7.8f) {
 		pos.z = 7.8f;
 		vel.z = -vel.z;
-	}	
+	}
+	triangles = itlist;
 }
 
 void TestObject::SetVelocity(const Vec3& vel_in)
@@ -92,29 +92,17 @@ void TestObject::SetVelocity(const Vec3& vel_in)
 	vel = vel_in;
 }
 
-void TestObject::Update()
-{
-	CheckBorder();
-
-	const Mat3 rot =
-		Mat3::RotationX(ornt.x) *
-		Mat3::RotationY(ornt.y) *
-		Mat3::RotationZ(ornt.z);
-
-	const Vec3 trans = { pos.x,pos.y,pos.z };
-
-	pipeline.BindRotation(rot);
-	pipeline.BindTranslation(trans);
-
-}
-
-void TestObject::Draw()
-{
-	triangles = itlist;
-	pipeline.Draw(triangles);
-}
-
 Vec3 TestObject::GetPos() const
 {
 	return pos;
+}
+
+Vec3 TestObject::GetOrnt() const
+{
+	return ornt;
+}
+
+const IndexedTriangleList <SolidEffect::Vertex > & TestObject::GetTriangle() const
+{
+	return triangles;
 }
