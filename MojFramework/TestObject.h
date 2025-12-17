@@ -2,14 +2,19 @@
 #include "Drawable.h"
 #include "CubeScreenTransformer.h"
 #include "Graphics.h"
-#include "Vec2.h"
+#include "Vec3.h"
 #include "Mat.h"
 #include "Pipeline.h"
+#include "TextureEffect.h"
+#include "VertexColorEffect.h"
 #include <memory>
 
 class TestObject
 {
 public:
+	// Pipeline<TextureEffect> Pipeline;
+	//typedef Pipeline::Vertex Vertex; 
+	typedef Pipeline<VertexColorEffect> Pipeline;
 	typedef Pipeline::Vertex Vertex;
 	TestObject(Graphics& gfx, const Vec3& pos_in, const std::string& filename ,const Vec3& ornt_in = { 0.0f,0.0f,0.0f });
 	void Move(float x, float y, float z);
