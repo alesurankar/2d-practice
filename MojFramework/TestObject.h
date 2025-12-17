@@ -22,16 +22,19 @@ public:
 	void Move(float x, float y, float z);
 	void Move();
 	void Rotate(float x, float y, float z);
+	void Rotate();
 	Vec3 GetPos() const;
 	Vec3 GetOrnt() const;
 	const IndexedTriangleList<Vertex>& GetTriangle() const;
-	void SetVelocity(const Vec3& vel);
+	void SetVelocity(float vx, float vy, float vz);
+	void SetTorque(float roll, float pitch, float yaw);
 private:
 	void CheckBorder();
 private:
 	Vec3 pos;
 	Vec3 ornt;
 	Vec3 vel;
+	Vec3 torq;
 	IndexedTriangleList<Vertex> itlist;
 	IndexedTriangleList<Vertex> triangles;
 };
