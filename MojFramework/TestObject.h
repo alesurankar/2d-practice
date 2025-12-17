@@ -27,7 +27,10 @@ public:
 	Vec3 GetOrnt() const;
 	const IndexedTriangleList<Vertex>& GetTriangle() const;
 	void SetVelocity(float vx, float vy, float vz);
+	void ChangeVelocity();
 	void SetTorque(float roll, float pitch, float yaw);
+	void ChangeTorque();
+	BoxF GetWorldBoundingBox() const;
 private:
 	void CheckBorder();
 private:

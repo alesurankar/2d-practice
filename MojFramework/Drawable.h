@@ -1,10 +1,19 @@
 #pragma once
 #include "Vec3.h"
+#include "Box.h"
 #include "IndexedTriangleList.h"
 
 class Drawable
 {
 public:
+	static BoxF GetLocalBoundingBox(float size = 1.0f)
+	{
+		const float side = size / 2.0f;
+		return BoxF(
+			-side, -side, -side,
+			side, side, side
+		);
+	}
 	template<class V>
 	static IndexedTriangleList<V> GetPlain(float size = 1.0f)
 	{

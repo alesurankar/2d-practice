@@ -258,6 +258,9 @@
       <Filter>Header Files\App</Filter>
     </ClInclude>
     <ClInclude Include="ZBuffer.h">
+      <Filter>Header Files\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -107,9 +107,34 @@ void TestObject::SetVelocity(float vx, float vy, float vz)
 	vel = Vec3(vx, vy, vz);
 }
 
+void TestObject::ChangeVelocity()
+{
+	vel = -vel;
+}
+
 void TestObject::SetTorque(float tx, float ty, float tz)
 {
 	torq = Vec3(tx, ty, tz);
+}
+
+void TestObject::ChangeTorque()
+{
+	torq = -torq;
+}
+
+BoxF TestObject::GetWorldBoundingBox() const
+{
+	BoxF local = Drawable::GetLocalBoundingBox();
+
+	const Vec3& p = pos;
+	return BoxF(
+		local.left + p.x,
+		local.top + p.y,
+		local.front + p.z,
+		local.right + p.x,
+		local.bottom + p.y,
+		local.back + p.z
+	);
 }
 
 Vec3 TestObject::GetPos() const
