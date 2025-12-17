@@ -5,6 +5,7 @@
 #include "IndexedTriangleList.h"
 #include "CubeScreenTransformer.h"
 #include "Mat.h"
+#include "ZBuffer.h"
 #include <algorithm>
 #include <memory>
 
@@ -20,7 +21,8 @@ public:
 public:
 	Pipeline(Graphics& gfx)
 		:
-		gfx(gfx)
+		gfx(gfx),
+		zb(gfx.ScreenWidth, gfx.ScreenHeight)
 	{
 	}
 	void Draw(IndexedTriangleList<Vertex>& triList)
@@ -34,6 +36,11 @@ public:
 	void BindTranslation(const Vec3& translation_in)
 	{
 		translation = translation_in;
+	}
+	// needed to reset the z-buffer after each frame
+	void BeginFrame()
+	{
+		zb.Clear();
 	}
 private:
 	// vertex processing function
@@ -222,8 +229,11 @@ private:
 			for (int x = xStart; x < xEnd; x++, iLine += diLine)
 			{
 				const float z = 1.0f / iLine.pos.z;
-				const auto attr = iLine * z;
-				gfx.PutPixel(x, y, effect.ps(attr));
+				if (zb.TestAndSet(x, y, z))
+				{
+					const auto attr = iLine * z;
+					gfx.PutPixel(x, y, effect.ps(attr));
+				}
 			}
 		}
 	}
@@ -232,6 +242,7 @@ public:
 private:
 	Graphics& gfx;
 	CubeScreenTransformer cst;
+	ZBuffer zb;
 	Mat3 rotation;
 	Vec3 translation;
 };

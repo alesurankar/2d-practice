@@ -82,6 +82,14 @@ public:
 		obj5->Draw();
 		obj6->Draw();
 		obj7->Draw();
+
+		obj1->pipeline.BeginFrame();
+		obj2->pipeline.BeginFrame();
+		obj3->pipeline.BeginFrame();
+		obj4->pipeline.BeginFrame();
+		obj5->pipeline.BeginFrame();
+		obj6->pipeline.BeginFrame();
+		obj7->pipeline.BeginFrame();
 	}
 private:
 	std::unique_ptr<TestObject> obj1;

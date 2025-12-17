@@ -163,6 +163,7 @@
     <ClInclude Include="Vec3.h" />
     <ClInclude Include="Vec4.h" />
     <ClInclude Include="VertexColorEffect.h" />
+    <ClInclude Include="ZBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MojFramework.rc" />

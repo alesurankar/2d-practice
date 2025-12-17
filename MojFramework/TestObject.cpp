@@ -106,11 +106,11 @@ void TestObject::Update()
 	pipeline.BindRotation(rot);
 	pipeline.BindTranslation(trans);
 
-	triangles = itlist;
 }
 
 void TestObject::Draw()
 {
+	triangles = itlist;
 	pipeline.Draw(triangles);
 }
 

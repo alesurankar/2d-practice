@@ -33,5 +33,6 @@ private:
 	Vec3 vel;
 	IndexedTriangleList<Vertex> itlist;
 	IndexedTriangleList<Vertex> triangles;
+public:
 	Pipeline pipeline;
 };
