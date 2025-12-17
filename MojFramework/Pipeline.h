@@ -87,9 +87,9 @@ private:
 	void PostProcessTriangleVertices(Triangle<Vertex>& triangle)
 	{
 		// perspective divide and screen transform for all 3 vertices
-		cst.Transform(triangle.v0.pos);
-		cst.Transform(triangle.v1.pos);
-		cst.Transform(triangle.v2.pos);
+		cst.Transform(triangle.v0);
+		cst.Transform(triangle.v1);
+		cst.Transform(triangle.v2);
 
 		// draw the triangle
 		DrawTriangle(triangle);
@@ -221,10 +221,9 @@ private:
 
 			for (int x = xStart; x < xEnd; x++, iLine += diLine)
 			{
-				{
-					// invoke pixel shader and write resulting color value
-					gfx.PutPixel(x, y, effect.ps(iLine));
-				}
+				const float z = 1.0f / iLine.pos.z;
+				const auto attr = iLine * z;
+				gfx.PutPixel(x, y, effect.ps(attr));
 			}
 		}
 	}
