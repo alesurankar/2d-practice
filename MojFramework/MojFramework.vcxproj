@@ -151,6 +151,7 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Signal.h" />
     <ClInclude Include="MCUSimulator.h" />
+    <ClInclude Include="SolidEffect.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundEffect.h" />
     <ClInclude Include="Surface.h" />

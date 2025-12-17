@@ -6,19 +6,28 @@ TestObject::TestObject(Graphics& gfx, const Vec3& pos_in, const std::string& fil
 	:
 	pos(pos_in),
 	ornt(ornt_in),
+	itlist(Drawable::GetPlainIndependentFaces<Vertex>()),
+	//itlist(Drawable::GetPlain<Vertex>()),
 	//itlist(Drawable::GetSkinned<Vertex>()),
-	itlist(Drawable::GetPlain<Vertex>()),
 	triangles(itlist),
 	pipeline(gfx)
 {
-	itlist.vert[0].color = Vec3(Colors::Red);
-	itlist.vert[1].color = Vec3(Colors::Green);
-	itlist.vert[2].color = Vec3(Colors::Blue);
-	itlist.vert[3].color = Vec3(Colors::Yellow);
-	itlist.vert[4].color = Vec3(Colors::Cyan);
-	itlist.vert[5].color = Vec3(Colors::Magenta);
-	itlist.vert[6].color = Vec3(Colors::White);
-	itlist.vert[7].color = Vec3(Colors::Black);
+	const Color colors[] = {
+			Colors::Red,Colors::Green,Colors::Blue,Colors::Magenta,Colors::Yellow,Colors::Cyan
+	};
+
+	for (int i = 0; i < itlist.vert.size(); i++)
+	{
+		itlist.vert[i].color = colors[i / 4];
+	}
+	//itlist.vert[0].color = Vec3(Colors::Red);
+	//itlist.vert[1].color = Vec3(Colors::Green);
+	//itlist.vert[2].color = Vec3(Colors::Blue);
+	//itlist.vert[3].color = Vec3(Colors::Yellow);
+	//itlist.vert[4].color = Vec3(Colors::Cyan);
+	//itlist.vert[5].color = Vec3(Colors::Magenta);
+	//itlist.vert[6].color = Vec3(Colors::White);
+	//itlist.vert[7].color = Vec3(Colors::Black);
 	//pipeline.effect.ps.BindTexture(filename);
 	Update();
 }

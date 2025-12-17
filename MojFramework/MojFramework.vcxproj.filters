@@ -245,6 +245,9 @@
     <ClInclude Include="VertexColorEffect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SolidEffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MojFramework.rc">
