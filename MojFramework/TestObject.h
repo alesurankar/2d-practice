@@ -13,7 +13,7 @@ class TestObject
 public:
 	typedef Pipeline<TextureEffect> Pipeline;
 	typedef typename Pipeline::Vertex Vertex;
-	TestObject(Graphics& gfx, const Vec3& pos_in, const std::string& filename, const Vec3& ornt_in = { 0.0f,0.0f,0.0f });
+	TestObject(Graphics& gfx, const Vec3& pos_in, const std::string& filename);
 	void Move(float x, float y, float z);
 	void Move();
 	void Rotate(float x, float y, float z);

@@ -3,10 +3,12 @@
 #include <utility>
 
 
-TestObject::TestObject(Graphics& gfx, const Vec3& pos_in, const std::string& filename_in, const Vec3& ornt_in)
+TestObject::TestObject(Graphics& gfx, const Vec3& pos_in, const std::string& filename_in)
 	:
 	pos(pos_in),
-	ornt(ornt_in),
+	ornt({ 0.0f,0.0f,0.0f }),
+	vel({ 0.0f,0.0f,0.0f }),
+	torq({ 0.0f,0.0f,0.0f }),
 	itlist(Drawable::GetSkinned<Vertex>()),
 	triangles(itlist)
 {
@@ -134,7 +136,7 @@ Vec3 TestObject::GetOrnt() const
 	return ornt;
 }
 
-const IndexedTriangleList <TextureEffect::Vertex > & TestObject::GetTriangle() const
+const IndexedTriangleList<TextureEffect::Vertex>& TestObject::GetTriangle() const
 {
 	return triangles;
 }
