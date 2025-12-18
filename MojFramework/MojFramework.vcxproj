@@ -131,7 +131,6 @@
     <ClInclude Include="Fonts.h" />
     <ClInclude Include="FrameTimer.h" />
     <ClInclude Include="Graphics.h" />
-    <ClInclude Include="DefaultVertexShader.h" />
     <ClInclude Include="ImageEffect.h" />
     <ClInclude Include="IndexedTriangleList.h" />
     <ClInclude Include="Input.h" />
@@ -165,6 +164,7 @@
     <ClInclude Include="Vec3.h" />
     <ClInclude Include="Vec4.h" />
     <ClInclude Include="VertexColorEffect.h" />
+    <ClInclude Include="VertexPositionColorEffect.h" />
     <ClInclude Include="ZBuffer.h" />
   </ItemGroup>
   <ItemGroup>

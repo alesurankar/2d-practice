@@ -200,15 +200,6 @@
     <ClInclude Include="Vec4.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
-    <ClInclude Include="VertexColorEffect.h">
-      <Filter>Header Files\Effects</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureEffect.h">
-      <Filter>Header Files\Effects</Filter>
-    </ClInclude>
-    <ClInclude Include="SolidEffect.h">
-      <Filter>Header Files\Effects</Filter>
-    </ClInclude>
     <ClInclude Include="Triangle.h">
       <Filter>Header Files\3D</Filter>
     </ClInclude>
@@ -263,7 +254,16 @@
     <ClInclude Include="Box.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DefaultVertexShader.h">
+    <ClInclude Include="SolidEffect.h">
+      <Filter>Header Files\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureEffect.h">
+      <Filter>Header Files\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexColorEffect.h">
+      <Filter>Header Files\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexPositionColorEffect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

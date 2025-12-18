@@ -7,19 +7,11 @@ TestObject::TestObject(Graphics& gfx, const Vec3& pos_in, const Vec3& ornt_in)
 	:
 	pos(pos_in),
 	ornt(ornt_in),
-	itlist(Drawable::GetPlainIndependentFaces<Vertex>()),
-	//itlist(Drawable::GetPlain<Vertex>()),
+	//itlist(Drawable::GetPlainIndependentFaces<Vertex>()),
+	itlist(Drawable::GetPlain<Vertex>()),
 	//itlist(Drawable::GetSkinned<Vertex>()),
 	triangles(itlist)
 {
-	const Color colors[] = {
-			Colors::Red,Colors::Green,Colors::Blue,Colors::Magenta,Colors::Yellow,Colors::Cyan
-	};
-	
-	for (int i = 0; i < itlist.vert.size(); i++)
-	{
-		itlist.vert[i].color = colors[i / 4];
-	}
 	//itlist.vert[0].color = Vec3(Colors::Red);
 	//itlist.vert[1].color = Vec3(Colors::Green);
 	//itlist.vert[2].color = Vec3(Colors::Blue);
@@ -147,7 +139,7 @@ Vec3 TestObject::GetOrnt() const
 	return ornt;
 }
 
-const IndexedTriangleList <SolidEffect::Vertex > & TestObject::GetTriangle() const
+const IndexedTriangleList <VertexPositionColorEffect::Vertex > & TestObject::GetTriangle() const
 {
 	return triangles;
 }

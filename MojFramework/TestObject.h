@@ -8,12 +8,14 @@
 #include "TextureEffect.h"
 #include "SolidEffect.h"
 #include "VertexColorEffect.h"
+#include "VertexPositionColorEffect.h"
 #include <memory>
 
 class TestObject
 {
 public:
-	typedef Pipeline<SolidEffect> Pipeline;
+	typedef Pipeline<VertexPositionColorEffect> Pipeline;
+	//typedef Pipeline<SolidEffect> Pipeline;
 	//typedef Pipeline<VertexColorEffect> Pipeline;
 	//typedef Pipeline<TextureEffect> Pipeline;
 	typedef typename Pipeline::Vertex Vertex;

@@ -133,7 +133,7 @@ private:
 		pipeline.Draw(obj.GetTriangle());
 	}
 private:
-	Pipeline<SolidEffect> pipeline; 
+	Pipeline<VertexPositionColorEffect> pipeline;
 	std::vector<std::unique_ptr<TestObject>> objects;
 	TestObject* player = nullptr;
 };
