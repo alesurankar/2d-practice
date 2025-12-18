@@ -109,6 +109,7 @@
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="OscilloscopeMode.cpp" />
     <ClCompile Include="Output.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Signal.cpp" />
     <ClCompile Include="MCUSimulator.cpp" />
     <ClCompile Include="Sound.cpp" />
