@@ -125,6 +125,7 @@
     <ClInclude Include="Colors.h" />
     <ClInclude Include="COMInitializer.h" />
     <ClInclude Include="CubeScreenTransformer.h" />
+    <ClInclude Include="DefaultGeometryShader.h" />
     <ClInclude Include="Drawable.h" />
     <ClInclude Include="DXErr.h" />
     <ClInclude Include="Field.h" />

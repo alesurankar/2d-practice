@@ -1,5 +1,6 @@
 #pragma once
 #include "Pipeline.h"
+#include "DefaultGeometryShader.h"
 
 // color gradient effect between vertices determined by vertex position
 class VertexPositionColorEffect
@@ -147,6 +148,9 @@ public:
 		Vec3 translation;
 	};
 	// converts float color into packed byte color
+	// default gs passes vertices through and outputs triangle
+	typedef DefaultGeometryShader<VertexShader::Output> GeometryShader;
+
 	class PixelShader
 	{
 	public:
@@ -158,5 +162,6 @@ public:
 	};
 public:
 	VertexShader vs;
+	GeometryShader gs;
 	PixelShader ps;
 };
