@@ -126,6 +126,7 @@
     <ClInclude Include="COMInitializer.h" />
     <ClInclude Include="CubeScreenTransformer.h" />
     <ClInclude Include="DefaultGeometryShader.h" />
+    <ClInclude Include="DefaultVertexShader.h" />
     <ClInclude Include="Drawable.h" />
     <ClInclude Include="DXErr.h" />
     <ClInclude Include="Field.h" />
@@ -154,6 +155,7 @@
     <ClInclude Include="Signal.h" />
     <ClInclude Include="MCUSimulator.h" />
     <ClInclude Include="SolidEffect.h" />
+    <ClInclude Include="SolidGeometryEffect.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundEffect.h" />
     <ClInclude Include="Surface.h" />

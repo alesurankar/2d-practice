@@ -74,15 +74,11 @@ public:
 		Vec3 pos;
 		Vec2 t;
 	};
-	// default vs rotates and translates vertices
-	// does not touch attributes
+
 	typedef DefaultVertexShader<Vertex> VertexShader;
-	// default gs passes vertices through and outputs triangle
+
 	typedef DefaultGeometryShader<VertexShader::Output> GeometryShader;
-	// invoked for each pixel of a triangle
-	// takes an input of attributes that are the
-	// result of interpolating vertex attributes
-	// and outputs a color
+
 	class PixelShader
 	{
 	public:
@@ -93,19 +89,19 @@ public:
 				(unsigned int)std::min(in.t.x * tex_width + 0.5f, tex_xclamp),
 				(unsigned int)std::min(in.t.y * tex_height + 0.5f, tex_yclamp)
 			);
-			Vec3 tint = { 1.0f, 0.9f, 0.5f };
+			Vec3 tint = { 0.7f, 0.7f, 0.7f };
 			return texColor * tint;
 		}
-		void BindTexture(const std::string& filename)
+		void BindTexture(const Surface& tex)
 		{
-			pTex = std::make_unique<Surface>(filename);
+			pTex = &tex;
 			tex_width = float(pTex->GetWidth());
 			tex_height = float(pTex->GetHeight());
 			tex_xclamp = tex_width - 1.0f;
 			tex_yclamp = tex_height - 1.0f;
 		}
 	private:
-		std::unique_ptr<Surface> pTex;
+		const Surface* pTex = nullptr;
 		float tex_width;
 		float tex_height;
 		float tex_xclamp;

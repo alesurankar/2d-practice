@@ -6,21 +6,14 @@
 #include "Mat.h"
 #include "Pipeline.h"
 #include "TextureEffect.h"
-#include "SolidEffect.h"
-#include "VertexColorEffect.h"
-#include "VertexPositionColorEffect.h"
 #include <memory>
 
 class TestObject
 {
 public:
-	typedef Pipeline<VertexPositionColorEffect> Pipeline;
-	//typedef Pipeline<SolidEffect> Pipeline;
-	//typedef Pipeline<VertexColorEffect> Pipeline;
-	//typedef Pipeline<TextureEffect> Pipeline;
+	typedef Pipeline<TextureEffect> Pipeline;
 	typedef typename Pipeline::Vertex Vertex;
-	//TestObject(Graphics& gfx, const Vec3& pos_in, const std::string& filename, const Vec3& ornt_in = { 0.0f,0.0f,0.0f });
-	TestObject(Graphics& gfx, const Vec3& pos_in, const Vec3& ornt_in = { 0.0f,0.0f,0.0f });
+	TestObject(Graphics& gfx, const Vec3& pos_in, const std::string& filename, const Vec3& ornt_in = { 0.0f,0.0f,0.0f });
 	void Move(float x, float y, float z);
 	void Move();
 	void Rotate(float x, float y, float z);
@@ -33,6 +26,7 @@ public:
 	void SetTorque(float roll, float pitch, float yaw);
 	void ChangeTorque();
 	BoxF GetWorldBoundingBox() const;
+	const Surface& GetTexture() const;
 private:
 	void CheckBorder();
 private:
@@ -40,6 +34,7 @@ private:
 	Vec3 ornt;
 	Vec3 vel;
 	Vec3 torq;
+	std::shared_ptr<Surface> pTexture;
 	IndexedTriangleList<Vertex> itlist;
 	IndexedTriangleList<Vertex> triangles;
 };

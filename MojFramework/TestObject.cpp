@@ -1,26 +1,16 @@
 #include "TestObject.h"
 #include "App.h"
+#include <utility>
 
 
-//TestObject::TestObject(Graphics& gfx, const Vec3& pos_in, const std::string& filename, const Vec3& ornt_in)
-TestObject::TestObject(Graphics& gfx, const Vec3& pos_in, const Vec3& ornt_in)
+TestObject::TestObject(Graphics& gfx, const Vec3& pos_in, const std::string& filename_in, const Vec3& ornt_in)
 	:
 	pos(pos_in),
 	ornt(ornt_in),
-	//itlist(Drawable::GetPlainIndependentFaces<Vertex>()),
-	itlist(Drawable::GetPlain<Vertex>()),
-	//itlist(Drawable::GetSkinned<Vertex>()),
+	itlist(Drawable::GetSkinned<Vertex>()),
 	triangles(itlist)
 {
-	//itlist.vert[0].color = Vec3(Colors::Red);
-	//itlist.vert[1].color = Vec3(Colors::Green);
-	//itlist.vert[2].color = Vec3(Colors::Blue);
-	//itlist.vert[3].color = Vec3(Colors::Yellow);
-	//itlist.vert[4].color = Vec3(Colors::Cyan);
-	//itlist.vert[5].color = Vec3(Colors::Magenta);
-	//itlist.vert[6].color = Vec3(Colors::White);
-	//itlist.vert[7].color = Vec3(Colors::Black);
-	//pipeline.effect.ps.BindTexture(filename);
+	pTexture = std::make_shared<Surface>(filename_in);
 }
 
 void TestObject::Move(float x, float y, float z)
@@ -129,6 +119,11 @@ BoxF TestObject::GetWorldBoundingBox() const
 	);
 }
 
+const Surface& TestObject::GetTexture() const
+{
+	return *pTexture;
+}
+
 Vec3 TestObject::GetPos() const
 {
 	return pos;
@@ -139,7 +134,7 @@ Vec3 TestObject::GetOrnt() const
 	return ornt;
 }
 
-const IndexedTriangleList <VertexPositionColorEffect::Vertex > & TestObject::GetTriangle() const
+const IndexedTriangleList <TextureEffect::Vertex > & TestObject::GetTriangle() const
 {
 	return triangles;
 }
