@@ -127,8 +127,8 @@ private:
 
 		const Vec3 trans = { obj.GetPos().x,obj.GetPos().y,obj.GetPos().z };
 
-		pipeline.BindRotation(rot);
-		pipeline.BindTranslation(trans);
+		pipeline.effect.vs.BindRotation(rot);
+		pipeline.effect.vs.BindTranslation(trans);
 
 		pipeline.Draw(obj.GetTriangle());
 	}

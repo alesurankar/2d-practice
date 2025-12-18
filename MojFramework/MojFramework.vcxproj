@@ -131,6 +131,7 @@
     <ClInclude Include="Fonts.h" />
     <ClInclude Include="FrameTimer.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="DefaultVertexShader.h" />
     <ClInclude Include="ImageEffect.h" />
     <ClInclude Include="IndexedTriangleList.h" />
     <ClInclude Include="Input.h" />

@@ -1,5 +1,6 @@
 #pragma once
 #include "Pipeline.h"
+#include "DefaultVertexShader.h"
 #include <memory>
 
 // basic texture effect
@@ -72,6 +73,9 @@ public:
 		Vec3 pos;
 		Vec2 t;
 	};
+	// default vs rotates and translates vertices
+	// does not touch attributes
+	typedef DefaultVertexShader<Vertex> VertexShader;
 	// invoked for each pixel of a triangle
 	// takes an input of attributes that are the
 	// result of interpolating vertex attributes
@@ -105,5 +109,6 @@ public:
 		float tex_yclamp;
 	};
 public:
+	VertexShader vs;
 	PixelShader ps;
 };
