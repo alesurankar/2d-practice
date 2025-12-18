@@ -27,6 +27,9 @@ public:
 	void ChangeTorque();
 	BoxF GetWorldBoundingBox() const;
 	const Surface& GetTexture() const;
+	void SetCollisionFlag();
+	void ResetCollisionFlag();
+	bool CheckCollisionFlag();
 private:
 	void CheckBorder();
 private:
@@ -37,4 +40,5 @@ private:
 	std::shared_ptr<Surface> pTexture;
 	IndexedTriangleList<Vertex> itlist;
 	IndexedTriangleList<Vertex> triangles;
+	bool collisionFlag = false;
 };

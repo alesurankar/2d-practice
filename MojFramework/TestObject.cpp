@@ -126,6 +126,21 @@ const Surface& TestObject::GetTexture() const
 	return *pTexture;
 }
 
+void TestObject::SetCollisionFlag()
+{
+	collisionFlag = true;
+}
+
+void TestObject::ResetCollisionFlag()
+{
+	collisionFlag = false;
+}
+
+bool TestObject::CheckCollisionFlag()
+{
+	return collisionFlag;
+}
+
 Vec3 TestObject::GetPos() const
 {
 	return pos;
