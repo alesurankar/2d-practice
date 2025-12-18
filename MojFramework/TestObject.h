@@ -30,6 +30,9 @@ public:
 	void SetCollisionFlag();
 	void ResetCollisionFlag();
 	bool CheckCollisionFlag();
+	void SetMoved();
+	void ResetMoved();
+	bool CheckMoved();
 private:
 	void CheckBorder();
 private:
@@ -41,4 +44,5 @@ private:
 	IndexedTriangleList<Vertex> itlist;
 	IndexedTriangleList<Vertex> triangles;
 	bool collisionFlag = false;
+	bool moved = true;
 };

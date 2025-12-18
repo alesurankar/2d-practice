@@ -53,28 +53,28 @@ void TestObject::Rotate()
 
 void TestObject::CheckBorder()
 {
-	if (pos.x < -2.0f) {
-		pos.x = -2.0f;
+	if (pos.x < -6.0f) {
+		pos.x = -6.0f;
 		vel.x = -vel.x;
 		torq.x = -torq.x;
 	}
-	if (pos.y < -2.0f) {
-		pos.y = -2.0f;
+	if (pos.y < -6.0f) {
+		pos.y = -6.0f;
 		vel.y = -vel.y;
 		torq.y = -torq.y;
 	}
-	if (pos.z < 3.4f) {
-		pos.z = 3.4f;
+	if (pos.z < 8.0f) {
+		pos.z = 8.0f;
 		vel.z = -vel.z;
 		torq.z = -torq.z;
 	}
-	if (pos.x > 2.0f) {
-		pos.x = 2.0f;
+	if (pos.x > 6.0f) {
+		pos.x = 6.0f;
 		vel.x = -vel.x;
 		torq.x = -torq.x;
 	}
-	if (pos.y > 2.0f) {
-		pos.y = 2.0f;
+	if (pos.y > 6.0f) {
+		pos.y = 6.0f;
 		vel.y = -vel.y;
 		torq.y = -torq.y;
 	}
@@ -139,6 +139,21 @@ void TestObject::ResetCollisionFlag()
 bool TestObject::CheckCollisionFlag()
 {
 	return collisionFlag;
+}
+
+void TestObject::SetMoved()
+{
+	moved = true;
+}
+
+void TestObject::ResetMoved()
+{
+	moved = false;
+}
+
+bool TestObject::CheckMoved()
+{
+	return moved;
 }
 
 Vec3 TestObject::GetPos() const
